@@ -11,6 +11,11 @@ const dbo = require("../db/conn");
 // This help convert the id from string to ObjectId for the _id.
 const ObjectId = require("mongodb").ObjectId;
 
+const bodyParser = require('body-parser')
+userRoutes.use(bodyParser.urlencoded({
+  extended: true
+}));
+
 // This section will help you get a list of all the records.
 userRoutes.route("/user").get(function (req, res) {
   let db_connect = dbo.getDb("Famify");
@@ -41,6 +46,7 @@ userRoutes.route("/user/add").post(function (req, response) {
     email: req.body.email,
     family: req.body.family,
   };
+
   db_connect.collection("users").insertOne(myobj, function (err, res) {
     if (err) throw err;
     response.json(res);
