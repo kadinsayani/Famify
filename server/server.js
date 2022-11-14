@@ -5,7 +5,7 @@ import mongoose from "mongoose";
 // const express = require("express");
 // const app = express();
 // const cors = require("cors");
-// require("dotenv").config({ path: "./config.env" });
+//require("dotenv").config({ path: "./config.env" });
 const port = 5000;
 // app.use(cors());
 // app.use(express.json());
@@ -28,15 +28,19 @@ app.use(express.urlencoded({ extended: true }));
 app.use(cors());
 
 mongoose.connect(
-  "mongodb+srv://Cluster96109:bVd3aF9mTXhO@cluster96109.2znr6fz.mongodb.net/Famify?retryWrites=true&w=majority",
+  "mongodb+srv://Cluster96109:bVd3aF9mTXhO@cluster96109.2znr6fz.mongodb.net",
   {
     useNewUrlParser: true,
     useUnifiedTopology: true,
   }
 );
-() => {
+
+const db = mongoose.connection;
+db.on("error", console.error.bind(console, "connection error: "));
+db.once("open", function () {
   console.log("Connected to MongoDB");
-};
+});
+
 
 const userSchema = new mongoose.Schema({
   username: String,
