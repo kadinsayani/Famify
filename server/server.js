@@ -24,13 +24,16 @@ const port = 5000;
 
 const app = express();
 app.use(express.json());
-app.use(express.urlencoded());
+app.use(express.urlencoded({ extended: true }));
 app.use(cors());
 
-mongoose.connect("mongodb://localhost:27017/famify", {
-  useNewUrlParser: true,
-  useUnifiedTopology: true,
-});
+mongoose.connect(
+  "mongodb+srv://Cluster96109:bVd3aF9mTXhO@cluster96109.2znr6fz.mongodb.net/Famify?retryWrites=true&w=majority",
+  {
+    useNewUrlParser: true,
+    useUnifiedTopology: true,
+  }
+);
 () => {
   console.log("Connected to MongoDB");
 };
