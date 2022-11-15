@@ -2,25 +2,12 @@ import express from "express";
 import cors from "cors";
 import mongoose from "mongoose";
 
-// const express = require("express");
-// const app = express();
-// const cors = require("cors");
-//require("dotenv").config({ path: "./config.env" });
-const port = 5000;
-// app.use(cors());
-// app.use(express.json());
-// app.use(require("./routes/users"));
-// app.use(require("./routes/families"));
-// // get driver connection
-// const dbo = require("./db/conn");
+// dotenv
+import * as dotenv from 'dotenv'
+dotenv.config({ path: "./config.env" });
 
-// app.listen(port, () => {
-//   // perform a database connection when server starts
-//   dbo.connectToServer(function (err) {
-//     if (err) console.error(err);
-//   });
-//   console.log(`Server is running on port: ${port}`);
-// });
+const port = process.env.FAMIFY_SERVER_PORT || 5000;
+const atlasURI = process.env.ATLAS_URI
 
 const app = express();
 app.use(express.json());
@@ -28,19 +15,17 @@ app.use(express.urlencoded({ extended: true }));
 app.use(cors());
 
 mongoose.connect(
-  "mongodb+srv://Cluster96109:bVd3aF9mTXhO@cluster96109.2znr6fz.mongodb.net",
+  atlasURI,
   {
     useNewUrlParser: true,
     useUnifiedTopology: true,
+  },
+  (err) => {
+    if (!err) {
+      console.log("Successfully connected to MongoDB.")
+    }
   }
 );
-
-const db = mongoose.connection;
-db.on("error", console.error.bind(console, "connection error: "));
-db.once("open", function () {
-  console.log("Connected to MongoDB");
-});
-
 
 const userSchema = new mongoose.Schema({
   username: String,
@@ -49,7 +34,7 @@ const userSchema = new mongoose.Schema({
 
 const User = new mongoose.model("User", userSchema);
 
-app.post("/Login", (req, res) => {
+app.post("/login", (req, res) => {
   const { username, password } = req.body;
   User.findOne({ username: username }, (err, user) => {
     if (user) {
@@ -64,7 +49,7 @@ app.post("/Login", (req, res) => {
   });
 });
 
-app.post("/Register", (req, res) => {
+app.post("/register", (req, res) => {
   console.log(req.body);
   const { username, password } = req.body;
   User.findOne({ username: username }, (err, user) => {
