@@ -24,28 +24,28 @@ const Register = () => {
       <div>
         <h1>Register</h1>
         <form>
-          <label for="username">Username:</label>
+          <label htmlFor="username">Username:</label>
           <input
             type="text"
             id="username"
             name="username"
-            value={user.username}
+            defaultValue={user.username}
             onChange={handleChange}
           />
-          <label for="password">Password:</label>
+          <label htmlFor="password">Password:</label>
           <input
             type="text"
             id="password"
             name="password"
-            value={user.password}
+            defaultValue={user.password}
             onChange={handleChange}
           />
-          <label for="family">Family:</label>
+          <label htmlFor="family">Family:</label>
           <input
             type="text"
             id="family"
             name="family"
-            value={user.password}
+            defaultValue={user.password}
             onChange={handleChange}
           />
         </form>

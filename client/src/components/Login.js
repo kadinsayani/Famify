@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import axios from "axios";
-import register from "./Register";
+import { useNavigate } from "react-router-dom";
 
 const Login = ({ setLoginUser }) => {
   const [user, setUser] = useState({
@@ -28,7 +28,7 @@ const Login = ({ setLoginUser }) => {
       <h1>Login</h1>
 
       <form action="#">
-        <label for="username">Username: </label>
+        <label htmlFor="username">Username: </label>
         <input
           type="text"
           id="username"
@@ -37,7 +37,7 @@ const Login = ({ setLoginUser }) => {
           onChange={handleChange}
         />
 
-        <label for="password">Password:</label>
+        <label htmlFor="password">Password:</label>
         <input
           type="text"
           id="password"
@@ -46,7 +46,7 @@ const Login = ({ setLoginUser }) => {
           onChange={handleChange}
         />
 
-        <label for="password">Family:</label>
+        <label htmlFor="password">Family:</label>
         <input
           type="text"
           id="family"
@@ -56,7 +56,7 @@ const Login = ({ setLoginUser }) => {
         />
       </form>
 
-      <button type="submit" onClick={register}>
+      <button type="submit" onClick={useNavigate("/register")}>
         Don't have an account?
       </button>
 
