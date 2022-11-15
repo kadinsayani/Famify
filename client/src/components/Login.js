@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import axios from "axios";
+import register from "./Register";
 
 const Login = ({ setLoginUser }) => {
   const [user, setUser] = useState({
@@ -54,6 +55,10 @@ const Login = ({ setLoginUser }) => {
           onChange={handleChange}
         />
       </form>
+
+      <button type="submit" onClick={register}>
+        Don't have an account?
+      </button>
 
       <button type="submit" onClick={login}>
         Login
