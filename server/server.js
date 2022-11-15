@@ -6,6 +6,9 @@ import mongoose from "mongoose";
 import * as dotenv from 'dotenv'
 dotenv.config({ path: "./config.env" });
 
+// models
+import User from './models/User.model.js'
+
 const port = process.env.FAMIFY_SERVER_PORT || 5000;
 const atlasURI = process.env.ATLAS_URI
 
@@ -26,13 +29,6 @@ mongoose.connect(
     }
   }
 );
-
-const userSchema = new mongoose.Schema({
-  username: String,
-  password: String,
-});
-
-const User = new mongoose.model("User", userSchema);
 
 app.post("/login", (req, res) => {
   const { username, password } = req.body;
