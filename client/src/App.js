@@ -1,5 +1,5 @@
 import { React, useState } from "react";
-// import "./App.css";
+import "./App.css";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import Login from "./components/Login.js";
 import Register from "./components/Register.js";
@@ -11,15 +11,15 @@ const App = () => {
     <div>
       <Router>
         <Routes>
-          <Route exact path="/">
-            {user && user._id ? <Homepage /> : <Login />} <Homepage />
-          </Route>
-          <Route path="/Login">
-            <Login setLoginUser={setLoginUser} />
-          </Route>
-          <Route path="/Register">
-            <Register />
-          </Route>
+          <Route
+            path="/"
+            element={user && user._id ? <Homepage /> : <Login />}
+          ></Route>
+          <Route
+            path="/login"
+            element={<Login setLoginUser={setLoginUser} />}
+          ></Route>
+          <Route path="/register" element={<Register />}></Route>
         </Routes>
       </Router>
     </div>
