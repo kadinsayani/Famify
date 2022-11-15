@@ -3,14 +3,14 @@ import cors from "cors";
 import mongoose from "mongoose";
 
 // dotenv
-import * as dotenv from 'dotenv'
+import * as dotenv from "dotenv";
 dotenv.config({ path: "./config.env" });
 
 // models
-import User from './models/User.model.js'
+import User from "./models/User.model.js";
 
 const port = process.env.FAMIFY_SERVER_PORT || 5000;
-const atlasURI = process.env.ATLAS_URI
+const atlasURI = process.env.ATLAS_URI;
 
 const app = express();
 app.use(express.json());
@@ -25,16 +25,16 @@ mongoose.connect(
   },
   (err) => {
     if (!err) {
-      console.log("Successfully connected to MongoDB.")
+      console.log("Successfully connected to MongoDB.");
     }
   }
 );
 
 app.post("/login", (req, res) => {
-  const { username, password } = req.body;
+  const { username, family, password } = req.body;
   User.findOne({ username: username }, (err, user) => {
     if (user) {
-      if (user.password === password) {
+      if (user.password === password && (user.family = family)) {
         res.send("Success");
       } else {
         res.send("Wrong password");
@@ -47,12 +47,12 @@ app.post("/login", (req, res) => {
 
 app.post("/register", (req, res) => {
   console.log(req.body);
-  const { username, password } = req.body;
+  const { username, family, password } = req.body;
   User.findOne({ username: username }, (err, user) => {
     if (user) {
       res.send("User already exists");
     } else {
-      const user = new User({ username, password });
+      const user = new User({ username, family, password });
       user.save((err) => {
         if (err) {
           res.send(err);

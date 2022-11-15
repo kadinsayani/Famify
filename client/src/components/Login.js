@@ -1,61 +1,65 @@
-import React,{useState} from 'react'
-import axios from 'axios';
+import React, { useState } from "react";
+import axios from "axios";
 
-const Login = ({setLoginUser}) => {
-  
+const Login = ({ setLoginUser }) => {
   const [user, setUser] = useState({
-      email:"",
-      password: ""
-  })
-  const handleChange = e =>{
-    const {name,value} = e.target
+    username: "",
+    family: "",
+    password: "",
+  });
+  const handleChange = (e) => {
+    const { username, value } = e.target;
     setUser({
-    ...user,
-    [name]:value
-  })
-  }
+      ...user,
+      [username]: value,
+    });
+  };
 
-  const login =()=>{
-    axios.post("/login",user)
-      .then(res=>{alert(res.data.message)
-    setLoginUser(res.data.user)})
-  }
+  const login = () => {
+    axios.post("/login", user).then((res) => {
+      alert(res.data.message);
+      setLoginUser(res.data.user);
+    });
+  };
 
-    return (
-      
-      <div>
+  return (
+    <div>
+      <h1>Login</h1>
 
-        <h1>Login</h1>
+      <form action="#">
+        <label for="username">Username: </label>
+        <input
+          type="text"
+          id="username"
+          name="username"
+          value={user.username}
+          onChange={handleChange}
+        />
 
-        <form action="#">
-            
-          <label for="email">Email: </label>
-          <input
-            type="text"
-            id="email"
-            name="email"
-            value={user.email}
-            onChange={handleChange}
-          />
+        <label for="password">Password:</label>
+        <input
+          type="text"
+          id="password"
+          name="password"
+          value={user.password}
+          onChange={handleChange}
+        />
 
-          <label for="password">Password:</label>
-            <input
-              type="text"
-              id="password"
-              name="password"
-              value={user.password}
-              onChange={handleChange}
-          />
+        <label for="password">Family:</label>
+        <input
+          type="text"
+          id="family"
+          name="family"
+          value={user.family}
+          onChange={handleChange}
+        />
+      </form>
 
-        </form>
+      <button type="submit" onClick={login}>
+        Login
+      </button>
+    </div>
+  );
+};
 
-        <button type="submit" onClick={login}>
-          Login
-        </button>
-
-      </div>
-
-    )
-}
-
-export default Login
+export default Login;

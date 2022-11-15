@@ -4,6 +4,7 @@ import axios from "axios";
 const Register = () => {
   const [user, setUser] = useState({
     username: "",
+    family: "",
     password: "",
   });
   const handleChange = (e) => {
@@ -11,8 +12,8 @@ const Register = () => {
     setUser({ ...user, [username]: value });
   };
   const register = () => {
-    const { username, password } = user;
-    if (username && password) {
+    const { username, family, password } = user;
+    if (username && password && family) {
       axios.post("/user/add", user).then((res) => {
         console.log(res.data);
       });
@@ -39,8 +40,14 @@ const Register = () => {
             value={user.password}
             onChange={handleChange}
           />
-          <label for="familycode">Family join code:</label>
-          <input type="text" id="familycode" name="familycode" />
+          <label for="family">Family:</label>
+          <input
+            type="text"
+            id="family"
+            name="family"
+            value={user.password}
+            onChange={handleChange}
+          />
         </form>
         <button type="submit" onClick={register}>
           Register
