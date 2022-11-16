@@ -17,7 +17,7 @@ const Register = () => {
   const createUser = () => {
     const { username, family, password } = user;
     if (username && password && family) {
-      axios.post("/register", user).then((res) => {
+      axios.post('http://localhost:3001/register', user).then((res) => {
         console.log(res.data);
       });
     } else {
