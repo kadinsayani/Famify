@@ -9,10 +9,10 @@ const Login = ({ setLoginUser }) => {
     password: "",
   });
   const handleChange = (e) => {
-    const { username, value } = e.target;
+    const { name, value } = e.target;
     setUser({
       ...user,
-      [username]: value,
+      [name]: value,
     });
   };
 
@@ -33,7 +33,7 @@ const Login = ({ setLoginUser }) => {
           type="text"
           id="username"
           name="username"
-          value={user.username}
+          defaultValue={user.username}
           onChange={handleChange}
         />
 
@@ -42,7 +42,7 @@ const Login = ({ setLoginUser }) => {
           type="text"
           id="password"
           name="password"
-          value={user.password}
+          defaultValue={user.password}
           onChange={handleChange}
         />
 
@@ -51,7 +51,7 @@ const Login = ({ setLoginUser }) => {
           type="text"
           id="family"
           name="family"
-          value={user.family}
+          defaultValue={user.family}
           onChange={handleChange}
         />
       </form>
