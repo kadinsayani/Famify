@@ -17,8 +17,8 @@ const Login = ({ setLoginUser }) => {
   };
 
   const login = () => {
-    axios.post("/login", user).then((res) => {
-      alert(res.data.message);
+    axios.post("http://localhost:3001/login", user).then((res) => {
+      alert(res.data);
       setLoginUser(res.data.user);
     });
   };
@@ -27,22 +27,22 @@ const Login = ({ setLoginUser }) => {
     <div>
       <h1>Login</h1>
 
-      <form action="#">
+      <form>
         <label htmlFor="username">Username: </label>
         <input
           type="text"
           id="username"
           name="username"
-          defaultValue={user.username}
+          value={user.username}
           onChange={handleChange}
         />
 
         <label htmlFor="password">Password:</label>
         <input
-          type="text"
+          type="password"
           id="password"
           name="password"
-          defaultValue={user.password}
+          value={user.password}
           onChange={handleChange}
         />
 
@@ -51,7 +51,7 @@ const Login = ({ setLoginUser }) => {
           type="text"
           id="family"
           name="family"
-          defaultValue={user.family}
+          value={user.family}
           onChange={handleChange}
         />
       </form>
