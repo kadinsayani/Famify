@@ -3,7 +3,8 @@ import React from "react";
 const FamFeed = () => {
   return (
     <div>
-      <input></input>
+      <textarea></textarea>
+      <button>Post</button>
     </div>
   );
 };

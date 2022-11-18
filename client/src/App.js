@@ -11,6 +11,7 @@ const App = () => {
     <div>
       <Routes>
         <Route path="/" element={user && user._id ? <Homepage /> : <Login />} />
+        <Route path="/homepage" element={<Homepage />} />
         <Route path="/login" element={<Login setLoginUser={setLoginUser} />} />
         <Route path="/register" element={<Register />} />
       </Routes>
