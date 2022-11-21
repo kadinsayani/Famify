@@ -8,6 +8,7 @@ dotenv.config({ path: "./config.env" });
 
 // models
 import User from "./models/User.model.js";
+import Family from "./models/Family.model.js";
 
 const port = process.env.FAMIFY_SERVER_PORT || 5000;
 const atlasURI = process.env.ATLAS_URI;
@@ -33,10 +34,10 @@ mongoose.connect(
 );
 
 app.post("/login", (req, res) => {
-  const { username, family, password } = req.body;
+  const { username, password } = req.body;
   User.findOne({ username: username }, (err, user) => {
     if (user) {
-      if (user.password === password && (user.family = family)) {
+      if (user.password === password) {
         res.send("Success");
       } else {
         res.send("Wrong password");
@@ -48,22 +49,78 @@ app.post("/login", (req, res) => {
 });
 
 app.post("/register", (req, res) => {
-  console.log(req.body);
-  const { username, family, password } = req.body;
-  User.findOne({ username: username }, (err, user) => {
+
+  const { username, joinCode, password } = req.body;
+
+  if (!username || !password) {
+    return res.send("One or more required fields missing.");
+  }
+
+  User.findOne({username: username}, (err, user) => {
+
+    if (err) {
+      return res.send(err);
+    }
+
     if (user) {
-      res.send("User already exists");
+      return res.send("Username already exists.");
+    }
+
+    if (joinCode) {
+      // user to join family
+
+      Family.findOne({joinCode: joinCode}, (err, family) => {
+
+        if (err) {
+          return res.send(err);
+        }
+
+        if (!family) {
+          return res.send("Join code invalid.");
+        } else {
+
+          const user = new User({username: username, password: password, family: family._id});
+          family.members.push(user._id);
+          family.save()
+          user.save((err) => {
+            if (err) {
+              return res.send(err);
+            } else {
+              return res.status(200).send(user);
+            }
+          })
+
+        }
+
+      })
+
     } else {
-      const user = new User({ username, family, password });
+      // user to create family
+
+      const family = new Family();
+      // code generation
+      // TODO: actual unique code generation algorithm
+      let familyID = family._id.toString();
+      let code = familyID.substring(familyID.length - 6);
+
+      family.joinCode = code;
+
+      const user = new User({username: username, password: password, family: family._id});
+
+      family.members.push(user._id);
+
+      family.save()
       user.save((err) => {
         if (err) {
-          res.send(err);
+          return res.send(err);
         } else {
-          res.send("Success");
+          return res.status(200).send(user);
         }
-      });
+      })
     }
-  });
+
+  })
+
 });
 
 app.listen(port, () => {
