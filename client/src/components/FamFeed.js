@@ -14,6 +14,7 @@ function FamFeed() {
     <div className="post-app">
       <h1>Fam Feed</h1>
       <PostForm onSubmit={addPost} />
+      {/* get posts from database */}
       <Post posts={posts} />
     </div>
   );

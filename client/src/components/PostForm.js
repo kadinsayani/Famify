@@ -1,4 +1,5 @@
 import React, { useState, useEffect, useRef } from "react";
+import axios from "axios";
 
 function PostForm(props) {
   const [input, setInput] = useState("");
@@ -10,6 +11,13 @@ function PostForm(props) {
 
   const handleChange = (e) => {
     setInput(e.target.value);
+    createPost(e.target.value);
+  };
+
+  const createPost = () => {
+    axios.post("http://localhost:3001/post", input).then((res) => {
+      console.log(res.data);
+    });
   };
 
   const handleSubmit = (e) => {

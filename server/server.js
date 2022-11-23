@@ -9,6 +9,7 @@ dotenv.config({ path: "./config.env" });
 // models
 import User from "./models/User.model.js";
 import Family from "./models/Family.model.js";
+import Post from "./models/Post.model.js";
 
 const port = process.env.FAMIFY_SERVER_PORT || 5000;
 const atlasURI = process.env.ATLAS_URI;
@@ -49,15 +50,13 @@ app.post("/login", (req, res) => {
 });
 
 app.post("/register", (req, res) => {
-
   const { username, joinCode, password } = req.body;
 
   if (!username || !password) {
     return res.send("One or more required fields missing.");
   }
 
-  User.findOne({username: username}, (err, user) => {
-
+  User.findOne({ username: username }, (err, user) => {
     if (err) {
       return res.send(err);
     }
@@ -69,8 +68,7 @@ app.post("/register", (req, res) => {
     if (joinCode) {
       // user to join family
 
-      Family.findOne({joinCode: joinCode}, (err, family) => {
-
+      Family.findOne({ joinCode: joinCode }, (err, family) => {
         if (err) {
           return res.send(err);
         }
@@ -78,22 +76,22 @@ app.post("/register", (req, res) => {
         if (!family) {
           return res.send("Join code invalid.");
         } else {
-
-          const user = new User({username: username, password: password, family: family._id});
+          const user = new User({
+            username: username,
+            password: password,
+            family: family._id,
+          });
           family.members.push(user._id);
-          family.save()
+          family.save();
           user.save((err) => {
             if (err) {
               return res.send(err);
             } else {
               return res.status(200).send(user);
             }
-          })
-
+          });
         }
-
-      })
-
+      });
     } else {
       // user to create family
 
@@ -105,22 +103,32 @@ app.post("/register", (req, res) => {
 
       family.joinCode = code;
 
-      const user = new User({username: username, password: password, family: family._id});
+      const user = new User({
+        username: username,
+        password: password,
+        family: family._id,
+      });
 
       family.members.push(user._id);
 
-      family.save()
+      family.save();
       user.save((err) => {
         if (err) {
           return res.send(err);
         } else {
           return res.status(200).send(user);
         }
-      })
+      });
     }
+  });
+});
 
-  })
-
+app.post("/post", (req, res) => {
+  const { family, post } = req.body;
+  const newPost = new Post();
+  newPost.family = "xyz";
+  newPost.post = post;
+  post.save();
 });
 
 app.listen(port, () => {
