@@ -1,6 +1,8 @@
 import express from "express";
 import cors from "cors";
-import mongoose from "mongoose";
+
+// database
+import Database from "./db/database.js";
 
 // dotenv
 import * as dotenv from "dotenv";
@@ -9,30 +11,19 @@ dotenv.config({ path: "./config.env" });
 // models
 import User from "./models/User.model.js";
 import Family from "./models/Family.model.js";
-import Post from "./models/Post.model.js";
+
+// routes
+import postRoutes from "./routes/posts.js";
 
 const port = process.env.FAMIFY_SERVER_PORT || 5000;
-const atlasURI = process.env.ATLAS_URI;
 
 const app = express();
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 app.use(cors());
 
-mongoose.connect(
-  atlasURI,
-  {
-    useNewUrlParser: true,
-    useUnifiedTopology: true,
-  },
-  (err) => {
-    if (!err) {
-      console.log("Successfully connected to MongoDB.");
-    } else {
-      console.log(err);
-    }
-  }
-);
+// routes
+app.use('/', postRoutes);
 
 app.post("/login", (req, res) => {
   const { username, password } = req.body;
@@ -121,24 +112,6 @@ app.post("/register", (req, res) => {
       });
     }
   });
-});
-
-app.post("/post", (req, res) => {
-  const { family, content } = req.body;
-
-  if (!content) {
-    return res.send("Content cannot be empty."); 
-  } else {
-    const newPost = new Post();
-    newPost.content = content;
-    newPost.save((err) => {
-      if (err) {
-        return res.send("Error on save()");
-      } else {
-        return res.send(newPost);
-      }
-    });
-  }
 });
 
 app.listen(port, () => {
