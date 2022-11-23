@@ -5,6 +5,7 @@ import Login from "./components/Login.js";
 import Register from "./components/Register.js";
 import Homepage from "./components/Homepage.js";
 import TaskList from "./components/TaskList.js";
+import FamFeed from "./components/FamFeed";
 
 const App = () => {
   const [user, setLoginUser] = useState({});
@@ -16,6 +17,7 @@ const App = () => {
         <Route path="/login" element={<Login setLoginUser={setLoginUser} />} />
         <Route path="/register" element={<Register />} />
         <Route path="/tasklist" element={<TaskList />} />
+        <Route path="/famfeed" element={<FamFeed />} />
       </Routes>
     </div>
   );
