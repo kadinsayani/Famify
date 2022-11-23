@@ -11,12 +11,11 @@ function PostForm(props) {
 
   const handleChange = (e) => {
     setInput(e.target.value);
-    createPost(e.target.value);
   };
 
-  const createPost = () => {
-    axios.post("http://localhost:3001/post", input).then((res) => {
-      console.log(res.data);
+  const createPost = (post) => {
+    axios.post("http://localhost:3001/post", post).then((res) => {
+      console.log(res);
     });
   };
 
@@ -28,7 +27,10 @@ function PostForm(props) {
       text: input,
     });
 
+    createPost({content: input});
+
     setInput("");
+    
   };
   return (
     <div>

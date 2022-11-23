@@ -124,11 +124,21 @@ app.post("/register", (req, res) => {
 });
 
 app.post("/post", (req, res) => {
-  const { family, post } = req.body;
-  const newPost = new Post();
-  newPost.family = "xyz";
-  newPost.post = post;
-  post.save();
+  const { family, content } = req.body;
+
+  if (!content) {
+    return res.send("Content cannot be empty."); 
+  } else {
+    const newPost = new Post();
+    newPost.content = content;
+    newPost.save((err) => {
+      if (err) {
+        return res.send("Error on save()");
+      } else {
+        return res.send(newPost);
+      }
+    });
+  }
 });
 
 app.listen(port, () => {
