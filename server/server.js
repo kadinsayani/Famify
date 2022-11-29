@@ -14,6 +14,7 @@ import Family from "./models/Family.model.js";
 
 // routes
 import postRoutes from "./routes/posts.js";
+import taskRoutes from "./routes/tasks.js";
 
 const port = process.env.FAMIFY_SERVER_PORT || 5000;
 
@@ -23,7 +24,8 @@ app.use(express.urlencoded({ extended: true }));
 app.use(cors());
 
 // routes
-app.use('/', postRoutes);
+app.use("/", postRoutes);
+app.use("/", taskRoutes);
 
 app.post("/login", (req, res) => {
   const { username, password } = req.body;
