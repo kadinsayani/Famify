@@ -1,4 +1,5 @@
 import React, { useState, useEffect, useRef } from "react";
+import axios from "axios";
 
 function TaskForm(props) {
   const [input, setInput] = useState("");
@@ -12,6 +13,12 @@ function TaskForm(props) {
     setInput(e.target.value);
   };
 
+  const createTask = (post) => {
+    axios.post("http://localhost:3001/task", post).then((res) => {
+      console.log(res);
+    });
+  };
+
   const handleSubmit = (e) => {
     e.preventDefault();
 
@@ -19,6 +26,8 @@ function TaskForm(props) {
       id: Math.floor(Math.random() * 10000),
       text: input,
     });
+
+    createTask({ content: input });
 
     setInput("");
   };
