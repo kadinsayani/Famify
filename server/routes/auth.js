@@ -94,7 +94,7 @@ authRoutes.post("/login",
   passport.authenticate('local'),
   (req, res) => {
 
-    // save user to express session
+    // set up current session
     req.session.user = {
       id: req.user.id,
       username: req.user.username,
