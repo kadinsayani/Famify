@@ -1,9 +1,9 @@
 import express from "express"
 import bodyParser from "body-parser"
-import passport from "passport";
 
 // use to check for authentication
 import userAuthenticated from "../auth/Authentication.js";
+import Family from "../models/Family.model.js";
 
 const userRoutes = express.Router();
 
@@ -16,6 +16,17 @@ userRoutes.route("/user")
     .get(userAuthenticated, (req, res) => {
       return res.send(req.session.user);
   });
+
+// get family
+userRoutes.route("/user/family")
+  .get(userAuthenticated, (req, res) => {
+
+    Family.findById(req.session.user.familyID, (err, family) => {
+      if (err) return res.status(500).send("An error occured.")
+      if (!family) return res.send("No family found.")
+      res.send(family)
+    })
+});
 
 // get one user by id
 userRoutes.route("/user/:id")
