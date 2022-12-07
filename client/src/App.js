@@ -18,14 +18,14 @@ const App = () => {
         <Routes>
           <Route
             path="/"
-            element={user && user._id ? <Homepage /> : <Login />}
+            element={user ? <Homepage /> : <Login setLoginUser={user} />}
           />
           <Route path="/homepage" element={<Homepage />} />
           <Route
             path="/login"
             element={<Login setLoginUser={setLoginUser} />}
           />
-          <Route path="/register" component={<Register />} />
+          <Route path="/register" element={<Register />} />
           <Route path="/tasklist" element={<TaskList />} />
           <Route path="/famfeed" element={<FamFeed />} />
         </Routes>
