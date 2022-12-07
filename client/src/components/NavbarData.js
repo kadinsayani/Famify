@@ -21,4 +21,10 @@ export const NavbarData = [
     icon: <FaIcons.FaList />,
     cName: "nav-text",
   },
+  {
+    title: "Log Out",
+    path: "",
+    icon: <FaIcons.FaArrowLeft />,
+    cName: "nav-text",
+  },
 ];
