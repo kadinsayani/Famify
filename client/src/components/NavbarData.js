@@ -16,7 +16,7 @@ export const NavbarData = [
     cName: "nav-text",
   },
   {
-    title: "Tasks",
+    title: "Lists",
     path: "/tasklist",
     icon: <FaIcons.FaList />,
     cName: "nav-text",

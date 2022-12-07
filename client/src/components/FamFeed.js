@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import PostForm from "./PostForm";
 import Post from "./Post.js";
+import "./FamFeed.css";
 
 function FamFeed() {
   const [posts, setPosts] = useState([]);
