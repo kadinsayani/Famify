@@ -3,7 +3,7 @@ import FamFeed from "./FamFeed.js";
 
 const Homepage = () => {
   return (
-    <div>
+    <div className="homepage">
       <h1>Homepage</h1>
       <FamFeed />
     </div>

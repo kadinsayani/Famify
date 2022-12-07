@@ -11,11 +11,12 @@ function FamFeed() {
   };
 
   return (
-    <div className="post-app">
-      <h1>Fam Feed</h1>
-      <PostForm onSubmit={addPost} />
-      {/* get posts from database */}
-      <Post posts={posts} />
+    <div className="famfeed">
+      <div className="post-app">
+        <h1>Fam Feed</h1>
+        <PostForm onSubmit={addPost} />
+        <Post posts={posts} />
+      </div>
     </div>
   );
 }
