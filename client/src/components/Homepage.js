@@ -1,12 +1,19 @@
 import React from "react";
 import FamFeed from "./FamFeed.js";
+import TaskList from "./TaskList.js";
+import "./Homepage.css";
 
 const Homepage = () => {
   return (
-    <div className="homepage">
+    <>
       <h1>Homepage</h1>
-      <FamFeed />
-    </div>
+      <div className="homepage">
+        <>
+          <FamFeed />
+          <TaskList />
+        </>
+      </div>
+    </>
   );
 };
 
