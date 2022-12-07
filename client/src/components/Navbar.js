@@ -8,7 +8,7 @@ import { IconContext } from "react-icons";
 
 function Navbar() {
   const [navbar, setNavbar] = useState(false);
-  const showNavbar = () => setNavbar(!navbar);
+  // const showNavbar = () => setNavbar(!navbar);
   return (
     <>
       <IconContext.Provider value={{ color: "#0eb2fc" }}>
@@ -17,8 +17,8 @@ function Navbar() {
             <FaIcons.FaBars onClick={showNavbar} />
           </Link> */}
         </div>
-        <nav className={navbar ? "nav-menu active" : "nav-menu"}>
-          <ul className="nav-menu-items" onClick={showNavbar}>
+        <nav className="nav-menu">
+          <ul className="nav-menu-items">
             {/* <li className="navbar-toggle">
               <Link to="#" className="menu-bars">
                 <AiIcons.AiOutlineClose />
