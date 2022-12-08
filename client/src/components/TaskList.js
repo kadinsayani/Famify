@@ -1,9 +1,12 @@
 import React, { useState } from "react";
 import TaskForm from "./TaskForm";
 import Task from "./Task.js";
+import "./TaskList.css";
+import Modal from "./Modal";
 
 function TaskList() {
   const [tasks, setTasks] = useState([]);
+  const [show, setShow] = useState(false);
 
   const addTask = (task) => {
     const newTasks = [task, ...tasks];
@@ -32,15 +35,19 @@ function TaskList() {
   };
 
   return (
-    <div className="task-app">
-      <h1>Tasks</h1>
-      <TaskForm onSubmit={addTask} />
-      <Task
-        tasks={tasks}
-        completeTask={completeTask}
-        removeTask={removeTask}
-        updateTask={updateTask}
-      />
+    <div className="tasklist">
+      <div className="task-app">
+        <h1>Task List</h1>
+        <button onClick={() => setShow(true)}>Show Modal</button>
+        <Modal onClose={() => setShow(false)} show={show} />
+        <TaskForm onSubmit={addTask} />
+        <Task
+          tasks={tasks}
+          completeTask={completeTask}
+          removeTask={removeTask}
+          updateTask={updateTask}
+        />
+    </div>
     </div>
   );
 }

@@ -8,6 +8,7 @@ import Homepage from "./components/Homepage.js";
 import TaskList from "./components/TaskList.js";
 import FamFeed from "./components/FamFeed.js";
 import Navbar from "./components/Navbar.js";
+import ListOfLists from "./components/ListOfLists.js";
 
 const App = () => {
   const [user, setLoginUser] = useState({});
@@ -28,6 +29,7 @@ const App = () => {
           <Route path="/register" element={<Register />} />
           <Route path="/tasklist" element={<TaskList />} />
           <Route path="/famfeed" element={<FamFeed />} />
+          <Route path="/listoflists" element={<ListOfLists />} />
         </Routes>
       </Router>
     </>
