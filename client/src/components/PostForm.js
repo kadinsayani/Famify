@@ -1,5 +1,6 @@
 import React, { useState, useEffect, useRef } from "react";
 import axios from "axios";
+import "./FamFeed.css";
 
 function PostForm(props) {
   const [input, setInput] = useState("");
@@ -12,6 +13,13 @@ function PostForm(props) {
   const handleChange = (e) => {
     setInput(e.target.value);
   };
+  
+  const Image = (props) => {
+    return(
+      <img src={props.image} alt="profile_picture" className="picture">
+      </img>
+    )
+  }
 
   const createPost = (post) => {
     axios.post("http://localhost:3001/post", post).then((res) => {
@@ -35,16 +43,17 @@ function PostForm(props) {
   return (
     <div>
       <form className="post-form" onSubmit={handleSubmit}>
+        <Image image={props.image}/>
         <input
           type="text"
-          placeholder="Add a post"
+          placeholder="What's happening"
           value={input}
           name="text"
           className="task-input"
           onChange={handleChange}
           ref={focus}
         />
-        <button className="post-button">Add Post</button>
+        <button className="post-button">Post</button>
       </form>
     </div>
   );
