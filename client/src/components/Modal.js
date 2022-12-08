@@ -22,15 +22,13 @@ const Modal = props => {
                     <h4 className="modal-title">Modal Heading</h4>
                 </div>
                 <div className="modal-body">
-                    <p>Some text in the Modal Body</p>
-                </div>
-                <div className="modal-footer">
-                    <button onClick={props.onClose} className="button">Close</button>
                     <TaskForm onSubmit={addTask} />
                     <Task
                         tasks={tasks}
                     />
-                    
+                </div>
+                <div className="modal-footer">
+                    <button onClick={props.onClose} className="button">Close</button>
                 </div>
             </div>
         </div>

@@ -47,7 +47,7 @@ function TaskList() {
           removeTask={removeTask}
           updateTask={updateTask}
         />
-    </div>
+      </div>
     </div>
   );
 }
