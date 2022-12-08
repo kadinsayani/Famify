@@ -1,6 +1,7 @@
 import React, { useState, useEffect, useRef } from "react";
 import axios from "axios";
 import "./FamFeed.css";
+import { BsPersonCircle } from "react-icons/bs";
 
 function PostForm(props) {
   const [input, setInput] = useState("");
@@ -43,7 +44,8 @@ function PostForm(props) {
   return (
     <div>
       <form className="post-form" onSubmit={handleSubmit}>
-        <Image image={props.image}/>
+        {/* <Image image={props.image}/> */}
+        <h2><BsPersonCircle /></h2>
         <input
           type="text"
           placeholder="What's happening"
