@@ -7,3 +7,570 @@
     height: 100%;
     margin-left: 250px;
 }
+body {
+    font-family: Geneva, Tahoma, sans-serif, Verdana;
+}
+.post-app {
+    display: flex;
+    flex-direction: column;
+    width: 566px;
+    height: 170px;
+    box-shadow: 0 2px 4px 0 black;
+    background-color: white;
+    margin-left: 25rem;
+    margin-bottom: 0.1rem;
+}
+.post-app2 {
+    display: flex;
+    flex-direction: column;
+    width: 566px;
+    height: 200px;
+    box-shadow: 0 2px 4px 0 black;
+    background-color: white;
+    margin-bottom: 0.1rem;
+}
+.hide {
+    display: none;
+}
+.Button {
+    display: none;   
+}
+.Button2 {
+    display: none;   
+}
+.Button3 {
+    display: none;   
+}
+.Button4 {
+    display: none;   
+}
+.Button5 {
+    display: none;   
+}
+.Button:hover {
+    display: flex;
+    flex-direction: row;
+    background-color: cadetblue;
+}
+.post-app2 :hover + .hide {
+    display: block;
+    color: white;
+    background-color: cadetblue;
+    border: #ffffff;  
+}
+.post-app2 :hover ~ .hide, .hide:hover {
+    display: block;
+    margin-left: 415px;
+    height: 25px;
+    width: 150px;
+    background-color: #0eb2fc;
+    border-color: #0eb2fc;
+    color: white;
+    border: #ffffff;  
+}
+.post-app2 :hover {
+    background-color: cadetblue;
+    border: #ffffff;
+}
+.hide:hover + .Button {
+    display: block;
+    flex-direction: row;
+    color: cadetblue;
+    background-color: cadetblue;
+    border: #ffffff;  
+    padding: 15px;
+}
+.hide:hover ~ .Button, .Button:hover {
+    display: block;
+    margin-left: 415px;
+    height: 50px;
+    width: 150px;
+    background-color: #0eb2fc;
+    border-color: #0eb2fc;
+    color: white;
+    border: #ffffff;
+    padding: 15px;
+}
+.hide:hover + .Button2 {
+    display: block;
+    flex-direction: row;
+    color: cadetblue;
+    background-color: cadetblue;
+    border: #ffffff;  
+    padding: 15px 15px;
+}
+.hide:hover ~ .Button2, .Button2:hover {
+    display: block;
+    margin-left: 415px;
+    height: 50px;
+    width: 150px;
+    background-color: #0eb2fc;
+    border-color: #0eb2fc;
+    color: white;
+    border: #ffffff;
+    padding: 15px 15px;
+}
+.hide:hover + .Button3 {
+    display: block;
+    flex-direction: row;
+    color: cadetblue;
+    background-color: cadetblue;
+    border: #ffffff;  
+    padding: 15px 15px;
+}
+.hide:hover ~ .Button3, .Button3:hover {
+    display: block;
+    margin-left: 415px;
+    height: 50px;
+    width: 150px;
+    background-color: #0eb2fc;
+    border-color: #0eb2fc;
+    color: white;
+    border: #ffffff;
+    padding: 15px 15px;
+}
+.hide:hover + .Button4 {
+    display: block;
+    flex-direction: row;
+    color: cadetblue;
+    background-color: cadetblue;
+    border: #ffffff;  
+    padding: 15px 15px;
+}
+.hide:hover ~ .Button4, .Button4:hover {
+    display: block;
+    margin-left: 415px;
+    height: 50px;
+    width: 150px;
+    background-color: #0eb2fc;
+    border-color: #0eb2fc;
+    color: white;
+    border: #ffffff;
+    padding: 15px 15px;
+}
+.hide:hover + .Button5 {
+    display: block;
+    flex-direction: row;
+    color: cadetblue;
+    background-color: cadetblue;
+    border: #ffffff;  
+    padding: 15px 15px;
+}
+.hide:hover ~ .Button5, .Button5:hover {
+    display: block;
+    margin-left: 415px;
+    height: 50px;
+    width: 150px;
+    background-color: #0eb2fc;
+    border-color: #0eb2fc;
+    color: white;
+    border: #ffffff;
+    padding: 15px 15px;
+}
+.Button:hover + .Button2 {
+    display: block;
+    flex-direction: row;
+    color: cadetblue;
+    background-color: cadetblue;
+    border: #ffffff;  
+    padding: 15px;
+}
+.Button:hover ~ .Button2, .Button2:hover {
+    display: block;
+    margin-left: 415px;
+    height: 50px;
+    width: 150px;
+    background-color: #0eb2fc;
+    border-color: white;
+    color: white;
+    border: #ffffff;
+    padding: 15px;
+}
+.Button:hover + .Button3 {
+    display: block;
+    flex-direction: row;
+    color: cadetblue;
+    background-color: cadetblue;
+    border: #ffffff;  
+    padding: 15px 15px;
+}
+.Button:hover ~ .Button3, .Button3:hover {
+    display: block;
+    margin-left: 415px;
+    height: 50px;
+    width: 150px;
+    background-color: #0eb2fc;
+    border-color: #0eb2fc;
+    color: white;
+    border: #ffffff;
+    padding: 15px 15px;
+}
+.Button:hover + .Button4 {
+    display: block;
+    flex-direction: row;
+    color: cadetblue;
+    background-color: cadetblue;
+    border: #ffffff;  
+    padding: 15px 15px;
+}
+.Button:hover ~ .Button4, .Button4:hover {
+    display: block;
+    margin-left: 415px;
+    height: 50px;
+    width: 150px;
+    background-color: #0eb2fc;
+    border-color: #0eb2fc;
+    color: white;
+    border: #ffffff;
+    padding: 15px 15px;
+}
+.Button:hover + .Button5 {
+    display: block;
+    flex-direction: row;
+    color: cadetblue;
+    background-color: cadetblue;
+    border: #ffffff;  
+    padding: 15px 15px;
+}
+.Button:hover ~ .Button5, .Button5:hover {
+    display: block;
+    margin-left: 415px;
+    height: 50px;
+    width: 150px;
+    background-color: #0eb2fc;
+    border-color: #0eb2fc;
+    color: white;
+    border: #ffffff;
+    padding: 15px 15px;
+}
+.Button2:hover + .Button {
+    display: block;
+    flex-direction: row;
+    color: cadetblue;
+    background-color: cadetblue;
+    border: #ffffff;  
+    padding: 15px 15px;
+}
+.Button2:hover ~ .Button, .Button:hover {
+    display: block;
+    margin-left: 415px;
+    height: 50px;
+    width: 150px;
+    background-color: #0eb2fc;
+    border-color: #0eb2fc;
+    color: white;
+    border: #ffffff;
+    padding: 15px 15px;
+}
+.Button2:hover + .Button3 {
+    display: block;
+    flex-direction: row;
+    color: cadetblue;
+    background-color: cadetblue;
+    border: #ffffff;  
+    padding: 15px 15px;
+}
+.Button2:hover ~ .Button3, .Button3:hover {
+    display: block;
+    margin-left: 415px;
+    height: 50px;
+    width: 150px;
+    background-color: #0eb2fc;
+    border-color: #0eb2fc;
+    color: white;
+    border: #ffffff;
+    padding: 15px 15px;
+}
+.Button2:hover + .Button4 {
+    display: block;
+    flex-direction: row;
+    color: cadetblue;
+    background-color: cadetblue;
+    border: #ffffff;  
+    padding: 15px 15px;
+}
+.Button2:hover ~ .Button4, .Button4:hover {
+    display: block;
+    margin-left: 415px;
+    height: 50px;
+    width: 150px;
+    background-color: #0eb2fc;
+    border-color: #0eb2fc;
+    color: white;
+    border: #ffffff;
+    padding: 15px 15px;
+}
+.Button2:hover + .Button5 {
+    display: block;
+    flex-direction: row;
+    color: cadetblue;
+    background-color: cadetblue;
+    border: #ffffff;  
+    padding: 15px 15px;
+}
+.Button2:hover ~ .Button5, .Button5:hover {
+    display: block;
+    margin-left: 415px;
+    height: 50px;
+    width: 150px;
+    background-color: #0eb2fc;
+    border-color: #0eb2fc;
+    color: white;
+    border: #ffffff;
+    padding: 15px 15px;
+}
+.Button3:hover + .Button {
+    display: block;
+    flex-direction: row;
+    color: cadetblue;
+    background-color: cadetblue;
+    border: #ffffff;  
+    padding: 15px 15px;
+}
+.Button3:hover ~ .Button, .Button:hover {
+    display: block;
+    margin-left: 415px;
+    height: 50px;
+    width: 150px;
+    background-color: #0eb2fc;
+    border-color: #0eb2fc;
+    color: white;
+    border: #ffffff;
+    padding: 15px 15px;
+}
+.Button3:hover + .Button2 {
+    display: block;
+    flex-direction: row;
+    color: cadetblue;
+    background-color: cadetblue;
+    border: #ffffff;  
+    padding: 15px 15px;
+}
+.Button3:hover ~ .Button2, .Button2:hover {
+    display: block;
+    margin-left: 415px;
+    height: 50px;
+    width: 150px;
+    background-color: #0eb2fc;
+    border-color: #0eb2fc;
+    color: white;
+    border: #ffffff;
+    padding: 15px 15px;
+}
+.Button3:hover + .Button4 {
+    display: block;
+    flex-direction: row;
+    color: cadetblue;
+    background-color: cadetblue;
+    border: #ffffff;  
+    padding: 15px 15px;
+}
+.Button3:hover ~ .Button4, .Button4:hover {
+    display: block;
+    margin-left: 415px;
+    height: 50px;
+    width: 150px;
+    background-color: #0eb2fc;
+    border-color: #0eb2fc;
+    color: white;
+    border: #ffffff;
+    padding: 15px 15px;
+}
+.Button3:hover + .Button5 {
+    display: block;
+    flex-direction: row;
+    color: cadetblue;
+    background-color: cadetblue;
+    border: #ffffff;  
+    padding: 15px 15px;
+}
+.Button3:hover ~ .Button5, .Button5:hover {
+    display: block;
+    margin-left: 415px;
+    height: 50px;
+    width: 150px;
+    background-color: #0eb2fc;
+    border-color: #0eb2fc;
+    color: white;
+    border: #ffffff;
+    padding: 15px 15px;
+}
+.Button4:hover + .Button {
+    display: block;
+    flex-direction: row;
+    color: cadetblue;
+    background-color: cadetblue;
+    border: #ffffff;  
+    padding: 15px 15px;
+}
+.Button4:hover ~ .Button, .Button:hover {
+    display: block;
+    margin-left: 415px;
+    height: 50px;
+    width: 150px;
+    background-color: #0eb2fc;
+    border-color: #0eb2fc;
+    color: white;
+    border: #ffffff;
+    padding: 15px 15px;
+}
+.Button4:hover + .Button2 {
+    display: block;
+    flex-direction: row;
+    color: cadetblue;
+    background-color: cadetblue;
+    border: #ffffff;  
+    padding: 15px 15px;
+}
+.Button4:hover ~ .Button2, .Button2:hover {
+    display: block;
+    margin-left: 415px;
+    height: 50px;
+    width: 150px;
+    background-color: #0eb2fc;
+    border-color: #0eb2fc;
+    color: white;
+    border: #ffffff;
+    padding: 15px 15px;
+}
+.Button4:hover + .Button3 {
+    display: block;
+    flex-direction: row;
+    color: cadetblue;
+    background-color: cadetblue;
+    border: #ffffff;  
+    padding: 15px 15px;
+}
+.Button4:hover ~ .Button3, .Button3:hover {
+    display: block;
+    margin-left: 415px;
+    height: 50px;
+    width: 150px;
+    background-color: #0eb2fc;
+    border-color: #0eb2fc;
+    color: white;
+    border: #ffffff;
+    padding: 15px 15px;
+}
+.Button4:hover + .Button5 {
+    display: block;
+    flex-direction: row;
+    color: cadetblue;
+    background-color: cadetblue;
+    border: #ffffff;  
+    padding: 15px 15px;
+}
+.Button4:hover ~ .Button5, .Button5:hover {
+    display: block;
+    margin-left: 415px;
+    height: 50px;
+    width: 150px;
+    background-color: #0eb2fc;
+    border-color: #0eb2fc;
+    color: white;
+    border: #ffffff;
+    padding: 15px 15px;
+}
+.Button5:hover + .Button {
+    display: block;
+    flex-direction: row;
+    color: cadetblue;
+    background-color: cadetblue;
+    border: #ffffff;  
+    padding: 15px 15px;
+}
+.Button5:hover ~ .Button, .Button:hover {
+    display: block;
+    margin-left: 415px;
+    height: 50px;
+    width: 150px;
+    background-color: #0eb2fc;
+    border-color: #0eb2fc;
+    color: white;
+    border: #ffffff;
+    padding: 15px 15px;
+}
+.Button5:hover + .Button2 {
+    display: block;
+    flex-direction: row;
+    color: cadetblue;
+    background-color: cadetblue;
+    border: #ffffff;  
+    padding: 15px 15px;
+}
+.Button5:hover ~ .Button2, .Button2:hover {
+    display: block;
+    margin-left: 415px;
+    height: 50px;
+    width: 150px;
+    background-color: #0eb2fc;
+    border-color: #0eb2fc;
+    color: white;
+    border: #ffffff;
+    padding: 15px 15px;
+}
+.Button5:hover + .Button3 {
+    display: block;
+    flex-direction: row;
+    color: cadetblue;
+    background-color: cadetblue;
+    border: #ffffff;  
+    padding: 15px 15px;
+}
+.Button5:hover ~ .Button3, .Button3:hover {
+    display: block;
+    margin-left: 415px;
+    height: 50px;
+    width: 150px;
+    background-color: #0eb2fc;
+    border-color: #0eb2fc;
+    color: white;
+    border: #ffffff;
+    padding: 15px 15px;
+}
+.Button5:hover + .Button4 {
+    display: block;
+    flex-direction: row;
+    color: cadetblue;
+    background-color: cadetblue;
+    border: #ffffff;  
+    padding: 15px 15px;
+}
+.Button5:hover ~ .Button4, .Button4:hover {
+    display: block;
+    margin-left: 415px;
+    height: 50px;
+    width: 150px;
+    background-color: #0eb2fc;
+    border-color: #0eb2fc;
+    color: white;
+    border: #ffffff;
+    padding: 15px 15px;
+}
+.post-form {
+    display: flex;
+    flex-direction: column;
+    width: 566px;
+    height: 100px;
+    box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.5);
+    background-color: white;
+    margin-bottom: 0.1rem;
+    border-color: black;
+}
+.Image {
+    float: left;
+}
+.picture {
+    margin-left: 24px;
+    margin-top: 17px;
+    border-radius: 50%;
+    width: 48px;
+    height: 48px;
+  }
+.post-button {
+    margin-left: 490px;
+    width: 75px;
+    background-color: #0eb2fc;
+    color: white;
+    border-color: #0eb2fc;
+}
