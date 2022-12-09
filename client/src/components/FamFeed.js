@@ -8,15 +8,24 @@ function FamFeed() {
   const [posts, setPosts] = useState([]);
 
   const getPosts = () => {
-    axios.get("http://localhost:3001/post").then((res) => {
-      const posts = JSON.parse(res.data.posts);
+
+    const config = {
+      url:'http://localhost:3001/post',
+      method:'get',
+      withCredentials: true
+    }
+
+    axios.request(config).then((res) => {
+      const posts = res.data;
 
       const newPosts = [];
+
       posts.forEach((post) => {
         newPosts.push(post.content);
       });
-
-      setPosts(newPosts);
+      
+      console.log(posts)
+      // setPosts(newPosts);
     });
   };
 

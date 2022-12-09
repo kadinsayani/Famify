@@ -18,7 +18,13 @@ const port = process.env.FAMIFY_SERVER_PORT || 5000;
 const app = express();
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
-app.use(cors());
+
+// cors
+const corsOptions = {
+  origin: "http://localhost:3000",
+  credentials: true
+}
+app.use(cors(corsOptions));
 
 // session
 import MongoStore from "connect-mongo"
@@ -29,6 +35,10 @@ app.use(session({
   resave: true,
   saveUninitialized: false,
   maxAge: process.env.SESSION_MAXAGE,
+  cookie : {
+    secure: false, // 'true' uses HTTPS
+    sameSite: 'None'
+  },
   store: MongoStore.create(
     {mongoUrl: process.env.ATLAS_URI}
   )

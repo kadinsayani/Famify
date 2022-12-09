@@ -16,15 +16,27 @@ const Login = ({ setLoginUser }) => {
   };
 
   const login = () => {
-    axios
-      .post("http://localhost:3001/login", user)
-      .then((res) => {
-        alert(res.data);
-        setLoginUser(res.data.user);
-      })
-      .catch((err) => {
-        console.log(err);
-      });
+
+  const config = {
+    url:'http://localhost:3001/login',
+    method:'post',
+    withCredentials: true,
+    data:{
+      username: user.username,
+      password: user.password
+    }
+  }
+
+  console.log(config)
+  
+  axios.request(config)
+    .then((res) => {
+      console.log(res.data)
+    })
+    .catch((err) => {
+      console.log(err)
+    })
+
   };
 
   return (

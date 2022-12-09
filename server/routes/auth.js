@@ -100,6 +100,9 @@ authRoutes.post("/login",
       username: req.user.username,
       familyID: req.user.family
     }
+    
+    console.log(`'${req.session.user.username}' logged in.`)
+
     return res.redirect("/user")
   }
 );
