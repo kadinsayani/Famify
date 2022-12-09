@@ -1,14 +1,7 @@
 import React from "react";
 import * as FaIcons from "react-icons/fa";
-import * as AiIcons from "react-icons/ai";
 import * as IoIcons from "react-icons/io";
 export const NavbarData = [
-  {
-    title: "Homepage",
-    path: "/",
-    icon: <AiIcons.AiFillHome />,
-    cName: "nav-text",
-  },
   {
     title: "Famfeed",
     path: "/famfeed",
@@ -28,8 +21,14 @@ export const NavbarData = [
     cName: "nav-text",
   },
   {
+    title: "Notifications",
+    path: "/notifications",
+    icon: <FaIcons.FaBell />,
+    cName: "nav-text",
+  },
+  {
     title: "Log Out",
-    path: "",
+    path: "/logout",
     icon: <FaIcons.FaArrowLeft />,
     cName: "nav-text",
   },

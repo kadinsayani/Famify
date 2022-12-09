@@ -3,7 +3,7 @@ import mongoose from "mongoose";
 
 const postSchema = new mongoose.Schema({
   content: String,
-  // family: { type: ObjectId, ref: "Family" },
+  family: { type: ObjectId, ref: "Family" },
 });
 
 const Post = mongoose.model("Post", postSchema);
