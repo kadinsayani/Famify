@@ -3,10 +3,32 @@ import TaskForm from "./TaskForm";
 import Task from "./Task.js";
 import "./TaskList.css";
 import Modal from "./Modal";
+import axios from "axios";
 
 function TaskList() {
   const [tasks, setTasks] = useState([]);
   const [show, setShow] = useState(false);
+
+  const getTasks = () => {
+    const config = {
+      url: "http://localhost:3001/tasks",
+      method: "get",
+      withCredentials: true,
+    };
+
+    axios.request(config).then((res) => {
+      const tasks = res.data;
+
+      const newTasks = [];
+
+      tasks.forEach((post) => {
+        newTasks.push(post.content);
+      });
+
+      console.log(tasks);
+      // setTasks(newTasks);
+    });
+  };
 
   const addTask = (task) => {
     const newTasks = [task, ...tasks];
@@ -47,7 +69,7 @@ function TaskList() {
           removeTask={removeTask}
           updateTask={updateTask}
         />
-    </div>
+      </div>
     </div>
   );
 }
