@@ -38,8 +38,9 @@ function TaskList() {
     <div className="tasklist">
       <div className="task-app">
         <h1>Task List</h1>
-        <button onClick={() => setShow(true)}>Show Modal</button>
-        <Modal onClose={() => setShow(false)} show={show} />
+        <button className="open-modal-button" onClick={() => setShow(true)}>Add task</button>
+        <p> </p>
+        <Modal onClose={() => setShow(false)} show={show} onSubmit={addTask} />
         <TaskForm onSubmit={addTask} />
         <Task
           tasks={tasks}
