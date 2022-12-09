@@ -5,7 +5,6 @@ import { useNavigate } from "react-router-dom";
 const Login = ({ setLoginUser }) => {
   const [user, setUser] = useState({
     username: "",
-    family: "",
     password: "",
   });
   const handleChange = (e) => {
@@ -17,10 +16,15 @@ const Login = ({ setLoginUser }) => {
   };
 
   const login = () => {
-    axios.post("http://localhost:3001/login", user).then((res) => {
-      alert(res.data);
-      setLoginUser(res.data.user);
-    });
+    axios
+      .post("http://localhost:3001/login", user)
+      .then((res) => {
+        alert(res.data);
+        setLoginUser(res.data.user);
+      })
+      .catch((err) => {
+        console.log(err);
+      });
   };
 
   return (
@@ -43,15 +47,6 @@ const Login = ({ setLoginUser }) => {
           id="password"
           name="password"
           value={user.password}
-          onChange={handleChange}
-        />
-
-        <label htmlFor="password">Family:</label>
-        <input
-          type="text"
-          id="family"
-          name="family"
-          value={user.family}
           onChange={handleChange}
         />
       </form>
