@@ -8,8 +8,10 @@ import FamFeed from "./components/FamFeed.js";
 import Navbar from "./components/Navbar.js";
 import ListOfLists from "./components/ListOfLists.js";
 import Notifications from "./components/Notifications.js";
+
 const App = () => {
-  const [user, setLoginUser] = useState([]);
+  const [user, setLoginUser] = useState(null);
+
   return (
     <>
       <Router>
@@ -17,7 +19,13 @@ const App = () => {
         <Routes>
           <Route
             path="/"
-            element={user ? <FamFeed /> : <Login setLoginUser={user} />}
+            element={
+              user ? (
+                <FamFeed user={user} />
+              ) : (
+                <Login setLoginUser={setLoginUser} />
+              )
+            }
           />
           <Route
             path="/login"
@@ -26,19 +34,43 @@ const App = () => {
           <Route path="/register" element={<Register />} />
           <Route
             path="/tasklist"
-            element={user ? <TaskList /> : <Login setLoginUser={user} />}
+            element={
+              user ? (
+                <TaskList user={user} />
+              ) : (
+                <Login setLoginUser={setLoginUser} />
+              )
+            }
           />
           <Route
             path="/famfeed"
-            element={user ? <FamFeed /> : <Login setLoginUser={user} />}
+            element={
+              user ? (
+                <FamFeed user={user} />
+              ) : (
+                <Login setLoginUser={setLoginUser} />
+              )
+            }
           />
           <Route
             path="/listoflists"
-            element={user ? <ListOfLists /> : <Login setLoginUser={user} />}
+            element={
+              user ? (
+                <ListOfLists user={user} />
+              ) : (
+                <Login setLoginUser={setLoginUser} />
+              )
+            }
           />
           <Route
             path="/notifications"
-            element={user ? <Notifications /> : <Login setLoginUser={user} />}
+            element={
+              user ? (
+                <Notifications user={user} />
+              ) : (
+                <Login setLoginUser={setLoginUser} />
+              )
+            }
           />
         </Routes>
       </Router>
