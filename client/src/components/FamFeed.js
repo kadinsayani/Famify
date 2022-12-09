@@ -14,18 +14,17 @@ function FamFeed() {
       withCredentials: true,
     };
 
-    axios.request(config).then((res) => {
-      const posts = res.data;
+    axios
+      .request(config)
+      .then((res) => {
+        const posts = res.data;
+        setPosts(posts);
+      })
+      .catch((err) => {
+        console.log(err.status);
 
-      const newPosts = [];
-
-      posts.forEach((post) => {
-        newPosts.push(post.content);
+        // if err.status === 401, reroute to login
       });
-
-      console.log(posts);
-      setPosts(newPosts);
-    });
   };
 
   const addPost = (post) => {
