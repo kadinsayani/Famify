@@ -10,7 +10,7 @@ import ListOfLists from "./components/ListOfLists.js";
 import Notifications from "./components/Notifications.js";
 
 const App = () => {
-  const [user, setLoginUser] = useState(null);
+  const [user, setLoginUser] = useState({});
 
   return (
     <>
@@ -18,6 +18,7 @@ const App = () => {
         <Navbar />
         <Routes>
           <Route
+            exact
             path="/"
             element={
               user ? (
@@ -28,11 +29,13 @@ const App = () => {
             }
           />
           <Route
+            exact
             path="/login"
             element={<Login setLoginUser={setLoginUser} />}
           />
-          <Route path="/register" element={<Register />} />
+          <Route exact path="/register" element={<Register />} />
           <Route
+            exact
             path="/tasklist"
             element={
               user ? (
@@ -43,6 +46,7 @@ const App = () => {
             }
           />
           <Route
+            exact
             path="/famfeed"
             element={
               user ? (
@@ -53,6 +57,7 @@ const App = () => {
             }
           />
           <Route
+            exact
             path="/listoflists"
             element={
               user ? (
@@ -63,6 +68,7 @@ const App = () => {
             }
           />
           <Route
+            exact
             path="/notifications"
             element={
               user ? (

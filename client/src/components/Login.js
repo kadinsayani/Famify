@@ -1,9 +1,10 @@
 import React, { useState } from "react";
 import axios from "axios";
-import { useNavigate } from "react-router-dom";
 import "./Register.css";
+const { useNavigate } = require("react-router-dom");
 
 const Login = ({ setLoginUser }) => {
+  const navigate = useNavigate();
   const [user, setUser] = useState({
     username: "",
     password: "",
@@ -37,6 +38,7 @@ const Login = ({ setLoginUser }) => {
       .catch((err) => {
         console.log(err);
       });
+    navigate("/famfeed");
   };
 
   return (
@@ -80,13 +82,13 @@ const Login = ({ setLoginUser }) => {
           <button className="login-button" type="submit" onClick={login}>
             LOG IN
           </button>
-          <button
+          <animate
             className="register-button"
             type="submit"
-            onClick={useNavigate("/register")}
+            onClick={() => navigate("/register")}
           >
             Don't have an account?
-          </button>
+          </animate>
         </div>
       </div>
     </div>
