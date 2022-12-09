@@ -4,15 +4,12 @@ import Post from "./Post.js";
 import "./FamFeed.css";
 
 function FamFeed(props) {
-
-  document.querySelectorAll('button')
-  .forEach(button => {
-    button.addEventListener('click', function() {
-      const div = this.parentElement.querySelector('div');
+  document.querySelectorAll("button").forEach((button) => {
+    button.addEventListener("click", function () {
+      const div = this.parentElement.querySelector("div");
       div.textContent = this.dataset.answer;
     });
   });
-
 
   const [posts, setPosts] = useState([]);
 
@@ -28,25 +25,32 @@ function FamFeed(props) {
     )
   } */
 
-
   return (
-    <div className="post-app"> 
-      <h1>FAM FEED</h1>
+    <div className="post-app">
+      <h1>Fam Feed</h1>
       <PostForm onSubmit={addPost} />
       <div className="post-app2">
-      {/* get posts from database */}
-      <Post posts={posts} />
-      
-      
-      <button className="hide">Add a Reaction</button>
-         {/* <div className = "dropdown-content">   */}
-      <button className="Button" data-inline="true" data-answer="😃">😃</button>
-  <button className="Button2" data-inline="true" data-answer="😂">😂</button>
-  <button className="Button3" data-inline="true" data-answer="😲">😲</button>
-  <button className="Button4" data-inline="true" data-answer="😢">😢</button>
-  <button className="Button5" data-inline="true" data-answer="😭">😭</button>
-  
-  </div>
+        {/* get posts from database */}
+        <Post posts={posts} />
+
+        <button className="hide">Add a Reaction</button>
+        {/* <div className = "dropdown-content">   */}
+        <button className="Button" data-inline="true" data-answer="😃">
+          😃
+        </button>
+        <button className="Button2" data-inline="true" data-answer="😂">
+          😂
+        </button>
+        <button className="Button3" data-inline="true" data-answer="😲">
+          😲
+        </button>
+        <button className="Button4" data-inline="true" data-answer="😢">
+          😢
+        </button>
+        <button className="Button5" data-inline="true" data-answer="😭">
+          😭
+        </button>
+      </div>
     </div>
   );
 }
