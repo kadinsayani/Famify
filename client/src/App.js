@@ -1,6 +1,5 @@
 import React, { useState } from "react";
 import "./App.css";
-// import { Routes, Route } from "react-router-dom";
 import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
 import Login from "./components/Login.js";
 import Register from "./components/Register.js";
@@ -14,7 +13,7 @@ const App = () => {
   return (
     <>
       <Router>
-        <Navbar />
+        {/* <Navbar /> */}
         <Routes>
           <Route
             path="/"
