@@ -9,7 +9,7 @@ import Navbar from "./components/Navbar.js";
 import ListOfLists from "./components/ListOfLists.js";
 import Notifications from "./components/Notifications.js";
 const App = () => {
-  const [user, setLoginUser] = useState({});
+  const [user, setLoginUser] = useState([]);
   return (
     <>
       <Router>
@@ -24,10 +24,22 @@ const App = () => {
             element={<Login setLoginUser={setLoginUser} />}
           />
           <Route path="/register" element={<Register />} />
-          <Route path="/tasklist" element={<TaskList />} />
-          <Route path="/famfeed" element={<FamFeed />} />
-          <Route path="/listoflists" element={<ListOfLists />} />
-          <Route path="/notifications" element={<Notifications />} />
+          <Route
+            path="/tasklist"
+            element={user ? <TaskList /> : <Login setLoginUser={user} />}
+          />
+          <Route
+            path="/famfeed"
+            element={user ? <FamFeed /> : <Login setLoginUser={user} />}
+          />
+          <Route
+            path="/listoflists"
+            element={user ? <ListOfLists /> : <Login setLoginUser={user} />}
+          />
+          <Route
+            path="/notifications"
+            element={user ? <Notifications /> : <Login setLoginUser={user} />}
+          />
         </Routes>
       </Router>
     </>

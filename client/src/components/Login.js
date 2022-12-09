@@ -44,7 +44,7 @@ const Login = ({ setLoginUser }) => {
       <div className="container">
         <div className="image">
           <div className="bigbird">
-            <img src="/famify_logo.png" />
+            <img alt="" src="/famify_logo.png" />
           </div>
         </div>
 
