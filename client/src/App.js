@@ -9,7 +9,6 @@ import FamFeed from "./components/FamFeed.js";
 import Navbar from "./components/Navbar.js";
 import ListOfLists from "./components/ListOfLists.js";
 import Notifications from "./components/Notifications.js";
-
 const App = () => {
   const [user, setLoginUser] = useState({});
   return (

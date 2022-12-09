@@ -24,7 +24,7 @@ function FamFeed() {
       });
 
       console.log(posts);
-      // setPosts(newPosts);
+      setPosts(newPosts);
     });
   };
 
