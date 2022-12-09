@@ -1,0 +1,98 @@
+* {
+    margin: 0;
+    padding: 0;
+}
+
+/* .body{
+    box-sizing: border-box;
+    margin-top: 0;
+    margin-bottom: 0;
+    padding: 0;
+    background-color: white;
+    font-family: 'Verdana', sans-serif;
+} */
+
+.showcase{
+    float: left;
+    width: 50%;
+    height: 100vh;
+}
+
+.left {
+    float: left;
+    align-items: right;
+    width: 50%;
+    height: 100vh;
+    background-color:  #1a83ff;
+}
+
+.left h1{
+    margin-top: 45px;
+    text-align: center;
+    margin-bottom: 40px;
+    font-size: 40px;
+    margin-left: 8px;
+    word-spacing: 4px;
+    color: black;
+    font-family: 'Lato', sans-serif;
+    white-space: inherit;
+    
+}
+
+.box-two label{
+    font-size: 1rem;
+    font-weight: 300;
+    color: #121212;
+    margin-left: 10px;
+    display: block;
+}
+
+.box-two input{
+    position: relative;
+    width: 300px;
+    height: 30px;
+    outline: none;
+    border: 1px solid rgb(211, 210, 210);
+    border-radius: 4px;
+    padding-left: 10px;
+    margin-left: 10px;
+    font-size: 1rem;
+    font-weight: 300;
+
+}
+
+.box-two input::placeholder{
+    font-size: 1rem;
+}
+.box-two input:focus{
+    border: 1px solid black;
+}
+.box-two .login-button{
+    background-color: #121212;
+    color: #fff;
+    font-weight: 300;
+    font-size: medium;
+    text-transform: inherit;
+    border-radius: 10px;
+    height: 50px;
+    margin-top: 20px;
+    width: 76%;
+    padding-left: 10px;
+    margin-left: 10px;
+}
+
+
+.box-two .register-button{
+    background-color: white;
+    color:  #1a83ff;
+    font-weight: 300;
+    font-size: medium;
+    text-transform: inherit;
+    border-radius: 10px;
+    border: 1px solid #1a83ff;
+    height: 50px;
+    margin-top: 20px;
+    width: 76%;
+    padding-left: 10px;
+    margin-left: 10px;
+}
