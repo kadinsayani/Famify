@@ -2,7 +2,6 @@ import React, { useState } from "react";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
 import "./Register.css";
-import Logo from "./famify_logo.png";
 
 const Login = ({ setLoginUser }) => {
   const [user, setUser] = useState({
@@ -45,7 +44,7 @@ const Login = ({ setLoginUser }) => {
       <div className="container">
         <div className="image">
           <div className="bigbird">
-            <img src={Logo} />
+            <img src="/famify_logo.png" />
           </div>
         </div>
 

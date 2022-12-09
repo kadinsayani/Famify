@@ -1,6 +1,5 @@
 import React, { useState } from "react";
 import axios from "axios";
-import Logo from "./famify_logo.png";
 import "./Register.css";
 
 const Register = () => {
@@ -28,12 +27,10 @@ const Register = () => {
   };
   return (
     <div>
-      
       <div className="container">
-        
         <div className="image">
           <div className="bigbird">
-            <img src={Logo} />
+            <img alt="" src="/famify_logo.png" />
           </div>
         </div>
 
@@ -72,13 +69,15 @@ const Register = () => {
               onChange={handleChange}
             />
           </form>
-          <button className="register-button" type="submit" onClick={createUser}>
+          <button
+            className="register-button"
+            type="submit"
+            onClick={createUser}
+          >
             SIGN UP
           </button>
         </div>
-
       </div>
-
     </div>
   );
 };
