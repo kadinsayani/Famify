@@ -1,0 +1,108 @@
+*,
+* ::before,
+* ::after {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Lato', sans-serif;
+    min-height: 100vh;
+    overflow-x: hidden;
+}
+
+.container{
+    width: 100vw;
+    height: 100vh;
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.image{
+    height: 100%;
+    background: white center center/cover;
+    flex: 0 1 53vw;
+    position: relative;
+}
+
+.bigbird{
+
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
+.content{
+    flex: 0 0 47vw;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-evenly;
+    padding: 2rem;
+    background: #1a83ff;
+}
+h1{
+    color: black;
+    font-weight: 700;
+    font-size: 3.0rem;
+}
+
+.content label{
+    font-size: 1.2rem;
+    font-weight: 500;
+    color: #121212;
+    margin-left: 10px;
+    display: block;
+}
+
+.content input{
+    position: relative;
+    width: 400px;
+    height: 40px;
+    outline: none;
+    border: 1px solid rgb(211, 210, 210);
+    border-radius: 4px;
+    padding-left: 10px;
+    margin-left: 10px;
+    font-size: 1rem;
+    font-weight: 300;
+    margin-bottom: 30px;
+
+}
+
+.content input::placeholder{
+    font-size: 1rem;
+}
+.content input:focus{
+    border: 1px solid black;
+}
+.content .register-button{
+    background-color: #121212;
+    color: #fff;
+    font-weight: 500;
+    font-size: large;
+    text-transform: inherit;
+    border-radius: 10px;
+    height: 50px;
+    width: 400px;
+    padding-left: 10px;
+    margin-left: 10px;
+}
+
+.content .login-button{
+    background-color: white;
+    color:  black;
+    font-weight: 700;
+    font-size: large;
+    text-transform: inherit;
+    border-radius: 10px;
+    border: 1px solid #1a83ff;
+    height: 50px;
+    
+    width: 400px;
+    padding-left: 10px;
+    margin-left: 10px;
+}
+

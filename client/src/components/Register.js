@@ -1,5 +1,7 @@
 import React, { useState } from "react";
 import axios from "axios";
+import Logo from "./famify_logo.png";
+import "./Register.css";
 
 const Register = () => {
   const [user, setUser] = useState({
@@ -26,36 +28,57 @@ const Register = () => {
   };
   return (
     <div>
-      <h1>Register</h1>
-      <form>
-        <label htmlFor="username">Username:</label>
-        <input
-          type="text"
-          id="username"
-          name="username"
-          value={user.username}
-          onChange={handleChange}
-        />
-        <label htmlFor="password">Password:</label>
-        <input
-          type="password"
-          id="password"
-          name="password"
-          value={user.password}
-          onChange={handleChange}
-        />
-        <label htmlFor="family">Family:</label>
-        <input
-          type="text"
-          id="family"
-          name="family"
-          value={user.family}
-          onChange={handleChange}
-        />
-      </form>
-      <button type="submit" onClick={createUser}>
-        Register
-      </button>
+      
+      <div className="container">
+        
+        <div className="image">
+          <div className="bigbird">
+            <img src={Logo} />
+          </div>
+        </div>
+
+        <div className="content">
+          <h1>Create New Account</h1>
+
+          <form>
+            <label htmlFor="username">Username </label>
+            <br></br>
+            <input
+              type="text"
+              id="username"
+              name="username"
+              placeholder="Create a username"
+              value={user.username}
+              onChange={handleChange}
+            />
+            <label htmlFor="password">Password </label>
+            <br></br>
+            <input
+              type="password"
+              id="password"
+              name="password"
+              placeholder="Create a password"
+              value={user.password}
+              onChange={handleChange}
+            />
+            <label htmlFor="family">Family Code </label>
+            <br></br>
+            <input
+              type="text"
+              id="family"
+              name="family"
+              placeholder="Create a family code to share with others"
+              value={user.family}
+              onChange={handleChange}
+            />
+          </form>
+          <button className="register-button" type="submit" onClick={createUser}>
+            SIGN UP
+          </button>
+        </div>
+
+      </div>
+
     </div>
   );
 };

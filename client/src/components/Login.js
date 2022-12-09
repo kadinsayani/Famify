@@ -1,6 +1,8 @@
 import React, { useState } from "react";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
+import "./Register.css";
+import Logo from "./famify_logo.png";
 
 const Login = ({ setLoginUser }) => {
   const [user, setUser] = useState({
@@ -16,60 +18,78 @@ const Login = ({ setLoginUser }) => {
   };
 
   const login = () => {
+    const config = {
+      url: "http://localhost:3001/login",
+      method: "post",
+      withCredentials: true,
+      data: {
+        username: user.username,
+        password: user.password,
+      },
+    };
 
-  const config = {
-    url:'http://localhost:3001/login',
-    method:'post',
-    withCredentials: true,
-    data:{
-      username: user.username,
-      password: user.password
-    }
-  }
+    console.log(config);
 
-  console.log(config)
-  
-  axios.request(config)
-    .then((res) => {
-      console.log(res.data)
-    })
-    .catch((err) => {
-      console.log(err)
-    })
-
+    axios
+      .request(config)
+      .then((res) => {
+        console.log(res.data);
+      })
+      .catch((err) => {
+        console.log(err);
+      });
   };
 
   return (
     <div>
-      <h1>Login</h1>
+      <div className="container">
+        <div className="image">
+          <div className="bigbird">
+            <img src={Logo} />
+          </div>
+        </div>
 
-      <form>
-        <label htmlFor="username">Username: </label>
-        <input
-          type="text"
-          id="username"
-          name="username"
-          value={user.username}
-          onChange={handleChange}
-        />
+        <div className="content">
+          <h1>Login</h1>
 
-        <label htmlFor="password">Password:</label>
-        <input
-          type="password"
-          id="password"
-          name="password"
-          value={user.password}
-          onChange={handleChange}
-        />
-      </form>
+          <form>
+            <label htmlFor="username">Username </label>
+            <br></br>
+            <input
+              type="text"
+              id="username"
+              name="username"
+              placeholder="Enter your username"
+              value={user.username}
+              onChange={handleChange}
+            />
+            <p></p>
+            <br></br>
 
-      <button type="submit" onClick={useNavigate("/register")}>
-        Don't have an account?
-      </button>
+            <label htmlFor="password">Password</label>
+            <br></br>
+            <input
+              type="password"
+              id="password"
+              name="password"
+              placeholder="*******"
+              value={user.password}
+              onChange={handleChange}
+            />
+          </form>
 
-      <button type="submit" onClick={login}>
-        Login
-      </button>
+          <button className="login-button" type="submit" onClick={login}>
+            LOG IN
+          </button>
+          <button
+            className="register-button"
+            type="submit"
+            onClick={useNavigate("/register")}
+          >
+            Don't have an account?
+          </button>
+        </div>
+      </div>
     </div>
   );
 };
