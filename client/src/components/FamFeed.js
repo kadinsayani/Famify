@@ -15,17 +15,16 @@ function FamFeed() {
     };
 
     axios.request(config).then((res) => {
+      
       const posts = res.data;
+      setPosts(posts);
 
-      const newPosts = [];
+    }).catch((err) => {
+      console.log(err.status)
 
-      posts.forEach((post) => {
-        newPosts.push(post.content);
-      });
+      // if err.status === 401, reroute to login
 
-      console.log(posts);
-      // setPosts(newPosts);
-    });
+    });;
   };
 
   const addPost = (post) => {

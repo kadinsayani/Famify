@@ -1,5 +1,6 @@
 import express from "express";
 import bodyParser from "body-parser";
+import userAuthenticated from "../auth/Authentication.js";
 
 // models
 import Task from "../models/Task.model.js";
