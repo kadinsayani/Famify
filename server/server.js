@@ -37,7 +37,7 @@ app.use(session({
   maxAge: process.env.SESSION_MAXAGE,
   cookie : {
     secure: false, // 'true' uses HTTPS
-    sameSite: 'None'
+    SameSite: 'none'
   },
   store: MongoStore.create(
     {mongoUrl: process.env.ATLAS_URI}
