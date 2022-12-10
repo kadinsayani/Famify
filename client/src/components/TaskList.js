@@ -58,11 +58,9 @@ function TaskList() {
   };
 
   return (
-    <div className="tasklist">
-      <div className="header text-center">
+    <div className="tasklist-container">
+      <div className="header">
         <h1>Task List</h1>
-        <button className="open-modal-button" onClick={() => setShow(true)}>Add Task</button>
-        <p> </p>
       </div>
 
         <div className="task-container text-center">
@@ -71,16 +69,21 @@ function TaskList() {
             show={show}
             onSubmit={addTask}
           />
+
+          <Task
+            tasks={tasks}
+            completeTask={completeTask}
+            removeTask={removeTask}
+            updateTask={updateTask}
+          />
         </div>
         
-        
+        <div className="task-container footer">
+        <button className="open-modal-button" onClick={() => setShow(true)}>Add Task</button>
+        <p> </p>
+        </div>
+      
         {/* <TaskForm onSubmit={addTask} /> */}
-        <Task
-          tasks={tasks}
-          completeTask={completeTask}
-          removeTask={removeTask}
-          updateTask={updateTask}
-        />
       
     </div>
   );
