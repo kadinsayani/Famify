@@ -11,7 +11,7 @@ function Navbar() {
         <div className="navbar"></div>
         <nav className="nav-menu">
           <ul className="nav-menu-items">
-            <a href="/homepage" onClick={useNavigate("/homepage")}>
+            <a href="/homepage" onClick={useNavigate("/famfeed")}>
               <img alt="famify logo" src="/famify_logo.png"></img>
             </a>
 
