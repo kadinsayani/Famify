@@ -28,13 +28,15 @@ class PostView {
 
 }
 
+// routes
+
 postRoutes
   .route("/post")
   .get(userAuthenticated, (req, res) => {
 
     Family.findById(req.session.user.familyID, (err, family) => {
-      if (err) return res.send("Error")
-      if (!family) return res.send("No family found.") // should never execute
+      if (err) return res.status(500).send("Error")
+      if (!family) return res.status(404).send() // should never execute
 
       Post.find({
         '_id': {
@@ -105,7 +107,7 @@ postRoutes
     const time = today.toLocaleTimeString("en-US", {hour: 'numeric', minute: 'numeric', second: 'numeric'})
 
 
-    if (!content) return res.send("Content cannot be empty.");
+    if (!content) return res.status(400).send("Content cannot be empty.");
 
     const newPost = new Post({
       content: content,
@@ -116,8 +118,8 @@ postRoutes
     });
 
     Family.findById(family, (err, family) => {
-      if (err) return res.send(err)
-      if (!family) return res.send("No family found.")
+      if (err) return res.status(500).send(err)
+      if (!family) return res.status(404).send()
 
       family.posts.push(newPost._id)
       family.save()
@@ -127,7 +129,7 @@ postRoutes
     newPost.content = content;
     newPost.save((err) => {
       if (err) {
-        return res.send("Error on save()");
+        return res.status(500).send("Error on save()");
       } else {
         return res.send(newPost);
       }
@@ -135,5 +137,35 @@ postRoutes
     });
 
   });
+
+// :id
+
+postRoutes.route("/post/:id")
+  .delete(userAuthenticated, (req, res) => {
+
+    Post.findById(req.params.id, (err, post) => {
+
+      if (err) return res.send("An error occured.")
+      if (!post) return res.status(404).send()
+
+      if (post.user.toString() === req.session.user.id.toString()) {
+
+        Post.findByIdAndDelete(req.params.id, (err, post) => {
+
+          if (err) return res.status(500).send()
+          
+          return res.status(200).send()
+
+        })
+
+      } else {
+
+        return res.status(403).send()
+
+      }
+
+    })
+
+  })
 
 export default postRoutes;
