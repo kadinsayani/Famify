@@ -17,19 +17,28 @@ function FamFeed() {
     axios
       .request(config)
       .then((res) => {
-        const posts = res.data;
-        setPosts(posts);
+        const resData = res.data;
+        const newPosts = []
+
+        // if there are new posts, update state
+        // do not update state if there are no new posts!
+        for (let i=0; i < resData.length; i++) {
+          if (!posts.some(post => post._id === resData[i]._id)) {
+            newPosts.push(resData[i])
+          }
+        }
+
+        if (newPosts.length > 0) {
+          setPosts(posts.concat(newPosts))
+        }
+
+        console.log(newPosts.length)
+
       })
       .catch((err) => {
         console.log(err.status);
-
         // if err.status === 401, reroute to login
       });
-  };
-
-  const addPost = (post) => {
-    const newPosts = [post, ...posts];
-    setPosts(newPosts);
   };
 
   useEffect(() => {
@@ -40,7 +49,7 @@ function FamFeed() {
     <div className="famfeed">
       <div className="post-app">
         <h1>Fam Feed</h1>
-        <PostForm onSubmit={addPost} />
+        <PostForm onSubmit={getPosts} />
         <Post posts={posts} />
       </div>
     </div>

@@ -30,6 +30,7 @@ function PostForm(props) {
       .request(config)
       .then((res) => {
         console.log(res)
+        props.onSubmit()
       })
       .catch((err) => {
         console.log(err)
@@ -38,6 +39,8 @@ function PostForm(props) {
 
   const handleSubmit = (e) => {
     e.preventDefault();
+
+    // TODO: remove if not needed
     props.onSubmit({
       id: Math.floor(Math.random() * 10000),
       text: input,
