@@ -1,8 +1,10 @@
 import React, { useState } from "react";
 import axios from "axios";
 import "./Register.css";
+const { useNavigate } = require("react-router-dom");
 
 const Register = () => {
+  const navigate = useNavigate();
   const [user, setUser] = useState({
     username: "",
     family: "",
@@ -72,7 +74,10 @@ const Register = () => {
           <button
             className="register-button"
             type="submit"
-            onClick={createUser}
+            onClick={() => {
+              createUser();
+              navigate("/famfeed");
+            }}
           >
             SIGN UP
           </button>
