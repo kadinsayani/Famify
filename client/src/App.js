@@ -15,6 +15,7 @@ const App = () => {
   return (
     <>
       <Router>
+        <Navbar />
         <Routes>
           <Route
             exact
@@ -27,7 +28,8 @@ const App = () => {
               )
             }
           />
-          <Route
+
+          {/* <Route
             exact
             path="/login"
             render={({ match }) => {
@@ -36,7 +38,7 @@ const App = () => {
               }
               return null;
             }}
-          />
+          /> */}
           <Route
             exact
             path="/login"
