@@ -82,13 +82,13 @@ const Login = ({ setLoginUser }) => {
           <button className="login-button" type="submit" onClick={login}>
             LOG IN
           </button>
-          <animate
+          <button
             className="register-button"
             type="submit"
             onClick={() => navigate("/register")}
           >
             Don't have an account?
-          </animate>
+          </button>
         </div>
       </div>
     </div>
