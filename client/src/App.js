@@ -15,7 +15,6 @@ const App = () => {
   return (
     <>
       <Router>
-        <Navbar />
         <Routes>
           <Route
             exact
@@ -27,6 +26,16 @@ const App = () => {
                 <Login setLoginUser={setLoginUser} />
               )
             }
+          />
+          <Route
+            exact
+            path="/login"
+            render={({ match }) => {
+              if (match.path !== "/login" && match.path !== "/register") {
+                return <Navbar />;
+              }
+              return null;
+            }}
           />
           <Route
             exact
