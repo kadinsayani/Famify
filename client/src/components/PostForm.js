@@ -39,7 +39,8 @@ function PostForm(props) {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    
+
+    // TODO: remove if not needed
     props.onSubmit({
       id: Math.floor(Math.random() * 10000),
       text: input,

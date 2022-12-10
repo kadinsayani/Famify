@@ -13,7 +13,6 @@ postRoutes.use(
   })
 );
 
-// todo add family
 postRoutes
   .route("/post")
   .get(userAuthenticated, (req, res) => {
@@ -29,6 +28,7 @@ postRoutes
       }, (err, posts) => {
 
         if (err) console.log(err)
+
         return res.send(posts)
 
       })
@@ -39,12 +39,14 @@ postRoutes
   .post(userAuthenticated, (req, res) => {
     const content = req.body.content;
     const family = req.session.user.familyID;
+    const user = req.session.user.id;
 
     if (!content) return res.send("Content cannot be empty.");
 
     const newPost = new Post({
       content: content,
-      family: family
+      family: family,
+      user: user
     });
 
     Family.findById(family, (err, family) => {

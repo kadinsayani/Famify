@@ -32,13 +32,8 @@ userRoutes.route("/user/family")
 userRoutes.route("/user/:id")
 
   // get one user
-  .get(function (req, res) {
-    let db_connect = dbo.getDb();
-    let myquery = { _id: ObjectId(req.params.id) };
-    db_connect.collection("user").findOne(myquery, function (err, result) {
-      if (err) throw err;
-      res.json(result);
-    });
+  .get(userAuthenticated, (req, res) => {
+
   })
 
   // update user

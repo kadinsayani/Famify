@@ -4,6 +4,7 @@ import mongoose from "mongoose";
 const postSchema = new mongoose.Schema({
   content: String,
   family: { type: ObjectId, ref: "Family" },
+  user: { type: ObjectId, ref: "User" }
 });
 
 const Post = mongoose.model("Post", postSchema);

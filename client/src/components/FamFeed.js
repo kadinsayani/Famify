@@ -37,7 +37,6 @@ function FamFeed() {
       })
       .catch((err) => {
         console.log(err.status);
-
         // if err.status === 401, reroute to login
       });
   };
