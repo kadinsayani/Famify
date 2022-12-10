@@ -34,6 +34,7 @@ const Login = ({ setLoginUser }) => {
       .request(config)
       .then((res) => {
         console.log(res.data);
+        setLoginUser(res.data)
       })
       .catch((err) => {
         console.log(err);

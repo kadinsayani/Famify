@@ -10,7 +10,7 @@ import ListOfLists from "./components/ListOfLists.js";
 import Notifications from "./components/Notifications.js";
 
 const App = () => {
-  const [user, setLoginUser] = useState({});
+  const [user, setLoginUser] = useState();
 
   return (
     <>
