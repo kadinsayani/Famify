@@ -33,6 +33,7 @@ function TaskList() {
   const addTask = (task) => {
     const newTasks = [task, ...tasks];
     setTasks(newTasks);
+    setShow(false);
   };
 
   const removeTask = (id) => {
@@ -58,19 +59,29 @@ function TaskList() {
 
   return (
     <div className="tasklist">
-      <div className="task-app">
+      <div className="header text-center">
         <h1>Task List</h1>
-        <button className="open-modal-button" onClick={() => setShow(true)}>Add task</button>
+        <button className="open-modal-button" onClick={() => setShow(true)}>Add Task</button>
         <p> </p>
-        <Modal onClose={() => setShow(false)} show={show} onSubmit={addTask} />
-        <TaskForm onSubmit={addTask} />
+      </div>
+
+        <div className="task-container text-center">
+          <Modal 
+            onClose={() => setShow(false)} 
+            show={show}
+            onSubmit={addTask}
+          />
+        </div>
+        
+        
+        {/* <TaskForm onSubmit={addTask} /> */}
         <Task
           tasks={tasks}
           completeTask={completeTask}
           removeTask={removeTask}
           updateTask={updateTask}
         />
-      </div>
+      
     </div>
   );
 }

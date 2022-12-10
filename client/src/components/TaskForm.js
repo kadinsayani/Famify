@@ -30,7 +30,9 @@ function TaskForm(props) {
     createTask({ content: input });
 
     setInput("");
+    
   };
+  
   return (
     <div>
       <form className="task-form" onSubmit={handleSubmit}>
