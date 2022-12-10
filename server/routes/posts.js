@@ -37,7 +37,7 @@ postRoutes
 
   })
   .post(userAuthenticated, (req, res) => {
-    const { content } = req.body;
+    const content = req.body.content;
     const family = req.session.user.familyID;
 
     if (!content) return res.send("Content cannot be empty.");

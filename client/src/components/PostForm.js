@@ -14,20 +14,36 @@ function PostForm(props) {
   };
 
   const createPost = (post) => {
-    axios.post("http://localhost:3001/post", post).then((res) => {
-      console.log(res);
-    });
+
+    console.log(post)
+
+    const config = {
+      url: "http://localhost:3001/post",
+      method: "post",
+      withCredentials: true,
+      data: {
+        content: post
+      }
+    };
+
+    axios
+      .request(config)
+      .then((res) => {
+        console.log(res)
+      })
+      .catch((err) => {
+        console.log(err)
+      })
   };
 
   const handleSubmit = (e) => {
     e.preventDefault();
-
     props.onSubmit({
       id: Math.floor(Math.random() * 10000),
       text: input,
     });
 
-    createPost({content: input});
+    createPost(input);
 
     setInput("");
     
@@ -44,7 +60,7 @@ function PostForm(props) {
           onChange={handleChange}
           ref={focus}
         />
-        <button className="post-button">Add Post</button>
+        <button className="post-button" onClick={handleSubmit}>Add Post</button>
       </form>
     </div>
   );
