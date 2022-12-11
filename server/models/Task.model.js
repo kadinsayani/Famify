@@ -7,6 +7,10 @@ const taskSchema = new mongoose.Schema({
   user: { type: ObjectId, ref: "User" },
   date: String,
   time: String,
+  isComplete: {
+    type: Boolean,
+    default: false,
+  },
 });
 
 const Task = mongoose.model("Task", taskSchema);
