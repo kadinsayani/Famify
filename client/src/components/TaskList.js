@@ -1,5 +1,4 @@
 import React, { useState } from "react";
-import TaskForm from "./TaskForm";
 import Task from "./Task.js";
 import "./TaskList.css";
 import Modal from "./Modal";
@@ -63,28 +62,25 @@ function TaskList() {
         <h1>Task List</h1>
       </div>
 
-        <div className="task-container text-center">
-          <Modal 
-            onClose={() => setShow(false)} 
-            show={show}
-            onSubmit={addTask}
-          />
+      <div className="task-container text-center">
+        <Modal onClose={() => setShow(false)} show={show} onSubmit={addTask} />
 
-          <Task
-            tasks={tasks}
-            completeTask={completeTask}
-            removeTask={removeTask}
-            updateTask={updateTask}
-          />
-        </div>
-        
-        <div className="task-container footer">
-        <button className="open-modal-button" onClick={() => setShow(true)}>Add Task</button>
+        <Task
+          tasks={tasks}
+          completeTask={completeTask}
+          removeTask={removeTask}
+          updateTask={updateTask}
+        />
+      </div>
+
+      <div className="task-container footer">
+        <button className="open-modal-button" onClick={() => setShow(true)}>
+          Add Task
+        </button>
         <p> </p>
-        </div>
-      
-        {/* <TaskForm onSubmit={addTask} /> */}
-      
+      </div>
+
+      {/* <TaskForm onSubmit={addTask} /> */}
     </div>
   );
 }
