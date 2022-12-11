@@ -1,6 +1,7 @@
 import express from "express";
 import bodyParser from "body-parser";
 import userAuthenticated from "../auth/Authentication.js";
+import notify from "../notifications/notifier.js";
 
 // models
 import Post from "../models/Post.model.js";
@@ -100,6 +101,8 @@ postRoutes
     })
 
   })
+
+  // create a new post
   .post(userAuthenticated, (req, res) => {
     const content = req.body.content;
     const family = req.session.user.familyID;
@@ -120,12 +123,17 @@ postRoutes
       time: time
     });
 
+    // to use for notifications
+    let familyMembers = []
+
     Family.findById(family, (err, family) => {
       if (err) return res.status(500).send(err)
       if (!family) return res.status(404).send()
 
       family.posts.push(newPost._id)
       family.save()
+
+      familyMembers = family.members
 
     })
 
@@ -134,6 +142,7 @@ postRoutes
       if (err) {
         return res.status(500).send("Error on save()");
       } else {
+        notify(req.session.user.id, "has created a new post.", familyMembers)
         return res.send(newPost);
       }
       
