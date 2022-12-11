@@ -4,7 +4,8 @@ import { FaUserCircle } from 'react-icons/fa'
 
 function Notification(props) {
 
-    const content = props.content;
+    const subject = props.subject
+    const content = props.content
     const when = props.when
 
     return <div className="notificationDiv">
@@ -14,7 +15,7 @@ function Notification(props) {
         </div>
         <div>
             <div className="contentDiv">
-                {content}
+                <strong>{subject}</strong> {content}
             </div>
             <div className="whenDiv">
                 {when}
