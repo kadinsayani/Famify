@@ -69,7 +69,7 @@ function TaskList(props) {
     const newTasks = [task, ...tasks];
     setTasks(newTasks);
     setShow(false);
-    createTask(task);
+    createTask(task.text);
   };
 
   const removeTask = (id) => {
