@@ -45,7 +45,7 @@ function TaskForm(props) {
           onChange={handleChange}
           ref={focus}
         />
-        <button className="task-button">Save</button>
+        <button className="save-button">Save</button>
       </form>
     </div>
   );
