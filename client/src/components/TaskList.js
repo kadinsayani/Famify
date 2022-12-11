@@ -52,6 +52,11 @@ function TaskList() {
   };
 
   const updateTask = (taskId, newValue) => {
+    
+    if (!newValue.text || /^\s*$/.test(newValue.text)) { // if newValue.text is empty or only spaces
+      return; // do nothing
+    }
+
     setTasks((prev) =>
       prev.map((item) => (item.id === taskId ? newValue : item))
     );
@@ -83,7 +88,7 @@ function TaskList() {
         <p> </p>
         </div>
       
-        {/* <TaskForm onSubmit={addTask} /> */}
+        {/* \\<TaskForm onSubmit={addTask} /> */}
       
     </div>
   );
