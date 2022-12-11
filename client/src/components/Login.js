@@ -80,7 +80,10 @@ const Login = ({ setLoginUser }) => {
             />
           </form>
 
-          <button className="login-button" type="submit" onClick={login}>
+          <button className="login-button" 
+            type="submit" 
+            onClick={login}
+          >
             LOG IN
           </button>
           <button
