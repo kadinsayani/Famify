@@ -17,27 +17,26 @@ function PostForm(props) {
   };
 
   const createPost = (post) => {
-
-    console.log(post)
+    console.log(post);
 
     const config = {
       url: "http://localhost:3001/post",
       method: "post",
       withCredentials: true,
       data: {
-        content: post
-      }
+        content: post,
+      },
     };
 
     axios
       .request(config)
       .then((res) => {
-        console.log(res)
-        props.onSubmit()
+        console.log(res);
+        props.onSubmit();
       })
       .catch((err) => {
-        console.log(err)
-      })
+        console.log(err);
+      });
   };
 
   const handleSubmit = (e) => {
@@ -52,24 +51,27 @@ function PostForm(props) {
     createPost(input);
 
     setInput("");
-    
   };
   return (
     <div>
       <form className="post-form" onSubmit={handleSubmit}>
-      <IconContext.Provider value={{color: '#0eb2fc', size: '50px'}}>
-          <h1><BsPersonCircle /></h1>
-          </IconContext.Provider>
+        <IconContext.Provider value={{ color: "#0eb2fc", size: "50px" }}>
+          <h1>
+            <BsPersonCircle />
+          </h1>
+        </IconContext.Provider>
         <input
           type="text"
-          placeholder="What's happening"
+          placeholder="What's happening?"
           value={input}
           name="text"
           className="task-input"
           onChange={handleChange}
           ref={focus}
         />
-        <button className="post-button" onClick={handleSubmit}>Add Post</button>
+        <button className="post-button" onClick={handleSubmit}>
+          Post
+        </button>
       </form>
     </div>
   );

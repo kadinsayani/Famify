@@ -9,7 +9,6 @@ import Navbar from "./components/Navbar.js";
 import ListOfLists from "./components/ListOfLists.js";
 import Notifications from "./components/Notifications.js";
 import Logout from "./components/Logout";
-import ActiveMembers from "./components/ActiveMembers.js";
 
 const App = () => {
   const [user, setLoginUser] = useState();
