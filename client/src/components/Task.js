@@ -2,8 +2,12 @@ import React, { useState } from "react";
 import TaskForm from "./TaskForm";
 import { RiCloseCircleLine } from "react-icons/ri";
 import { TiEdit } from "react-icons/ti";
+import CustomCheckbox from "./CustomCheckbox";
+import "./Task.css";
 
 function Task({ tasks, completeTask, removeTask, updateTask }) {
+
+  const [checked, setChecked] = useState(false);
 
   const [edit, setEdit] = useState({ 
     id: null, 
@@ -28,7 +32,11 @@ function Task({ tasks, completeTask, removeTask, updateTask }) {
       className={task.isComplete ? "task-row complete" : "task-row"}
       key={index}
     >
-      <div key={task.id} onClick={() => completeTask(task.id)}>
+      <CustomCheckbox checked={task.isComplete} onChange={() => setChecked(!checked)} />
+      <div className="task-text"
+        key={task.id} 
+        onClick={() => completeTask(task.id)}
+        >
         {task.text}
       </div>
       <div className="icons">
