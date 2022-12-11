@@ -1,6 +1,5 @@
 import React from "react";
 import { BsPersonCircle } from "react-icons/bs";
-import { IconContext } from "react-icons/lib";
 export const ActiveMembersData = [
   {
     title: "Who is in your Fam",
