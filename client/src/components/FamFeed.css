@@ -44,12 +44,15 @@ body {
   text-decoration: none;
   display: block;
 }
-.ddc hide:hover {background-color: cadetblue;}
-
-.post-app2:hover .ddc {display: block;}
-
-.post-app2:hover .hide {background-color: #0eb2fc;}
-
+.ddc hide:hover {
+    background-color: cadetblue;
+}
+.post-app2:hover .ddc {
+    display: block;
+}
+.post-app2:hover .hide {
+    background-color: #0eb2fc;
+}
 .dropdown {
     display: none;
     position: absolute;
