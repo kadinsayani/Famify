@@ -200,4 +200,46 @@ postRoutes.route("/post/:id")
 
   })
 
+// reactions
+postRoutes.route("/react/post/:id")
+  .put(userAuthenticated, (req, res) => {
+
+    const reaction = req.body.reaction
+
+    Post.findById(req.params.id, (err, post) => {
+
+      if (err) return res.status(500).send()
+      if (!post) return res.status(404)
+
+      // only if the post is in the same family
+      if (req.session.user.familyID.toString() === post.family.toString()) {
+
+        post.reactions.push({
+          user: req.session.user.id,
+          reaction: reaction
+        })
+        post.save()
+          .then(_ => {
+            return res.send(post)
+          })
+          .catch(_ => {
+            return res.status(500).send()
+          })
+
+      } else {
+
+        return res.status(403).send()
+
+      }
+
+    })
+
+  })
+
+  .delete(userAuthenticated, (req, res) => {
+
+    // TODO: implement
+
+  })
+
 export default postRoutes;

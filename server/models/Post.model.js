@@ -6,7 +6,12 @@ const postSchema = new mongoose.Schema({
   family: { type: ObjectId, ref: "Family" },
   user: { type: ObjectId, ref: "User" },
   date: String,
-  time: String
+  time: String,
+  reactions: [{
+    user: {type: ObjectId, ref: "User"}, 
+    reaction: String,
+    _id: false
+  }]
 });
 
 const Post = mongoose.model("Post", postSchema);
