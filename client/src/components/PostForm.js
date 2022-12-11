@@ -69,7 +69,7 @@ function PostForm(props) {
           onChange={handleChange}
           ref={focus}
         />
-        <button className="post-button" onClick={handleSubmit}>Post</button>
+        <button className="post-button" onClick={handleSubmit}>Add Post</button>
       </form>
     </div>
   );

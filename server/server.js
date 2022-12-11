@@ -10,6 +10,7 @@ import userRoutes from "./routes/users.js";
 import postRoutes from "./routes/posts.js";
 import taskRoutes from "./routes/tasks.js";
 import authRoutes from "./routes/auth.js";
+import notificationRoutes from "./routes/notifications.js";
 
 import Database from "./db/database.js"
 
@@ -18,7 +19,13 @@ const port = process.env.FAMIFY_SERVER_PORT || 5000;
 const app = express();
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
-app.use(cors());
+
+// cors
+const corsOptions = {
+  origin: "http://localhost:3000",
+  credentials: true
+}
+app.use(cors(corsOptions));
 
 // session
 import MongoStore from "connect-mongo"
@@ -29,6 +36,10 @@ app.use(session({
   resave: true,
   saveUninitialized: false,
   maxAge: process.env.SESSION_MAXAGE,
+  cookie : {
+    secure: false, // 'true' uses HTTPS
+    SameSite: 'none'
+  },
   store: MongoStore.create(
     {mongoUrl: process.env.ATLAS_URI}
   )
@@ -39,6 +50,7 @@ app.use("/", userRoutes);
 app.use("/", postRoutes);
 app.use("/", taskRoutes);
 app.use("/", authRoutes);
+app.use("/", notificationRoutes)
 
 app.listen(port, () => {
   console.log(`Server is running on port: ${port}`);

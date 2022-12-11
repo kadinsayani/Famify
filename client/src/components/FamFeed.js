@@ -42,8 +42,6 @@ function FamFeed() {
 
         console.log(newPosts.length)
 
-        
-
       })
       .catch((err) => {
         console.log(err.status);

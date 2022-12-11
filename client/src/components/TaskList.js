@@ -1,16 +1,75 @@
-import React, { useState } from "react";
-import TaskForm from "./TaskForm";
+import React, { useState, useEffect } from "react";
 import Task from "./Task.js";
 import "./TaskList.css";
 import Modal from "./Modal";
+import axios from "axios";
 
-function TaskList() {
+function TaskList(props) {
   const [tasks, setTasks] = useState([]);
   const [show, setShow] = useState(false);
+
+  const getTasks = () => {
+    const config = {
+      url: "http://localhost:3001/tasks",
+      method: "get",
+      withCredentials: true,
+    };
+
+    axios
+      .request(config)
+      .then((res) => {
+        const resData = res.data;
+        const newTasks = [];
+
+        for (let i = 0; i < resData.length; i++) {
+          if (!tasks.some((task) => task._id === resData[i]._id)) {
+            newTasks.push(resData[i]);
+          }
+        }
+
+        if (newTasks.length > 0) {
+          setTasks(tasks.concat(newTasks));
+        }
+
+        console.log(newTasks.length);
+      })
+      .catch((err) => {
+        console.log(err.status);
+      });
+  };
+
+  const createTask = (task) => {
+    console.log(task);
+
+    const config = {
+      url: "http://localhost:3001/tasks",
+      method: "post",
+      withCredentials: true,
+      data: {
+        content: task,
+      },
+    };
+
+    axios
+      .request(config)
+      .then((res) => {
+        console.log(res);
+        props.onSubmit();
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  };
+
+  useEffect(() => {
+    getTasks();
+  });
 
   const addTask = (task) => {
     const newTasks = [task, ...tasks];
     setTasks(newTasks);
+    setShow(false);
+    createTask(task);
   };
 
   const removeTask = (id) => {
@@ -29,25 +88,39 @@ function TaskList() {
   };
 
   const updateTask = (taskId, newValue) => {
+    if (!newValue.text || /^\s*$/.test(newValue.text)) {
+      // if newValue.text is empty or only spaces
+      return; // do nothing
+    }
+
     setTasks((prev) =>
       prev.map((item) => (item.id === taskId ? newValue : item))
     );
   };
 
   return (
-    <div className="tasklist">
-      <div className="task-app">
+    <div className="tasklist-container">
+      <div className="header">
         <h1>Task List</h1>
-        <button onClick={() => setShow(true)}>Show Modal</button>
-        <Modal onClose={() => setShow(false)} show={show} />
-        <TaskForm onSubmit={addTask} />
+      </div>
+
+      <div className="task-container text-center">
+        <Modal onClose={() => setShow(false)} show={show} onSubmit={addTask} />
+
         <Task
           tasks={tasks}
           completeTask={completeTask}
           removeTask={removeTask}
           updateTask={updateTask}
         />
-    </div>
+      </div>
+
+      <div className="task-container footer">
+        <button className="open-modal-button" onClick={() => setShow(true)}>
+          Add Task
+        </button>
+        <p> </p>
+      </div>
     </div>
   );
 }

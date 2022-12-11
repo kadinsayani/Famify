@@ -1,0 +1,19 @@
+.task-row {
+    display: flex;
+    align-items: center;
+    margin-bottom: 10px;
+}
+  
+.task-row .task-text {
+    flex-grow: 1;
+    text-align: left;
+    margin-left: 10px;
+}
+  
+.task-row .icons {
+    margin-left: auto;
+}
+
+.strikethrough {
+    text-decoration: line-through;
+}
