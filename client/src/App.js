@@ -1,39 +1,95 @@
 import React, { useState } from "react";
 import "./App.css";
-// import { Routes, Route } from "react-router-dom";
 import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
 import Login from "./components/Login.js";
 import Register from "./components/Register.js";
-import Homepage from "./components/Homepage.js";
 import TaskList from "./components/TaskList.js";
 import FamFeed from "./components/FamFeed.js";
 import Navbar from "./components/Navbar.js";
 import ListOfLists from "./components/ListOfLists.js";
+import Notifications from "./components/Notifications.js";
+import Logout from "./components/Logout";
+import ActiveMembers from "./components/ActiveMembers.js";
 
 const App = () => {
-  const [user, setLoginUser] = useState({});
+  const [user, setLoginUser] = useState();
+
   return (
     <>
       <Router>
-        <Navbar />
+        {user && <Navbar />}
         <Routes>
           <Route
+            exact
             path="/"
-            element={user ? <Homepage /> : <Login setLoginUser={user} />}
+            element={
+              user ? (
+                <FamFeed user={user} />
+              ) : (
+                <Login setLoginUser={setLoginUser} />
+              )
+            }
           />
-          <Route path="/homepage" element={<Homepage />} />
           <Route
+            exact
             path="/login"
             element={<Login setLoginUser={setLoginUser} />}
           />
-          <Route path="/register" element={<Register />} />
-          <Route path="/tasklist" element={<TaskList />} />
-          <Route path="/famfeed" element={<FamFeed />} />
-          <Route path="/listoflists" element={<ListOfLists />} />
+          <Route exact path="/register" element={<Register />} />
+          <Route exact path="/logout" element={<Logout />} />
+          <Route
+            exact
+            path="/tasklist"
+            element={
+              user ? (
+                <TaskList user={user} />
+              ) : (
+                <Login setLoginUser={setLoginUser} />
+              )
+            }
+          />
+          <Route
+            exact
+            path="/famfeed"
+            element={
+              user ? (
+                <FamFeed user={user} />
+              ) : (
+                <Login setLoginUser={setLoginUser} />
+              )
+            }
+          />
+          <Route
+            exact
+            path="/listoflists"
+            element={
+              user ? (
+                <ListOfLists user={user} />
+              ) : (
+                <Login setLoginUser={setLoginUser} />
+              )
+            }
+          />
+          <Route
+            exact
+            path="/notifications"
+            element={
+              user ? (
+                <Notifications user={user} />
+              ) : (
+                <Login setLoginUser={setLoginUser} />
+              )
+            }
+          />
         </Routes>
       </Router>
+    
+    <Router>
+        {user && <ActiveMembers />}
+        </Router>
     </>
   );
 };
 
 export default App;
+
