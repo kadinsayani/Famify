@@ -72,35 +72,4 @@ userRoutes.route("/user/:id")
 
   })
 
-  // update user
-  .put(function (req, response) {
-    let db_connect = dbo.getDb();
-    let myquery = { _id: ObjectId(req.params.id) };
-    let newvalues = {
-      $set: {
-        name: req.body.name,
-        email: req.body.email,
-        family: req.body.family,
-      },
-    };
-    db_connect
-      .collection("users")
-      .updateOne(myquery, newvalues, function (err, res) {
-        if (err) throw err;
-        console.log("1 document updated");
-        response.json(res);
-      });
-  })
-
-  // delete user
-  .delete((req, response) => {
-    let db_connect = dbo.getDb();
-    let myquery = { _id: ObjectId(req.params.id) };
-    db_connect.collection("users").deleteOne(myquery, function (err, obj) {
-      if (err) throw err;
-      console.log("1 document deleted");
-      response.json(obj);
-    });
-  });
-
 export default userRoutes;

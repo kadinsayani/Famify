@@ -5,5 +5,31 @@
   justify-content: center;
   width: 100%;
   height: 100%;
-  margin-left: 250px;
+  margin-left: 134px;
+}
+
+.notifications h1 {
+  padding-left: 75px;
+}
+
+.notificationDiv {
+  display: flex;
+  height: 100px;
+  align-items: center;
+  border: 1px solid lightgrey;
+  padding-left: 47px;
+  padding-right: 300px;
+}
+
+.userPhotoDiv {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 100px;
+  width: 100px;
+}
+
+.whenDiv {
+  font-style: italic;
+  color: #0eb2fc;
 }
