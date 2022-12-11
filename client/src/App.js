@@ -83,13 +83,8 @@ const App = () => {
           />
         </Routes>
       </Router>
-    
-    <Router>
-        {user && <ActiveMembers />}
-        </Router>
     </>
   );
 };
 
 export default App;
-
