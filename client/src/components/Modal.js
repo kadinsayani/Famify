@@ -1,5 +1,4 @@
 import React, { useState } from "react";
-import axios from "axios";
 import "./Modal.css";
 
 const Modal = (props) => {
@@ -9,27 +8,6 @@ const Modal = (props) => {
     setInput(e.target.value);
   };
 
-  const createTask = (task) => {
-    const config = {
-      url: "http://localhost:3001/tasks",
-      method: "post",
-      withCredentials: true,
-      data: {
-        content: task,
-      },
-    };
-
-    axios
-      .request(config)
-      .then((res) => {
-        console.log(res);
-        props.onSubmit();
-      })
-      .catch((err) => {
-        console.log(err);
-      });
-  };
-
   const handleSubmit = (e) => {
     e.preventDefault();
 
@@ -37,8 +15,6 @@ const Modal = (props) => {
       id: Math.floor(Math.random() * 10000),
       text: input,
     });
-
-    createTask({ content: input });
 
     setInput("");
   };
@@ -70,10 +46,6 @@ const Modal = (props) => {
             <button className="task-button">Add</button>
           </form>
         </div>
-
-        {/* <div className="modal-footer">
-                    <button onClick={props.onClose} className="button">Close</button>
-                </div> */}
       </div>
     </div>
   );

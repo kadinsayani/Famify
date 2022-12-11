@@ -14,12 +14,13 @@ taskRoutes.use(
 );
 
 class TaskView {
-  constructor(_id, content, user, date, time) {
+  constructor(_id, content, user, date, time, isCompleted) {
     this._id = _id ? _id : null;
     this.content = content ? content : null;
     this.user = user ? user : null;
     this.date = date ? date : null;
     this.time = time ? time : null;
+    this.isCompleted = isCompleted ? isCompleted : null;
   }
 }
 
@@ -133,7 +134,7 @@ taskRoutes
 
 // :id
 
-taskRoutes.route("/task/:id").delete(userAuthenticated, (req, res) => {
+taskRoutes.route("/tasks/:id").delete(userAuthenticated, (req, res) => {
   Task.findById(req.params.id, (err, task) => {
     if (err) return res.send("An error occured.");
     if (!task) return res.status(404).send();

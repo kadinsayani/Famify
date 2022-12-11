@@ -1,10 +1,10 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import Task from "./Task.js";
 import "./TaskList.css";
 import Modal from "./Modal";
 import axios from "axios";
 
-function TaskList() {
+function TaskList(props) {
   const [tasks, setTasks] = useState([]);
   const [show, setShow] = useState(false);
 
@@ -15,24 +15,61 @@ function TaskList() {
       withCredentials: true,
     };
 
-    axios.request(config).then((res) => {
-      const tasks = res.data;
+    axios
+      .request(config)
+      .then((res) => {
+        const resData = res.data;
+        const newTasks = [];
 
-      const newTasks = [];
+        for (let i = 0; i < resData.length; i++) {
+          if (!tasks.some((task) => task._id === resData[i]._id)) {
+            newTasks.push(resData[i]);
+          }
+        }
 
-      tasks.forEach((post) => {
-        newTasks.push(post.content);
+        if (newTasks.length > 0) {
+          setTasks(tasks.concat(newTasks));
+        }
+
+        console.log(newTasks.length);
+      })
+      .catch((err) => {
+        console.log(err.status);
       });
-
-      console.log(tasks);
-      // setTasks(newTasks);
-    });
   };
+
+  const createTask = (task) => {
+    console.log(task);
+
+    const config = {
+      url: "http://localhost:3001/tasks",
+      method: "post",
+      withCredentials: true,
+      data: {
+        content: task,
+      },
+    };
+
+    axios
+      .request(config)
+      .then((res) => {
+        console.log(res);
+        props.onSubmit();
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  };
+
+  useEffect(() => {
+    getTasks();
+  });
 
   const addTask = (task) => {
     const newTasks = [task, ...tasks];
     setTasks(newTasks);
     setShow(false);
+    createTask(task);
   };
 
   const removeTask = (id) => {
@@ -84,8 +121,6 @@ function TaskList() {
         </button>
         <p> </p>
       </div>
-
-      {/* \\<TaskForm onSubmit={addTask} /> */}
     </div>
   );
 }

@@ -1,8 +1,6 @@
 import React, { useState, useEffect, useRef } from "react";
-import axios from "axios";
 
 function TaskForm(props) {
-  
   const [input, setInput] = useState("");
 
   const focus = useRef(null);
@@ -14,11 +12,11 @@ function TaskForm(props) {
     setInput(e.target.value);
   };
 
-  const createTask = (post) => {
-    axios.post("http://localhost:3001/task", post).then((res) => {
-      console.log(res);
-    });
-  };
+  // const createTask = (post) => {
+  //   axios.post("http://localhost:3001/tasks", post).then((res) => {
+  //     console.log(res);
+  //   });
+  // };
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -28,7 +26,7 @@ function TaskForm(props) {
       text: input,
     });
 
-    createTask({ content: input });
+    // createTask({ content: input });
 
     setInput("");
   };
