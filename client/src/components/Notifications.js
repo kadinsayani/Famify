@@ -4,6 +4,15 @@ import "./Notifications.css";
 
 function Notifications() {
 
+  // process date from server
+  function processDate(date) {
+    switch(date) {
+
+      // return
+
+    }
+  }
+
   // for testing
   // TODO: implement backend
   const notifications = [
