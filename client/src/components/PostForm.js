@@ -2,6 +2,7 @@ import React, { useState, useEffect, useRef } from "react";
 import axios from "axios";
 import "./FamFeed.css";
 import { BsPersonCircle } from "react-icons/bs";
+import { IconContext } from "react-icons/lib";
 
 function PostForm(props) {
   const [input, setInput] = useState("");
@@ -14,29 +15,41 @@ function PostForm(props) {
   const handleChange = (e) => {
     setInput(e.target.value);
   };
-  
-  const Image = (props) => {
-    return(
-      <img src={props.image} alt="profile_picture" className="picture">
-      </img>
-    )
-  }
 
   const createPost = (post) => {
-    axios.post("http://localhost:3001/post", post).then((res) => {
-      console.log(res);
-    });
+
+    console.log(post)
+
+    const config = {
+      url: "http://localhost:3001/post",
+      method: "post",
+      withCredentials: true,
+      data: {
+        content: post
+      }
+    };
+
+    axios
+      .request(config)
+      .then((res) => {
+        console.log(res)
+        props.onSubmit()
+      })
+      .catch((err) => {
+        console.log(err)
+      })
   };
 
   const handleSubmit = (e) => {
     e.preventDefault();
 
+    // TODO: remove if not needed
     props.onSubmit({
       id: Math.floor(Math.random() * 10000),
       text: input,
     });
 
-    createPost({content: input});
+    createPost(input);
 
     setInput("");
     
@@ -44,8 +57,9 @@ function PostForm(props) {
   return (
     <div>
       <form className="post-form" onSubmit={handleSubmit}>
-        {/* <Image image={props.image}/> */}
-        <h2><BsPersonCircle /></h2>
+      <IconContext.Provider value={{color: '#0eb2fc', size: '50px'}}>
+          <h1><BsPersonCircle /></h1>
+          </IconContext.Provider>
         <input
           type="text"
           placeholder="What's happening"
@@ -55,7 +69,7 @@ function PostForm(props) {
           onChange={handleChange}
           ref={focus}
         />
-        <button className="post-button">Post</button>
+        <button className="post-button" onClick={handleSubmit}>Post</button>
       </form>
     </div>
   );
