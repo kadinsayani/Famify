@@ -1,5 +1,4 @@
 import React, { useState } from "react";
-import TaskForm from "./TaskForm";
 import { RiCloseCircleLine } from "react-icons/ri";
 import { TiEdit } from "react-icons/ti";
 import CustomCheckbox from "./CustomCheckbox";
@@ -24,7 +23,7 @@ function Task({ tasks, completeTask, removeTask, updateTask }) {
 
   };
   if (edit.id) {
-    return <TaskForm edit={edit} onSubmit={submitUpdate} />;
+    // return <TaskForm edit={edit} onSubmit={submitUpdate} />;
   }
   
   return tasks.map((task, index) => (
