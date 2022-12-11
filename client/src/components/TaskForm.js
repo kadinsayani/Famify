@@ -2,6 +2,7 @@ import React, { useState, useEffect, useRef } from "react";
 import axios from "axios";
 
 function TaskForm(props) {
+  
   const [input, setInput] = useState("");
 
   const focus = useRef(null);
@@ -37,14 +38,14 @@ function TaskForm(props) {
       <form className="task-form" onSubmit={handleSubmit}>
         <input
           type="text"
-          placeholder="Add a task"
+          placeholder="Edit task"
           value={input}
           name="text"
           className="task-input"
           onChange={handleChange}
           ref={focus}
         />
-        <button className="task-button">Add Task</button>
+        <button className="save-button">Save</button>
       </form>
     </div>
   );
