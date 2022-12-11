@@ -8,6 +8,7 @@ import FamFeed from "./components/FamFeed.js";
 import Navbar from "./components/Navbar.js";
 import ListOfLists from "./components/ListOfLists.js";
 import Notifications from "./components/Notifications.js";
+import Logout from "./components/Logout";
 
 const App = () => {
   const [user, setLoginUser] = useState();
@@ -34,6 +35,7 @@ const App = () => {
             element={<Login setLoginUser={setLoginUser} />}
           />
           <Route exact path="/register" element={<Register />} />
+          <Route exact path="/logout" element={<Logout />} />
           <Route
             exact
             path="/tasklist"
