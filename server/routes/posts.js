@@ -141,6 +141,37 @@ postRoutes
 // :id
 
 postRoutes.route("/post/:id")
+
+  // edit post
+  .put(userAuthenticated, (req, res) => {
+
+    Post.findById(req.params.id, (err, post) => {
+
+      if (err) return res.status(500).send()
+      if (!post) return res.status(404).send()
+
+      // only if the user owns the post
+      if (post.user.toString() === req.session.user.id.toString()) {
+
+        Post.findByIdAndUpdate(req.params.id, {content: req.body.content}, {new: true}, (err, updated) => {
+
+          if (err) return res.status(500).send()
+          
+          return res.status(200).send(updated)
+
+        })
+
+      } else {
+
+        return res.status(403).send()
+
+      }
+
+    })
+
+  })
+
+  // delete post
   .delete(userAuthenticated, (req, res) => {
 
     Post.findById(req.params.id, (err, post) => {
@@ -148,6 +179,7 @@ postRoutes.route("/post/:id")
       if (err) return res.send("An error occured.")
       if (!post) return res.status(404).send()
 
+      // only if the user owns the post
       if (post.user.toString() === req.session.user.id.toString()) {
 
         Post.findByIdAndDelete(req.params.id, (err, post) => {
