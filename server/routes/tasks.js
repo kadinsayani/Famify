@@ -26,7 +26,7 @@ class TaskView {
 // routes
 
 taskRoutes
-  .route("/task")
+  .route("/tasks")
   .get(userAuthenticated, (req, res) => {
     Family.findById(req.session.user.familyID, (err, family) => {
       if (err) return res.status(500).send("Error");
