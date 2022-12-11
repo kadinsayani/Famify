@@ -10,6 +10,7 @@ import userRoutes from "./routes/users.js";
 import postRoutes from "./routes/posts.js";
 import taskRoutes from "./routes/tasks.js";
 import authRoutes from "./routes/auth.js";
+import notificationRoutes from "./routes/notifications.js";
 
 import Database from "./db/database.js"
 
@@ -49,6 +50,7 @@ app.use("/", userRoutes);
 app.use("/", postRoutes);
 app.use("/", taskRoutes);
 app.use("/", authRoutes);
+app.use("/", notificationRoutes)
 
 app.listen(port, () => {
   console.log(`Server is running on port: ${port}`);
