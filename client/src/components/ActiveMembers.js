@@ -7,7 +7,7 @@ import { ActiveMembersData } from "./ActiveMembersData";
 function ActiveMembers() {
   return (
     <>
-      <IconContext.Provider value={{ color: "#0eb2fc" }}>
+      <IconContext.Provider value={{ color: "#0eb2fc", size: '30px'}}>
         <div className="activemembers"></div>
         <nav className="members-menu">
         <BsPersonCircle />
@@ -18,6 +18,7 @@ function ActiveMembers() {
                   <li key={index} className={item.cName}>
                           <span>{item.icon}</span>
                           <span>{item.title}</span>
+                          <span>{item.status}</span>
                       </li>
               );
             })}
@@ -28,4 +29,4 @@ function ActiveMembers() {
   );
 }
 
-export default ActiveMembers;
+export default ActiveMembers; 
