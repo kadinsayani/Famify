@@ -1,5 +1,8 @@
 import React, { useState, useEffect, useRef } from "react";
 import axios from "axios";
+import "./FamFeed.css";
+import { BsPersonCircle } from "react-icons/bs";
+import { IconContext } from "react-icons/lib";
 
 function PostForm(props) {
   const [input, setInput] = useState("");
@@ -54,9 +57,12 @@ function PostForm(props) {
   return (
     <div>
       <form className="post-form" onSubmit={handleSubmit}>
+      <IconContext.Provider value={{color: '#0eb2fc', size: '50px'}}>
+          <h1><BsPersonCircle /></h1>
+          </IconContext.Provider>
         <input
           type="text"
-          placeholder="Add a post"
+          placeholder="What's happening"
           value={input}
           name="text"
           className="task-input"

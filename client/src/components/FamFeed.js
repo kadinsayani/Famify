@@ -14,6 +14,14 @@ function FamFeed() {
       withCredentials: true,
     };
 
+    document.querySelectorAll('button')
+  .forEach(button => {
+    button.addEventListener('click', function() {
+      const div = this.parentElement.querySelector('div');
+      div.textContent = this.dataset.answer;
+    });
+  });
+
     axios
       .request(config)
       .then((res) => {
@@ -46,11 +54,21 @@ function FamFeed() {
   });
 
   return (
-    <div className="famfeed">
-      <div className="post-app">
-        <h1>Fam Feed</h1>
-        <PostForm onSubmit={getPosts} />
-        <Post posts={posts} />
+    <div className="post-app">
+      <h1>Fam Feed</h1>
+      <PostForm onSubmit={getPosts} />
+      <div className="post-app2">
+        <Post posts={posts} /> 
+        <div className="ddc"> 
+        <button className="hide">Add a Reaction</button>
+         <div className="dropdown"> 
+        <button className="Button" id="btn" data-inline="true" data-answer="😃">😃</button>
+        <button className="Button" id="btn" data-inline="true" data-answer="😂">😂</button>
+        <button className="Button" id="btn" data-inline="true" data-answer="😲">😲</button>
+        <button className="Button" id="btn" data-inline="true" data-answer="😢">😢</button>
+        <button className="Button" id="btn" data-inline="true" data-answer="😭">😭</button>
+        </div> 
+        </div>
       </div>
     </div>
   );
