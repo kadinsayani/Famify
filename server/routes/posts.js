@@ -16,13 +16,14 @@ postRoutes.use(
 
 class PostView {
 
-  constructor(_id, content, user, date, time) {
+  constructor(_id, content, user, date, time, reactions) {
 
     this._id = _id ? _id : null;
     this.content = content ? content : null;
     this.user = user ? user : null;
     this.date = date ? date : null;
     this.time = time ? time : null;
+    this.reactions = reactions ? reactions : null;
 
   }
 
@@ -68,7 +69,8 @@ postRoutes
                     posts[i].content,
                     users[j].username,
                     posts[i].date,
-                    posts[i].time
+                    posts[i].time,
+                    posts[i].reactions
                   ))
                 }
 
@@ -81,7 +83,8 @@ postRoutes
                 posts[i].content,
                 null,
                 posts[i].date,
-                posts[i].time
+                posts[i].time,
+                posts[i].reactions
               ))
 
             }
