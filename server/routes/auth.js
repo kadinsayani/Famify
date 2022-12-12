@@ -54,7 +54,8 @@ authRoutes.post("/register", (req, res) => {
             // notify family
 
             const familyMembers = [...family.members]
-            familyMembers.splice(familyMembers.indexOf(user._id), 1)
+            if (familyMembers.indexOf(user._id) !== -1)
+              familyMembers.splice(familyMembers.indexOf(user._id), 1)
 
             notify(user._id, "has joined your family.", familyMembers)
 

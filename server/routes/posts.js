@@ -2,6 +2,7 @@ import express from "express";
 import bodyParser from "body-parser";
 import userAuthenticated from "../auth/Authentication.js";
 import notify from "../notifications/notifier.js";
+import { ObjectId } from "mongoose";
 
 // models
 import Post from "../models/Post.model.js";
@@ -133,11 +134,15 @@ postRoutes
       family.posts.push(newPost._id)
       family.save()
 
-      familyMembers = [...family.members]
+      familyMembers = []
 
       // remove self from being notified
-      familyMembers.splice(familyMembers.indexOf(user), 1)
+      for (let i=0; i < family.members.length; i++) {
 
+        if (family.members[i]._id.toString() !== user)
+          familyMembers.push(family.members[i]._id)
+
+      }
       console.log(user, familyMembers)
 
     })
