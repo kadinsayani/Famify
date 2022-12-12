@@ -13,6 +13,6 @@ const grocerySchema = new mongoose.Schema({
   },
 });
 
-const Task = mongoose.model("Task", grocerySchema);
+const Grocery = mongoose.model("Grocery", grocerySchema);
 
-export default Task;
+export default Grocery;

@@ -10,7 +10,7 @@ import userRoutes from "./routes/users.js";
 import postRoutes from "./routes/posts.js";
 import taskRoutes from "./routes/tasks.js";
 import authRoutes from "./routes/auth.js";
-import groceryRoutes from "./routes/groceries";
+import groceryRoutes from "./routes/groceries.js";
 import notificationRoutes from "./routes/notifications.js";
 
 import Database from "./db/database.js";
