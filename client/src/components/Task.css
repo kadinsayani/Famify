@@ -8,12 +8,15 @@
     flex-grow: 1;
     text-align: left;
     margin-left: 10px;
+    font-size: 20px;
 }
   
 .task-row .icons {
     margin-left: auto;
+    font-size: 1.5rem;
 }
 
+  
 .strikethrough {
     text-decoration: line-through;
 }
