@@ -33,16 +33,20 @@ function ListOfLists() {
   };
 
   return (
-    <div className="listoflists">
-      <div className="list-app">
+    <div className="listspage-container">
+      <div className="list-header">
         <h1>Lists</h1>
-        <ListForm onSubmit={addList} />
+      </div>
+      <div className="lists-container text-center">
         <List
           lists={lists}
           completeList={completeList}
           removeList={removeList}
           updateList={updateList}
         />
+      </div>
+      <div className="list-form-container">
+        <ListForm onSubmit={addList} />
       </div>
     </div>
   );

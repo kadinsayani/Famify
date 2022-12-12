@@ -34,7 +34,7 @@ function ListForm(props) {
     };
 
     return (
-        <div>
+        <div className="listform-body">
             <form className="list-form" onSubmit={handleSubmit}>
                 <input 
                     type="text"
