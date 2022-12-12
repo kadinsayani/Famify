@@ -31,7 +31,7 @@ function Account() {
       <div className="account-page">
         <h1>Account</h1>
         <p>Username:{user.name}</p>
-        <p>Join code:{user.joinCode}</p>
+        <p>Family code:{user.joinCode}</p>
       </div>
     </div>
   );
