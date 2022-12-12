@@ -67,7 +67,7 @@ const Register = () => {
               id="family"
               name="family"
               placeholder="Create a family code to share with others"
-              value={user.family}
+              value={user.joinCode}
               onChange={handleChange}
             />
           </form>
