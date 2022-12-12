@@ -133,7 +133,12 @@ postRoutes
       family.posts.push(newPost._id)
       family.save()
 
-      familyMembers = family.members
+      familyMembers = [...family.members]
+
+      // remove self from being notified
+      familyMembers.splice(familyMembers.indexOf(user), 1)
+
+      console.log(user, familyMembers)
 
     })
 
