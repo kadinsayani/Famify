@@ -28,43 +28,49 @@ function Notifications() {
         }
 
         if (newNotifications.length > 0) {
-          //const _newNotifications = fillUsernames(notifications.concat(newNotifications))
-          setNotifications(newNotifications)
+          fillUsernames(notifications.concat(newNotifications))
         }
-
-        console.log(newNotifications.length)
 
       })
       .catch((err) => {
         console.log(err);
-        // if err.status === 401, reroute to login
       });
   }
 
   function fillUsernames(_notifications) {
 
     const namedNotifications = _notifications
-    console.log("A")
 
-    for (let i=0; i < namedNotifications.length; i++) {
+    Promise.all(namedNotifications.map(notification => {
 
       const config = {
-        url: `http://localhost:3001/user/${namedNotifications[i].subject}`,
+        url: `http://localhost:3001/user/${notification.subject}`,
         method: "get",
         withCredentials: true,
       };
   
-      axios
-        .request(config)
-        .then((res) => {
-          const username = res.data.username
-          namedNotifications[i].subjectName = username
-        })
-        .catch((err) => {
-          console.log(err)
-        })
+      return axios.request(config)
 
-    }
+    }))
+    
+    .then((responses) => {
+
+      for (let i=0; i < responses.length; i++) {
+
+        const username = responses[i].data.username
+        namedNotifications[i].when = processDate(namedNotifications[i].date)
+        namedNotifications[i].subjectName = username
+
+      }
+
+      setNotifications(namedNotifications)
+
+    }).catch(err => {
+
+      console.log(err)
+
+    })
+
 
   }
 
@@ -76,11 +82,21 @@ function Notifications() {
 
   // process date from server
   function processDate(date) {
-    switch(date) {
 
-      // return
+    const HOUR = 60 * 60 * 1000
+    const DAY = HOUR * 24
 
-    }
+    date = new Date(date)
+    const difference = new Date().getTime() - date.getTime()
+
+    console.log(difference)
+
+    if (difference < HOUR) return "Less than an hour ago"
+    if (difference < DAY) return "1 day ago"
+    if (difference > DAY && difference < 2*DAY) return "2 days ago"
+    if (difference > 2*DAY && difference < 3*DAY) return "3 days ago"
+
+    return null
   }
 
   const board = <div className="notifications">
@@ -88,7 +104,7 @@ function Notifications() {
           <h1>Notifications</h1>
 
           {notifications.map(notification => {
-            return <Notification subject={notification.subject} content={notification.content} when={notification.date} />
+            return <Notification subject={notification.subjectName ?? "A member"} content={notification.content} when={notification.when ?? notification.date} />
           })}
 
         </div>
