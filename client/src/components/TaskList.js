@@ -28,8 +28,8 @@ function TaskList(props) {
         }
 
         if (newTasks.length > 0) {
-          const taskText = newTasks.map((task) => task.content);
-          setTasks(tasks.concat(taskText));
+          // const taskText = newTasks.map((task) => task.content);
+          setTasks(tasks.concat(newTasks));
         }
       })
       .catch((err) => {
