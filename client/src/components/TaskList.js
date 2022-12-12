@@ -28,8 +28,8 @@ function TaskList(props) {
         }
 
         if (newTasks.length > 0) {
-          const taskText = newTasks.map((task) => task.content);
-          setTasks(tasks.concat(taskText));
+          // const taskText = newTasks.map((task) => task.content);
+          setTasks(tasks.concat(newTasks));
         }
       })
       .catch((err) => {
@@ -102,7 +102,12 @@ function TaskList(props) {
       <div className="header">
         <h1>Task List</h1>
       </div>
-
+      <div className="task-container footer">
+        <button className="open-modal-button" onClick={() => setShow(true)}>
+          Add Task
+        </button>
+        <p> </p>
+      </div>
       <div className="task-container text-center">
         <Modal onClose={() => setShow(false)} show={show} onSubmit={addTask} />
 
@@ -112,13 +117,6 @@ function TaskList(props) {
           removeTask={removeTask}
           updateTask={updateTask}
         />
-      </div>
-
-      <div className="task-container footer">
-        <button className="open-modal-button" onClick={() => setShow(true)}>
-          Add Task
-        </button>
-        <p> </p>
       </div>
     </div>
   );

@@ -1,9 +1,9 @@
 import React, { useState } from "react";
 import ListForm from "./ListForm";
 import List from "./List";
-import "./ListOfLists.css";
+import "./GroceryList.css";
 
-function ListOfLists() {
+function GroceryList() {
   const [lists, setLists] = useState([]);
 
   const addList = (list) => {
@@ -35,7 +35,10 @@ function ListOfLists() {
   return (
     <div className="listspage-container">
       <div className="list-header">
-        <h1>Lists</h1>
+        <h1>Grocery List</h1>
+      </div>
+      <div className="list-form-container">
+        <ListForm onSubmit={addList} />
       </div>
       <div className="lists-container text-center">
         <List
@@ -45,11 +48,8 @@ function ListOfLists() {
           updateList={updateList}
         />
       </div>
-      <div className="list-form-container">
-        <ListForm onSubmit={addList} />
-      </div>
     </div>
   );
 }
 
-export default ListOfLists;
+export default GroceryList;
