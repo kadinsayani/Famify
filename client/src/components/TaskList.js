@@ -28,10 +28,9 @@ function TaskList(props) {
         }
 
         if (newTasks.length > 0) {
-          setTasks(tasks.concat(newTasks));
+          const taskText = newTasks.map((task) => task.content);
+          setTasks(tasks.concat(taskText));
         }
-
-        console.log(newTasks.length);
       })
       .catch((err) => {
         console.log(err.status);
