@@ -4,6 +4,9 @@ Web application for families with collaboration and interaction features includi
 
 ## Starting the server
 
+    cd server
     node server.js
 
 ## Starting the client
+    cd client
+    npm start
