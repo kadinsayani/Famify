@@ -6,8 +6,8 @@ import Grocery from "../models/Grocery.model.js";
 import Family from "../models/Family.model.js";
 import User from "../models/User.model.js";
 
-const taskRoutes = express.Router();
-taskRoutes.use(
+const groceryRoutes = express.Router();
+groceryRoutes.use(
   bodyParser.urlencoded({
     extended: true,
   })
@@ -26,7 +26,7 @@ class GroceryView {
 
 // routes
 
-taskRoutes
+groceryRoutes
   .route("/groceries")
   .get(userAuthenticated, (req, res) => {
     Family.findById(req.session.user.familyID, (err, family) => {
@@ -136,7 +136,7 @@ taskRoutes
 
 // :id
 
-taskRoutes.route("/groceries/:id").delete(userAuthenticated, (req, res) => {
+groceryRoutes.route("/groceries/:id").delete(userAuthenticated, (req, res) => {
   Grocery.findById(req.params.id, (err, grocery) => {
     if (err) return res.send("An error occured.");
     if (!grocery) return res.status(404).send();
@@ -153,4 +153,4 @@ taskRoutes.route("/groceries/:id").delete(userAuthenticated, (req, res) => {
   });
 });
 
-export default taskRoutes;
+export default groceryRoutes;

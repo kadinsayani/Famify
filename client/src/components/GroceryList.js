@@ -2,13 +2,38 @@ import React, { useState } from "react";
 import ListForm from "./ListForm";
 import List from "./List";
 import "./GroceryList.css";
+import axios from "axios";
 
-function GroceryList() {
+function GroceryList(props) {
   const [lists, setLists] = useState([]);
+
+  const createList = (list) => {
+    console.log(list);
+
+    const config = {
+      url: "http://localhost:3001/groceries",
+      method: "post",
+      withCredentials: true,
+      data: {
+        content: list,
+      },
+    };
+
+    axios
+      .request(config)
+      .then((res) => {
+        console.log(res);
+        props.onSubmit();
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  };
 
   const addList = (list) => {
     const newLists = [list, ...lists];
     setLists(newLists);
+    createList(list.list);
   };
 
   const removeList = (id) => {

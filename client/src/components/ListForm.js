@@ -1,5 +1,4 @@
 import React, { useState, useEffect, useRef } from "react";
-import axios from "axios";
 import "./ListForm.css";
 
 function ListForm(props) {
@@ -14,12 +13,6 @@ function ListForm(props) {
     setInput(e.target.value);
   };
 
-  const createList = (post) => {
-    axios.post("http://localhost:3001/list", post).then((res) => {
-      console.log(res);
-    });
-  };
-
   const handleSubmit = (e) => {
     e.preventDefault();
 
@@ -27,8 +20,6 @@ function ListForm(props) {
       id: Math.floor(Math.random() * 10000),
       text: input,
     });
-
-    createList({ content: input });
 
     setInput("");
   };
