@@ -1,5 +1,6 @@
 import express from "express"
 import bodyParser from "body-parser"
+import notify from "../notifications/notifier.js"
 
 // model imports
 import User from "../models/User.model.js";
@@ -49,6 +50,16 @@ authRoutes.post("/register", (req, res) => {
                 family: family._id,
             });
             family.members.push(user._id);
+
+            // notify family
+
+            const familyMembers = [...family.members]
+            familyMembers.splice(familyMembers.indexOf(user._id), 1)
+
+            notify(user._id, "has joined your family.", familyMembers)
+
+            // end notify
+
             family.save();
             user.save((err) => {
                 if (err) {
