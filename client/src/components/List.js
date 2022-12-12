@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import ListForm from "./ListForm";
 import { RiCloseCircleLine } from "react-icons/ri";
 import { TiEdit } from "react-icons/ti";
+import "./List.css";
 
 function List({ lists, completeList, removeList, updateList }) {
   const [edit, setEdit] = useState({

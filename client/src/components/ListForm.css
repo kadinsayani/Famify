@@ -1,12 +1,33 @@
 .list-button{
-    background-color: #1a83ff;
-    border: none;
-    color: white;
-    font-weight: 300;
-    font-size: medium;
-    text-transform: inherit;
-    border-radius: 10px;
-    height: 50px;
-    margin-top: 20px;
-    width: 100%;
-  }
+  background-color: #1a83ff;
+  border: none;
+  color: white;
+  font-weight: 300;
+  font-size: medium;
+  text-transform: inherit;
+  border-radius: 10px;
+  height: 50px;
+  margin-top: 0.1rem;
+  width: 65%;
+  cursor: pointer;
+  margin-bottom: 2em;
+}
+
+.listform-body input{
+  position: relative;
+  width: 450px;
+  height: 50px;
+  outline: lightgrey solid 0.5px;
+  border: 0px;
+  border-radius: 4px;
+  padding-left: 10px;
+  
+  font-size: 1rem;
+  font-weight: 300;
+  margin-bottom: 2rem;
+
+}
+
+.listform-body{
+  margin-top: 10%;
+}
