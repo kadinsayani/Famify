@@ -8,5 +8,6 @@ Web application for families with collaboration and interaction features includi
     node server.js
 
 ## Starting the client
+
     cd client
     npm start
