@@ -53,7 +53,7 @@ function Task({ tasks, completeTask, removeTask, updateTask }) {
               key={task.id}
               onClick={() => completeTask(task.id)}
             >
-              {task.text}
+              {task.content}
             </div>
             <div className="icons">
               <RiCloseCircleLine
