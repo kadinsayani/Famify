@@ -7,7 +7,7 @@ const taskSchema = new mongoose.Schema({
   user: { type: ObjectId, ref: "User" },
   date: String,
   time: String,
-  isCompleted: {
+  isComplete: {
     type: Boolean,
     default: false,
   },

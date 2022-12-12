@@ -19,18 +19,9 @@ function TaskList(props) {
       .request(config)
       .then((res) => {
         const resData = res.data;
-        const newTasks = [];
 
-        for (let i = 0; i < resData.length; i++) {
-          if (!tasks.some((task) => task._id === resData[i]._id)) {
-            newTasks.push(resData[i]);
-          }
-        }
-
-        if (newTasks.length > 0) {
-          // const taskText = newTasks.map((task) => task.content);
-          setTasks(tasks.concat(newTasks));
-        }
+        // Update the tasks state with the complete list of tasks retrieved from the server
+        setTasks(resData);
       })
       .catch((err) => {
         console.log(err.status);
@@ -60,29 +51,48 @@ function TaskList(props) {
       });
   };
 
-  useEffect(() => {
-    getTasks();
-  });
+  const generateUniqueId = () => {
+    return Date.now() + Math.random();
+  };
 
   const addTask = (task) => {
-    const newTasks = [task, ...tasks];
+    // Generate a unique id for the new task
+    const id = generateUniqueId();
+
+    // Create a new task object with the id and text
+    const newTask = {
+      _id: id,
+      content: task.text,
+    };
+
+    // Create a new array with the new task and the existing tasks
+    const newTasks = [newTask, ...tasks];
+
+    // Update the tasks state with the new array
     setTasks(newTasks);
     setShow(false);
     createTask(task.text);
   };
 
   const removeTask = (id) => {
-    const removeArr = [...tasks].filter((task) => task.id !== id);
+    const removeArr = [...tasks].filter((task) => task._id !== id);
     setTasks(removeArr);
   };
 
   const completeTask = (id) => {
-    let updatedTasks = tasks.map((task) => {
-      if (task.id === id) {
-        task.isComplete = !task.isComplete;
-      }
-      return task;
-    });
+    // Find the task with the specified id
+    const taskToComplete = tasks.find((task) => task.id === id);
+
+    // Update the isComplete property of the task
+    taskToComplete.isComplete = !taskToComplete.isComplete;
+
+    // Create a new array with the updated task and the rest of the tasks
+    const updatedTasks = [
+      ...tasks.filter((task) => task.id !== id),
+      taskToComplete,
+    ];
+
+    // Update the tasks state with the new array
     setTasks(updatedTasks);
   };
 
@@ -96,6 +106,10 @@ function TaskList(props) {
       prev.map((item) => (item.id === taskId ? newValue : item))
     );
   };
+
+  useEffect(() => {
+    getTasks();
+  }, []);
 
   return (
     <div className="tasklist-container">
