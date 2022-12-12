@@ -1,0 +1,13 @@
+.account-page {
+  display: flex;
+  flex-direction: column;
+  flex-wrap: nowrap;
+  justify-content: center;
+  align-items: center;
+  align-content: center;
+  margin-left: 250px;
+}
+
+p {
+  font-size: 20px;
+}

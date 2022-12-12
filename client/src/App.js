@@ -4,6 +4,7 @@ import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
 import Login from "./components/Login.js";
 import Register from "./components/Register.js";
 import TaskList from "./components/TaskList.js";
+import Account from "./components/Account.js";
 import FamFeed from "./components/FamFeed.js";
 import Navbar from "./components/Navbar.js";
 import GroceryList from "./components/GroceryList.js";
@@ -64,6 +65,17 @@ const App = () => {
             element={
               user ? (
                 <GroceryList user={user} />
+              ) : (
+                <Login setLoginUser={setLoginUser} />
+              )
+            }
+          />
+          <Route
+            exact
+            path="/account"
+            element={
+              user ? (
+                <Account user={user} />
               ) : (
                 <Login setLoginUser={setLoginUser} />
               )
