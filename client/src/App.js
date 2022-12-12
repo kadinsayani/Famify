@@ -6,7 +6,7 @@ import Register from "./components/Register.js";
 import TaskList from "./components/TaskList.js";
 import FamFeed from "./components/FamFeed.js";
 import Navbar from "./components/Navbar.js";
-import ListOfLists from "./components/ListOfLists.js";
+import GroceryList from "./components/GroceryList.js";
 import Notifications from "./components/Notifications.js";
 import Logout from "./components/Logout";
 
@@ -60,10 +60,10 @@ const App = () => {
           />
           <Route
             exact
-            path="/listoflists"
+            path="/groceries"
             element={
               user ? (
-                <ListOfLists user={user} />
+                <GroceryList user={user} />
               ) : (
                 <Login setLoginUser={setLoginUser} />
               )

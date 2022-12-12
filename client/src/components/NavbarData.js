@@ -9,9 +9,9 @@ export const NavbarData = [
     cName: "nav-text",
   },
   {
-    title: "Lists",
-    path: "/listoflists",
-    icon: <FaIcons.FaList />,
+    title: "Groceries",
+    path: "/groceries",
+    icon: <FaIcons.FaCarrot />,
     cName: "nav-text",
   },
   {
