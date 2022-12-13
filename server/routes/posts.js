@@ -1,7 +1,7 @@
 import express from "express";
 import bodyParser from "body-parser";
 import userAuthenticated from "../auth/Authentication.js";
-import notify from "../notifications/notifier.js";
+import { notifyFamily } from "../notifications/notifier.js";
 import { ObjectId } from "mongoose";
 
 // models
@@ -124,9 +124,6 @@ postRoutes
       time: time
     });
 
-    // to use for notifications
-    let familyMembers = []
-
     Family.findById(family, (err, family) => {
       if (err) return res.status(500).send(err)
       if (!family) return res.status(404).send()
@@ -134,16 +131,7 @@ postRoutes
       family.posts.push(newPost._id)
       family.save()
 
-      familyMembers = []
-
-      // remove self from being notified
-      for (let i=0; i < family.members.length; i++) {
-
-        if (family.members[i]._id.toString() !== user)
-          familyMembers.push(family.members[i]._id)
-
-      }
-      console.log(user, familyMembers)
+      notifyFamily(req.session.user.id, "has created a new post.", family.members.slice())
 
     })
 
@@ -152,7 +140,6 @@ postRoutes
       if (err) {
         return res.status(500).send("Error on save()");
       } else {
-        notify(req.session.user.id, "has created a new post.", familyMembers)
         return res.send(newPost);
       }
       
