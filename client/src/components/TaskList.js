@@ -77,6 +77,19 @@ function TaskList(props) {
   const removeTask = (id) => {
     const removeArr = [...tasks].filter((task) => task._id !== id);
     setTasks(removeArr);
+    const config = {
+      url: `http://localhost:3001/tasks/${id}`,
+      method: "delete",
+      withCredentials: true,
+    };
+    axios
+      .request(config)
+      .then((res) => {
+        console.log(res);
+      })
+      .catch((err) => {
+        console.log(err);
+      });
   };
 
   const completeTask = (id) => {
@@ -114,7 +127,6 @@ function TaskList(props) {
         console.log(err);
       });
   };
-
 
   const updateTask = (taskId, newValue) => {
     if (!newValue.text || /^\s*$/.test(newValue.text)) {

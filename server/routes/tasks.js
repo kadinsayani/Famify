@@ -14,13 +14,14 @@ taskRoutes.use(
 );
 
 class TaskView {
-  constructor(_id, content, user, date, time, isCompleted) {
+  constructor(_id, content, user, date, time, isCompleted, priority) {
     this._id = _id ? _id : null;
     this.content = content ? content : null;
     this.user = user ? user : null;
     this.date = date ? date : null;
     this.time = time ? time : null;
     this.isCompleted = isCompleted ? isCompleted : null;
+    this.priority = priority ? priority : null;
   }
 }
 

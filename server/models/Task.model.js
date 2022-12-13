@@ -11,6 +11,7 @@ const taskSchema = new mongoose.Schema({
     type: Boolean,
     default: false,
   },
+  priority: Number,
 });
 
 const Task = mongoose.model("Task", taskSchema);
