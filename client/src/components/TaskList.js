@@ -81,20 +81,40 @@ function TaskList(props) {
 
   const completeTask = (id) => {
     // Find the task with the specified id
-    const taskToComplete = tasks.find((task) => task.id === id);
+    const taskToComplete = tasks.find((task) => task._id === id);
 
     // Update the isComplete property of the task
     taskToComplete.isComplete = !taskToComplete.isComplete;
 
     // Create a new array with the updated task and the rest of the tasks
     const updatedTasks = [
-      ...tasks.filter((task) => task.id !== id),
+      ...tasks.filter((task) => task._id !== id),
       taskToComplete,
     ];
 
     // Update the tasks state with the new array
     setTasks(updatedTasks);
+
+    // Send a request to the server to update the task in the database
+    const config = {
+      url: `http://localhost:3001/tasks/${id}`,
+      method: "patch",
+      withCredentials: true,
+      data: {
+        isComplete: taskToComplete.isComplete,
+      },
+    };
+
+    axios
+      .request(config)
+      .then((res) => {
+        console.log(res);
+      })
+      .catch((err) => {
+        console.log(err);
+      });
   };
+
 
   const updateTask = (taskId, newValue) => {
     if (!newValue.text || /^\s*$/.test(newValue.text)) {
