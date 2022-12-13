@@ -25,14 +25,14 @@ function Task({ tasks, completeTask, removeTask, updateTask }) {
 
   return tasks.map((task, index) => {
     // use the checkedTasks state variable to control the strikethrough for this task
-    const isChecked = checkedTasks.includes(task.id);
+    const isChecked = checkedTasks.includes(task._id);
 
     return (
       <div
         className={task.isComplete ? "task-row complete" : "task-row"}
-        key={task.id}
+        key={task._id}
       >
-        {edit.id === task.id ? (
+        {edit.id === task._id ? (
           <TaskForm edit={edit} onSubmit={submitUpdate} />
         ) : (
           <>
@@ -41,27 +41,27 @@ function Task({ tasks, completeTask, removeTask, updateTask }) {
               onChange={() => {
                 if (isChecked) {
                   // remove the task from the checkedTasks array
-                  setCheckedTasks(checkedTasks.filter((id) => id !== task.id));
+                  setCheckedTasks(checkedTasks.filter((id) => id !== task._id));
                 } else {
                   // add the task to the checkedTasks array
-                  setCheckedTasks([...checkedTasks, task.id]);
+                  setCheckedTasks([...checkedTasks, task._id]);
                 }
               }}
             />
             <div
               className={`task-text ${isChecked ? "strikethrough" : ""}`}
-              key={task.id}
-              onClick={() => completeTask(task.id)}
+              key={task._id}
+              onClick={() => completeTask(task._id)}
             >
               {task.content}
             </div>
             <div className="icons">
               <RiCloseCircleLine
-                onClick={() => removeTask(task.id)}
+                onClick={() => removeTask(task._id)}
                 className="delete-icone"
               />
               <TiEdit
-                onClick={() => setEdit({ id: task.id, value: task.text })}
+                onClick={() => setEdit({ id: task._id, value: task.text })}
                 className="edit-icone"
               />
             </div>
