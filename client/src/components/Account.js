@@ -1,6 +1,8 @@
 import React, { useEffect, useState } from "react";
 import "./Account.css";
 import axios from "axios";
+import { BsPersonCircle } from "react-icons/bs";
+import { IconContext } from "react-icons/lib";
 
 function Account() {
   const [user, setUser] = useState({});
@@ -28,10 +30,26 @@ function Account() {
 
   return (
     <div>
-      <div className="account-page">
-        <h1>Account</h1>
-        <p>Username:{user.name}</p>
-        <p>Family code:{user.joinCode}</p>
+      <div className="account-container">
+        <div className="account-header">
+          <h1>Account</h1>
+        </div>
+        <div className="account-body">
+          <IconContext.Provider value={{ color: "#0eb2fc", size: "70px" }}>
+            <h1>
+              <BsPersonCircle />
+            </h1>
+          </IconContext.Provider>
+          <p><b>Username: </b>{user.name}</p>
+          <br/>
+          <p><b>Family code: </b>{user.joinCode}</p>
+          <p></p><br></br>
+          <div className="account-footer">
+          
+          <p>Share the Family Code above with members of your family.<br></br>
+          When they join Famify using your Family code, they will automatically be added to this group.</p>
+          </div>
+        </div>
       </div>
     </div>
   );

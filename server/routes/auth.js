@@ -1,6 +1,6 @@
 import express from "express";
 import bodyParser from "body-parser";
-import notify from "../notifications/notifier.js";
+import { notifyFamily } from "../notifications/notifier.js";
 
 // model imports
 import User from "../models/User.model.js";
@@ -55,11 +55,8 @@ authRoutes.post("/register", (req, res) => {
 
           // notify family
 
-          const familyMembers = [...family.members];
-          if (familyMembers.indexOf(user._id) !== -1)
-            familyMembers.splice(familyMembers.indexOf(user._id), 1);
-
-          notify(user._id, "has joined your family.", familyMembers);
+          console.log(family.members)
+          notifyFamily(user._id, "has joined your family.", family.members);
 
           // end notify
 
