@@ -7,7 +7,7 @@ const Register = () => {
   const navigate = useNavigate();
   const [user, setUser] = useState({
     username: "",
-    family: "",
+    joinCode: "",
     password: "",
   });
   const handleChange = (e) => {
@@ -18,11 +18,30 @@ const Register = () => {
     });
   };
   const createUser = () => {
-    const { username, family, password } = user;
-    if (username && password && family) {
-      axios.post("http://localhost:3001/register", user).then((res) => {
-        console.log(res.data);
-      });
+    
+    if (user.username && user.password) {
+      
+      const config = {
+        url: "http://localhost:3001/register",
+        method: "post",
+        withCredentials: true,
+        data: {
+          username: user.username,
+          password: user.password,
+          joinCode: user.joinCode
+        },
+      };
+  
+      axios
+        .request(config)
+        .then((res) => {
+
+        }
+        )
+        .catch((err) => {
+
+        })
+
     } else {
       alert("Please enter username and password");
     }
@@ -60,12 +79,12 @@ const Register = () => {
               value={user.password}
               onChange={handleChange}
             />
-            <label htmlFor="family">Family Code </label>
+            <label htmlFor="joinCode">Family Code </label>
             <br></br>
             <input
               type="text"
-              id="family"
-              name="family"
+              id="joinCode"
+              name="joinCode"
               placeholder="Create a family code to share with others"
               value={user.joinCode}
               onChange={handleChange}
