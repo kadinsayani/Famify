@@ -63,7 +63,7 @@ function Notifications() {
 
       }
 
-      setNotifications(namedNotifications)
+      setNotifications(namedNotifications.reverse())
 
     }).catch(err => {
 
