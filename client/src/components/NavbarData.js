@@ -1,6 +1,7 @@
 import React from "react";
 import * as FaIcons from "react-icons/fa";
 import * as IoIcons from "react-icons/io";
+
 export const NavbarData = [
   {
     title: "FamFeed",
@@ -34,7 +35,7 @@ export const NavbarData = [
   },
   {
     title: "Log Out",
-    path: "/logout",
+    path: "/login",
     icon: <FaIcons.FaArrowLeft />,
     cName: "nav-text",
   },

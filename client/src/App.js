@@ -36,7 +36,7 @@ const App = () => {
             element={<Login setLoginUser={setLoginUser} />}
           />
           <Route exact path="/register" element={<Register />} />
-          <Route exact path="/logout" element={<Logout />} />
+          <Route exact path="/logout" element={<Login />} />
           <Route
             exact
             path="/tasklist"
