@@ -82,6 +82,7 @@ function GroceryList(props) {
     const config = {
       url: `http://localhost:3001/groceries/${id}`,
       method: "delete",
+      withCredentials: true,
     };
     axios
       .request(config)

@@ -145,7 +145,7 @@ taskRoutes
       if (err) return res.send("An error occured.");
       if (!task) return res.status(404).send();
 
-      if (task.user.toString() === req.session.user.id.toString()) {
+      if (task.family.toString() === req.session.user.familyID.toString()) {
         Task.findByIdAndDelete(req.params.id, (err, task) => {
           if (err) return res.status(500).send();
 
@@ -157,18 +157,13 @@ taskRoutes
     });
   })
   .patch(userAuthenticated, (req, res) => {
-    if (req.session.user.familyID !== req.task.familyID) {
-      return res
-        .status(401)
-        .send("Unauthorized: you are not a member of this family");
-    }
     // patch task code here
     Task.findById(req.params.id, (err, task) => {
       if (err) return res.send("An error occurred.");
       if (!task) return res.status(404).send();
 
       // check if the task belongs to the authenticated user
-      if (task.user.toString() === req.session.user.id.toString()) {
+      if (task.family.toString() === req.session.user.familyID.toString()) {
         // update the task with the new data from the request body
         Task.findByIdAndUpdate(
           req.params.id,
