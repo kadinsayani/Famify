@@ -137,6 +137,11 @@ groceryRoutes
 // :id
 
 groceryRoutes.route("/groceries/:id").delete(userAuthenticated, (req, res) => {
+  if (req.session.user.familyID !== req.item.familyID) {
+    return res
+      .status(401)
+      .send("Unauthorized: you are not a member of this family");
+  }
   Grocery.findById(req.params.id, (err, grocery) => {
     if (err) return res.send("An error occured.");
     if (!grocery) return res.status(404).send();

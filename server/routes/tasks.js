@@ -157,6 +157,11 @@ taskRoutes
     });
   })
   .patch(userAuthenticated, (req, res) => {
+    if (req.session.user.familyID !== req.task.familyID) {
+      return res
+        .status(401)
+        .send("Unauthorized: you are not a member of this family");
+    }
     // patch task code here
     Task.findById(req.params.id, (err, task) => {
       if (err) return res.send("An error occurred.");
