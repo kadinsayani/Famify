@@ -1,0 +1,74 @@
+#mainPanel {
+
+    border: 1px solid lightgrey;
+    position: fixed;
+    top: 0;
+    bottom: 0;
+    right: 0;
+    left: 79.87%;
+}
+
+#userPanel {
+    height: 100px;
+    display: flex;
+    border-bottom: 1px solid lightgrey;
+}
+
+#userImageDiv {
+    display: flex;
+    align-items: center;
+    margin: 10px;
+}
+
+#userName {
+    font-weight: bold;
+    display: flex;
+    align-items: center;
+}
+
+#userDiv {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+#statusBox {
+    font-weight: light;
+    font-style: italic;
+    outline: none;
+    border: none;
+}
+
+/* members */
+
+.memberImageDiv {
+    display: flex;
+    align-items: center;
+    margin: 10px;
+}
+
+.memberName {
+    font-weight: bold;
+    display: flex;
+    align-items: center;
+}
+
+.memberDiv {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.memberStatusBoxDiv {
+    font-weight: lighter;
+    font-style: italic;
+    outline: none;
+    border: none;
+    margin-bottom: 10px;
+}
+
+.memberPanel {
+    height: 100px;
+    display: flex;
+    border-bottom: 1px solid lightgrey;
+}

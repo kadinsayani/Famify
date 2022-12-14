@@ -1,4 +1,4 @@
-.post-app {
+/* .post-app {
   display: flex;
   flex-direction: column;
   width: 900px;
@@ -7,12 +7,16 @@
   margin-bottom: 0.1rem;
 }
 
-.post-form {
+.post-formx {
   display: flex;
   flex-direction: column;
   background-color: rgb(243, 243, 243);
   border-radius: 5%;
   font-size: 20px;
+}
+
+.post-form {
+  display: flex;
 }
 
 .post-button {
@@ -33,5 +37,128 @@
 }
 
 .task-input {
+  border-style: hidden;
+  outline: none;
   font-size: 20px;
+}
+
+.post-form-div {
+
+  background-color: blue;
+
+} */
+
+/* updated */
+.post-app {
+  display: flex;
+  flex-direction: column;
+  width: 900px;
+  height: 170px;
+  margin-left: 15.7rem;
+  margin-bottom: 0.1rem;
+}
+
+.post-app h1 {
+  margin-left: 25px;
+}
+
+.post-form {
+  border: 1px solid lightgrey;
+  height: 180px;
+  border-left: none;
+}
+
+.post-button {
+  border-radius: 8px;
+  width: 150px;
+  height: 40px;
+  background-color: #0eb2fc;
+  color: white;
+  border-color: #0eb2fc;
+}
+
+.post {
+  font-size: 20px;
+  padding: 10px;
+}
+
+.username {
+  display: flex;
+  font-weight: bold;
+}
+
+.task-input {
+  width: 100%;
+  border-style: hidden;
+  outline: none;
+  font-size: 20px;
+}
+
+#posterImage {
+  display: flex;
+  align-items: center;
+  margin: 25px;
+}
+
+#inputDiv {
+  display: flex;
+}
+
+#buttonDiv {
+  margin-right: 10px;
+  height: 75px;
+  float: right;
+}
+
+.postUserImage {
+  margin: 10px;
+}
+
+.userInfoDiv {
+  display: flex;
+  align-items: center;
+}
+
+.userInfoImg {
+  margin: 10px;
+  margin-right: 0;
+}
+
+.postDiv {
+  min-height: 125px;
+  border: 1px solid lightgrey;
+  border-top: none;
+  border-left: none;
+}
+
+.postDiv:hover {
+  min-height: 125px;
+  background-color: whitesmoke;
+  border: 1px solid lightgrey;
+  border-top: none;
+  border-left: none;
+}
+
+.postContentDiv {
+  margin-left: 56px;
+}
+
+.userInfoDateTime {
+  font-style: italic;
+  font-weight: lighter;
+}
+
+.actionsDiv {
+  display: flex;
+  float: right;
+  margin-top: 25px;
+  margin-right: 10px;
+}
+
+.actionButton {
+  font-weight: lighter;
+  cursor: pointer;
+  margin: 5px;
+  margin-top: 0;
+  margin-bottom: 0;
 }

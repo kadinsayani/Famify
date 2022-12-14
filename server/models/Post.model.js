@@ -9,7 +9,7 @@ const postSchema = new mongoose.Schema({
   time: String,
   reactions: [{
     user: {type: ObjectId, ref: "User"}, 
-    reaction: String,
+    reaction: Number,
     _id: false
   }]
 });

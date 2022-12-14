@@ -53,18 +53,16 @@ authRoutes.post("/register", (req, res) => {
           });
           family.members.push(user._id);
 
-          // notify family
-
-          console.log(family.members)
-          notifyFamily(user._id, "has joined your family.", family.members);
-
-          // end notify
-
           family.save();
           user.save((err) => {
             if (err) {
               return res.send(err);
             } else {
+              // notify family
+
+              notifyFamily(user._id, "has joined your family.", family.members);
+
+              // end notify
               return res.status(200).send(user);
             }
           });
@@ -107,11 +105,12 @@ authRoutes.post("/login", passport.authenticate("local"), (req, res) => {
     id: req.user.id,
     username: req.user.username,
     familyID: req.user.family,
+    status: req.user.status
   };
 
   console.log(`'${req.session.user.username}' logged in.`);
 
-  return res.redirect("/user");
+  return res.send(req.session.user);
 });
 
 authRoutes.post("/logout", userAuthenticated, (req, res, next) => {

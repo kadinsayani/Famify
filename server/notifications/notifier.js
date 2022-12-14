@@ -3,6 +3,7 @@ import { ObjectId } from "mongodb";
 // models
 import User from "../models/User.model.js"
 import Notification from "../models/Notification.model.js"
+import Family from "../models/Family.model.js";
 
 /**
  * Create notifications that the user will GET on their notification page.
@@ -33,20 +34,24 @@ function notify(subject, content, users) {
  * @param {String} content - Message
  * @param {[ObjectId]} _familyMembersIDs - an array of ObjectIDs of the user's family members
  */
-function notifyFamily(userID, content, familyMembersIDs) {
+function notifyFamily(userID, content) {
+
+    User.findById(userID.toString(), (err, user) => {
+
+        if (err) return console.log(err)
+        if (!user) return console.log("User not found.")
+
+        Family.findById(user.family.toString(), (err, family) => {
+
+            if (err) console.log(err)
+            if (!family) return
     
-    const _familyMembersIDs = familyMembersIDs.slice()
-    const toNotify = []
+            const toNotify = [...family.members].filter(member => member._id.toString() !== userID.toString())
+            notify(userID, content, toNotify)
+    
+        })
 
-    // exclude self from notification
-    for (let i = 0; i < _familyMembersIDs.length; i++) {
-        if (_familyMembersIDs[i].toString() !== userID.toString()) {
-            console.log(_familyMembersIDs[i].toString(), userID.toString())
-            toNotify.push(_familyMembersIDs[i])
-        }
-    }
-
-    notify(userID, content, toNotify)
+    })
 
 }
 
