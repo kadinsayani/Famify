@@ -76,6 +76,7 @@ function GroceryList(props) {
   };
 
   const removeItems = (id) => {
+    console.log("Removing item with id: ", id);
     const removeArr = [...items].filter((item) => item._id !== id);
     setItems(removeArr);
     const config = {
