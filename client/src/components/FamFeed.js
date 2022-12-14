@@ -27,7 +27,7 @@ function FamFeed() {
         }
 
         if (newPosts.length > 0) {
-          setPosts(posts.concat(newPosts));
+          setPosts(posts.concat(newPosts).reverse());
         }
 
         console.log(newPosts.length);
