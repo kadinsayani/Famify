@@ -1,22 +1,15 @@
-import React, {useState, useEffect} from "react";
+import React, {useState} from "react";
 import "./FamFeed.css";
 import { BsPersonCircle } from "react-icons/bs";
 import { TfiTrash } from "react-icons/tfi";
-import { FaSmile, FaLaughBeam, FaFrown, FaSadCry, FaHeart } from "react-icons/fa";
-import axios from 'axios'
+import PostReactionButton from "./PostReactionButton";
+import axios from "axios";
 
 function PostInstance(props) {
 
-  const [actionsDivStyle, setActionsDivStyle] = useState({display: "none"})
-
-  const [reactions1, setReactions1] = useState(props.reactions.filter(reaction => reaction.reaction.toString() === "1").length)
-  const [reactions2, setReactions2] = useState(props.reactions.filter(reaction => reaction.reaction.toString() === "2").length)
-  const [reactions3, setReactions3] = useState(props.reactions.filter(reaction => reaction.reaction.toString() === "3").length)
-  const [reactions4, setReactions4] = useState(props.reactions.filter(reaction => reaction.reaction.toString() === "4").length)
-  const [reactions5, setReactions5] = useState(props.reactions.filter(reaction => reaction.reaction.toString() === "5").length)
-
-  const emojiColour = "#FFCB4C"
   const emojiSize = 20
+
+  const [actionsDivStyle, setActionsDivStyle] = useState({display: "none"})
 
   const handleMouseEnter = () => {
     setActionsDivStyle({
@@ -51,49 +44,22 @@ function PostInstance(props) {
       })
   }
 
-  /**
-   * POST a reaction to post.
-   * @param {Number} reaction - An integer [1,5]
-   */
-  function reactToPost(reaction) {
-    const config = {
-      url: `http://localhost:3001/react/post/${props.postID}/${reaction}`,
-      method: "put",
-      withCredentials: true,
-    };
-
-    axios
-      .request(config)
-      .then((res) => {
-        // do not refresh so it doesn't bring the view back up
-        //props.refresh()
-        switch(reaction.toString()) {
-          case("1"):
-            setReactions1(reactions1 + 1)
-            break
-          case("2"):
-            setReactions2(reactions2 + 1)
-            break
-          case("3"):
-            setReactions3(reactions3 + 1)
-            break
-          case("4"):
-            setReactions4(reactions4 + 1)
-            break
-          case("5"):
-            setReactions5(reactions5 + 1)
-            break
-        }
-      })
-      .catch(err => {
-        console.log(err)
-      })
-  }
-
   // end actions
 
   const deleteButton = 
     props.currentUser.username === props.user ? <div className="actionButton" onClick={handleDelete}> <TfiTrash size={emojiSize} /> </div> : <div></div>
+
+  const count1 = props.reactions.filter(reaction => reaction.reaction.toString() === "1").length
+  const count2 = props.reactions.filter(reaction => reaction.reaction.toString() === "2").length
+  const count3 = props.reactions.filter(reaction => reaction.reaction.toString() === "3").length
+  const count4 = props.reactions.filter(reaction => reaction.reaction.toString() === "4").length
+  const count5 = props.reactions.filter(reaction => reaction.reaction.toString() === "5").length
+
+  const pressed1 = props.reactions.some(reaction => reaction.reaction.toString() === "1" && reaction.user.toString() === props.currentUser.id)
+  const pressed2 = props.reactions.some(reaction => reaction.reaction.toString() === "2" && reaction.user.toString() === props.currentUser.id)
+  const pressed3 = props.reactions.some(reaction => reaction.reaction.toString() === "3" && reaction.user.toString() === props.currentUser.id)
+  const pressed4 = props.reactions.some(reaction => reaction.reaction.toString() === "4" && reaction.user.toString() === props.currentUser.id)
+  const pressed5 = props.reactions.some(reaction => reaction.reaction.toString() === "5" && reaction.user.toString() === props.currentUser.id)
 
   return (
   <div className="postDiv" onMouseEnter={handleMouseEnter} onMouseLeave={handleMouseLeave}>
@@ -114,11 +80,11 @@ function PostInstance(props) {
 
     <div className="actionsDiv" style={actionsDivStyle}>
 
-      <div className="actionButton" onClick={() => reactToPost(1)}> <FaLaughBeam color={emojiColour} size={emojiSize} /> {reactions1} </div>
-      <div className="actionButton" onClick={() => reactToPost(2)}> <FaSmile color={emojiColour} size={emojiSize} /> {reactions2} </div>
-      <div className="actionButton" onClick={() => reactToPost(3)}> <FaFrown color={emojiColour} size={emojiSize} /> {reactions3} </div>
-      <div className="actionButton" onClick={() => reactToPost(4)}> <FaSadCry color={emojiColour} size={emojiSize} /> {reactions4} </div>
-      <div className="actionButton" onClick={() => reactToPost(5)}> <FaHeart color={emojiColour} size={emojiSize} /> {reactions5} </div>
+      <PostReactionButton reaction={1} postID={props.postID} count={count1} pressed={pressed1} />
+      <PostReactionButton reaction={2} postID={props.postID} count={count2} pressed={pressed2} />
+      <PostReactionButton reaction={3} postID={props.postID} count={count3} pressed={pressed3} />
+      <PostReactionButton reaction={4} postID={props.postID} count={count4} pressed={pressed4} />
+      <PostReactionButton reaction={5} postID={props.postID} count={count5} pressed={pressed5} />
       {deleteButton}
 
     </div>

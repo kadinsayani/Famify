@@ -231,7 +231,6 @@ postRoutes.route("/react/post/:id/:reaction")
           return res.status(200).send(post)
         }
 
-
         post.reactions.push({
           user: req.session.user.id,
           reaction: reaction
