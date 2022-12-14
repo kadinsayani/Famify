@@ -7,7 +7,7 @@ import { IconContext } from "react-icons";
 function Navbar() {
   return (
     <>
-      <IconContext.Provider value={{ color: "#0eb2fc" }}>
+      <IconContext.Provider value={{ color: "#black"}}>
         <div className="navbar"></div>
         <nav className="nav-menu">
           <ul className="nav-menu-items">
