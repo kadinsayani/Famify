@@ -19,6 +19,8 @@ const Modal = (props) => {
     setInput("");
   };
 
+  const handlePriority = (e) => {};
+
   if (!props.show) {
     return null;
   }
@@ -27,7 +29,10 @@ const Modal = (props) => {
     <div className="modal">
       <div className="modal-content">
         <div className="modal-header">
-          <button onClick={props.onClose} className="close-button modal-header-right">
+          <button
+            onClick={props.onClose}
+            className="close-button modal-header-right"
+          >
             X
           </button>
         </div>
@@ -46,6 +51,10 @@ const Modal = (props) => {
             <button className="task-button">Add</button>
           </form>
         </div>
+        <form>
+          <label for="vol">Priority (between 1 and 3):</label>
+          <input type="range" id="priority" name="priority" min="1" max="3" />
+        </form>
       </div>
     </div>
   );
