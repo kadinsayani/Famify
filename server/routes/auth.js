@@ -111,7 +111,7 @@ authRoutes.post("/login", passport.authenticate("local"), (req, res) => {
 
   console.log(`'${req.session.user.username}' logged in.`);
 
-  return res.redirect("/user");
+  return res.send(req.session.user);
 });
 
 authRoutes.post("/logout", userAuthenticated, (req, res, next) => {
