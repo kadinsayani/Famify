@@ -1,7 +1,6 @@
 import React, { useState, useEffect, useRef } from "react";
 import axios from "axios";
 import "./FamFeed.css";
-import { BsPersonCircle } from "react-icons/bs";
 import { IconContext } from "react-icons/lib";
 import { SlSpeech } from "react-icons/sl"
 

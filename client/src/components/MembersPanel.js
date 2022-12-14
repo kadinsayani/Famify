@@ -49,7 +49,6 @@ function MembersPanel(props) {
                             type="text" 
                         />
                     </form>
-                    <button>Update Status</button>
 
                 </div>
 
@@ -78,6 +77,8 @@ function MembersPanel(props) {
                                 </div>
                             </div>
                         )
+                    } else {
+                        return null
                     }
                 }) : "Fetching members..."}
 
