@@ -69,6 +69,7 @@
 }
 
 .post-button {
+  border-radius: 8px;
   width: 150px;
   height: 40px;
   background-color: #0eb2fc;
@@ -145,4 +146,19 @@
 .userInfoDateTime {
   font-style: italic;
   font-weight: lighter;
+}
+
+.actionsDiv {
+  display: flex;
+  float: right;
+  margin-top: 25px;
+  margin-right: 10px;
+}
+
+.actionButton {
+  font-weight: lighter;
+  cursor: pointer;
+  margin: 5px;
+  margin-top: 0;
+  margin-bottom: 0;
 }

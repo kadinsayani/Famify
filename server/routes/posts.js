@@ -1,7 +1,7 @@
 import express from "express";
 import bodyParser from "body-parser";
 import userAuthenticated from "../auth/Authentication.js";
-import { notifyFamily } from "../notifications/notifier.js";
+import { notifyFamily, notify } from "../notifications/notifier.js";
 import { ObjectId } from "mongoose";
 
 // models
@@ -131,7 +131,7 @@ postRoutes
       family.posts.push(newPost._id)
       family.save()
 
-      notifyFamily(req.session.user.id, "has created a new post.", family.members.slice())
+      notifyFamily(req.session.user.id, "has created a new post.")
 
     })
 
@@ -166,6 +166,7 @@ postRoutes.route("/post/:id")
 
           if (err) return res.status(500).send()
           
+
           return res.status(200).send(updated)
 
         })
@@ -210,18 +211,25 @@ postRoutes.route("/post/:id")
   })
 
 // reactions
-postRoutes.route("/react/post/:id")
+postRoutes.route("/react/post/:id/:reaction")
   .put(userAuthenticated, (req, res) => {
 
-    const reaction = req.body.reaction
+    const reaction = req.params.reaction
 
     Post.findById(req.params.id, (err, post) => {
 
       if (err) return res.status(500).send()
-      if (!post) return res.status(404)
+      if (!post) return res.status(404).send()
 
       // only if the post is in the same family
       if (req.session.user.familyID.toString() === post.family.toString()) {
+
+        if (post.reactions.some(_reaction => 
+          _reaction.user.toString() === req.session.user.id.toString() &&
+          _reaction.reaction.toString() === reaction.toString()
+        )) {
+          return res.status(200).send(post)
+        }
 
         post.reactions.push({
           user: req.session.user.id,
@@ -229,9 +237,13 @@ postRoutes.route("/react/post/:id")
         })
         post.save()
           .then(_ => {
+            if (req.session.user.id.toString() !== post.user.toString()) {
+              notify(req.session.user.id, "reacted to your post.", [post.user])
+            }
             return res.send(post)
           })
           .catch(_ => {
+            console.log(err)
             return res.status(500).send()
           })
 
@@ -248,6 +260,30 @@ postRoutes.route("/react/post/:id")
   .delete(userAuthenticated, (req, res) => {
 
     // TODO: implement
+    const reaction = req.params.reaction
+
+    Post.findById(req.params.id, (err, post) => {
+
+      if (err) return res.status(500).send()
+      if (!post) return res.status(404)
+
+      // only if the post is in the same family
+      if (req.session.user.familyID.toString() === post.family.toString()) {
+
+        const reactions = [...post.reactions].filter(_reaction => 
+          _reaction.user.toString() !== req.session.user.id.toString() ||
+          _reaction.reaction.toString() !== reaction.toString()
+        )
+        post.reactions = reactions
+        post.save()
+
+        return res.send(post)
+
+      } else {
+        return res.status(403)
+      }
+
+    })
 
   })
 

@@ -8,6 +8,36 @@ function FamFeed() {
   const [posts, setPosts] = useState([]);
 
   const getPosts = () => {
+
+    function postsChanged(newPosts) {
+
+      if (newPosts.length !== posts.length) return true
+
+      for (let i = 0; i < newPosts.length; i++) {
+        if (!posts.some((post) => post._id === newPosts[i]._id)) {
+          return true
+        }
+      }
+
+      for (let i=0; i < newPosts.length; i++) {
+        const newPost = newPosts[i]
+        const oldPost = posts.find(post => {
+          return post._id === newPost._id
+        })
+
+        const newReactions = newPost.reactions
+        const oldReactions = oldPost.reactions
+        
+        if ((!newReactions && oldReactions) || (newReactions && !oldReactions)) return true
+        if (!newReactions && !oldReactions) return true
+
+        if (newReactions.length !== oldReactions.length) return true
+      }
+
+      return false
+
+    }
+
     const config = {
       url: "http://localhost:3001/post",
       method: "get",
@@ -17,6 +47,7 @@ function FamFeed() {
     axios
       .request(config)
       .then((res) => {
+
         const resData = res.data;
         const newPosts = [];
 
@@ -26,14 +57,12 @@ function FamFeed() {
           }
         }
 
-        if (newPosts.length > 0) {
-          setPosts(posts.concat(newPosts).reverse());
+        if (postsChanged(resData)) {
+          setPosts(resData.reverse())
         }
-
-        console.log(newPosts.length);
       })
       .catch((err) => {
-        console.log(err.status);
+        console.log(err);
       });
   };
 
@@ -45,7 +74,7 @@ function FamFeed() {
     <div className="post-app">
       <h1>FamFeed</h1>
       <PostForm onSubmit={getPosts} />
-      <Post posts={posts} />
+      <Post refresh={getPosts} posts={posts} />
     </div>
   );
 }
