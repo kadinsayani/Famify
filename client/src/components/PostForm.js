@@ -54,24 +54,37 @@ function PostForm(props) {
   };
   return (
     <div>
-      <form className="post-form" onSubmit={handleSubmit}>
-        <IconContext.Provider value={{ color: "#0eb2fc", size: "50px" }}>
-          <h1>
-            <BsPersonCircle />
-          </h1>
-        </IconContext.Provider>
-        <input
-          type="text"
-          placeholder="What's happening?"
-          value={input}
-          name="text"
-          className="task-input"
-          onChange={handleChange}
-          ref={focus}
-        />
-        <button className="post-button" onClick={handleSubmit}>
-          Post
-        </button>
+      <form onSubmit={handleSubmit}>
+        <div className="post-form">
+
+          <div id="inputDiv">
+
+            <IconContext.Provider value={{ color: "#0eb2fc", size: "50px" }}>
+              <div id="posterImage">
+                <BsPersonCircle />
+              </div>
+            </IconContext.Provider>
+            
+            <input
+              type="text"
+              placeholder="What's happening?"
+              value={input}
+              name="text"
+              className="task-input"
+              onChange={handleChange}
+              ref={focus}
+            />
+          </div>
+
+          <div id="buttonDiv">
+
+            <button className="post-button" onClick={handleSubmit}>
+              Post
+            </button>
+
+          </div>
+
+        </div>
       </form>
     </div>
   );
