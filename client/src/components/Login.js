@@ -34,11 +34,13 @@ const Login = ({ setLoginUser }) => {
       .request(config)
       .then((res) => {
         console.log(res.data);
-        setLoginUser(res.data)
+        setLoginUser(res.data);
       })
       .catch((err) => {
-        window.location.reload()
-        alert("Last attempt was Unsuccessful! Incorrect Username and/or Password!");
+        window.location.reload();
+        alert(
+          "Last attempt was unsuccessful! Incorrect Username and/or Password!"
+        );
       });
     navigate("/famfeed");
   };
@@ -81,10 +83,7 @@ const Login = ({ setLoginUser }) => {
             />
           </form>
 
-          <button className="login-button" 
-            type="submit" 
-            onClick={login}
-          >
+          <button className="login-button" type="submit" onClick={login}>
             LOG IN
           </button>
           <button
