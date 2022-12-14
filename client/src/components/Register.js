@@ -79,16 +79,18 @@ const Register = () => {
               value={user.password}
               onChange={handleChange}
             />
-            <label htmlFor="joinCode">Family Code </label>
+            <div className="joinCode-content">
+            <label htmlFor="joinCode">Already have a <b>Family Code</b>? Enter it here. Otherwise, skip this step. </label>
             <br></br>
             <input
               type="text"
               id="joinCode"
               name="joinCode"
-              placeholder="Create a family code to share with others"
+              placeholder="Enter the family code that was shared to you"
               value={user.joinCode}
               onChange={handleChange}
             />
+            </div>
           </form>
           <button
             className="register-button"

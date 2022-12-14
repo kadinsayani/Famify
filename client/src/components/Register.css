@@ -72,6 +72,20 @@ h1{
     margin-bottom: 30px;
 
 }
+.joinCode-content input{
+    background-color: lightgrey;
+    border: 2px solid black;
+}
+
+.joinCode-content label {
+    margin-top: 5%;
+    font-size: 1.0rem;
+    color: #fff;
+}
+
+.joinCode-content{
+    text-align: center;
+}
 
 .content input::placeholder{
     font-size: 1rem;
@@ -82,7 +96,7 @@ h1{
 .content .register-button{
     background-color: #121212;
     color: #fff;
-    font-weight: 500;
+    font-weight: 540;
     font-size: large;
     text-transform: inherit;
     border-radius: 10px;
