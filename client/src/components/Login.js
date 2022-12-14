@@ -39,7 +39,7 @@ const Login = ({ setLoginUser }) => {
       .catch((err) => {
         window.location.reload();
         alert(
-          "Last attempt was unsuccessful! Incorrect Username and/or Password!"
+          "Login attempt was unsuccessful! Incorrect Username and/or Password!"
         );
       });
     navigate("/famfeed");
