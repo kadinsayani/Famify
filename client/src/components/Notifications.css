@@ -17,6 +17,7 @@
   height: 100px;
   align-items: center;
   border: 1px solid lightgrey;
+  border-top: none;
   padding-left: 47px;
   padding-right: 300px;
 }
