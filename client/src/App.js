@@ -9,7 +9,7 @@ import FamFeed from "./components/FamFeed.js";
 import Navbar from "./components/Navbar.js";
 import GroceryList from "./components/GroceryList.js";
 import Notifications from "./components/Notifications.js";
-import Logout from "./components/Logout";
+
 
 const App = () => {
   const [user, setLoginUser] = useState();

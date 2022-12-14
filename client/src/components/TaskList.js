@@ -130,14 +130,36 @@ function TaskList(props) {
 
   const updateTask = (taskId, newValue) => {
     if (!newValue.text || /^\s*$/.test(newValue.text)) {
-      // if newValue.text is empty or only spaces
-      return; // do nothing
+      return;
     }
-
-    setTasks((prev) =>
-      prev.map((item) => (item.id === taskId ? newValue : item))
-    );
+  
+    const config = {
+      url: `http://localhost:3001/tasks/${taskId}`,
+      method: "patch",
+      withCredentials: true,
+      data: {
+        content: newValue.text,
+      },
+    };
+  
+    axios
+      .request(config)
+      .then((res) => {
+        // Update the tasks state with the updated task
+        const updatedTask = res.data;
+        const updatedTasks = tasks.map((task) => {
+          if (task._id === taskId) {
+            return updatedTask;
+          }
+          return task;
+        });
+        setTasks(updatedTasks);
+      })
+      .catch((err) => {
+        console.log(err);
+      });
   };
+  
 
   useEffect(() => {
     getTasks();
