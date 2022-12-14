@@ -42,7 +42,7 @@ function Account() {
           </IconContext.Provider>
           <p><b>Username: </b>{user.name}</p>
           <br/>
-          <p><b>Family code: </b>{user.joinCode.substring(18)}</p>
+          <p><b>Family code: </b>{user.joinCode ? user.joinCode.substring(18) : ""}</p>
           <p></p><br></br>
           <div className="account-footer">
           

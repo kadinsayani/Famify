@@ -3,8 +3,13 @@ import PostForm from "./PostForm";
 import Post from "./Post.js";
 import "./FamFeed.css";
 import axios from "axios";
+import MembersPanel from "./MembersPanel";
 
 function FamFeed() {
+
+  const [currentUser, setCurrentUser] = useState()
+  const [members, setMembers] = useState()
+
   const [posts, setPosts] = useState([]);
 
   const getPosts = () => {
@@ -66,8 +71,48 @@ function FamFeed() {
       });
   };
 
+  const getUser = () => {
+
+    const config = {
+      url: "http://localhost:3001/user",
+      method: "get",
+      withCredentials: true,
+    };
+
+    axios
+      .request(config)
+      .then((res) => {
+        setCurrentUser(res.data)
+      })
+      .catch(err => {
+        console.log(err)
+      })
+
+  }
+
+  const getMembers = () => {
+
+    const config = {
+      url: "http://localhost:3001/user/family/members",
+      method: "get",
+      withCredentials: true,
+    };
+
+    axios
+      .request(config)
+      .then((res) => {
+        setMembers(res.data)
+      })
+      .catch(err => {
+        console.log(err)
+      })
+
+  }
+
   useEffect(() => {
     getPosts();
+    if (!currentUser) getUser();
+    if (!members) getMembers();
   });
 
   return (
@@ -75,6 +120,7 @@ function FamFeed() {
       <h1>FamFeed</h1>
       <PostForm onSubmit={getPosts} />
       <Post refresh={getPosts} posts={posts} />
+      {/* <MembersPanel currentUser={currentUser} members={members} /> */}
     </div>
   );
 }

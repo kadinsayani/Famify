@@ -107,6 +107,7 @@ authRoutes.post("/login", passport.authenticate("local"), (req, res) => {
     id: req.user.id,
     username: req.user.username,
     familyID: req.user.family,
+    status: req.user.status
   };
 
   console.log(`'${req.session.user.username}' logged in.`);
