@@ -36,7 +36,9 @@
     font-weight: light;
     font-style: italic;
     outline: none;
-    border: none;
+    border: 1px solid lightgrey;
+    border-radius: 4px;
+    padding: 4px;
 }
 
 /* members */
