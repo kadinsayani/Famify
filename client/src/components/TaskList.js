@@ -130,37 +130,42 @@ function TaskList(props) {
   };
 
   const updateTask = (taskId, newValue) => {
-    if (!newValue.text || /^\s*$/.test(newValue.text)) {
-      return;
-    }
-  
+    // Find the task with the specified id
+    const taskToUpdate = tasks.find((task) => task._id === taskId);
+
+    // Update the task's properties with the new values
+    taskToUpdate.content = newValue.text;
+    // taskToUpdate.priority = newValue.priority;
+
+    // Create a new array with the updated task and the rest of the tasks
+    const updatedTasks = [
+      ...tasks.filter((task) => task._id !== taskId),
+      taskToUpdate,
+    ];
+
+    // Update the tasks state with the new array
+    setTasks(updatedTasks);
+
+    // Send a request to the server to update the task in the database
     const config = {
       url: `http://localhost:3001/tasks/${taskId}`,
       method: "patch",
       withCredentials: true,
       data: {
-        content: newValue.text,
+        content: taskToUpdate.content,
+        // priority: taskToUpdate.priority,
       },
     };
-  
+
     axios
       .request(config)
       .then((res) => {
-        // Update the tasks state with the updated task
-        const updatedTask = res.data;
-        const updatedTasks = tasks.map((task) => {
-          if (task._id === taskId) {
-            return updatedTask;
-          }
-          return task;
-        });
-        setTasks(updatedTasks);
+        console.log(res);
       })
       .catch((err) => {
         console.log(err);
       });
   };
-  
 
   useEffect(() => {
     getTasks();
