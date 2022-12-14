@@ -120,7 +120,7 @@ function FamFeed() {
       <h1>FamFeed</h1>
       <PostForm onSubmit={getPosts} />
       <Post refresh={getPosts} posts={posts} />
-      {/* <MembersPanel currentUser={currentUser} members={members} /> */}
+      <MembersPanel currentUser={currentUser} members={members} />
     </div>
   );
 }
