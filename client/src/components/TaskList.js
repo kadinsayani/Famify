@@ -63,7 +63,7 @@ function TaskList(props) {
     const newTask = {
       _id: id,
       content: task.text,
-      priority: task.priority,
+      // priority: task.priority,
     };
 
     // Create a new array with the new task and the existing tasks

@@ -43,7 +43,7 @@ function FamFeed() {
 
   return (
     <div className="post-app">
-      <h1>Fam Feed</h1>
+      <h1>FamFeed</h1>
       <PostForm onSubmit={getPosts} />
       <Post posts={posts} />
     </div>

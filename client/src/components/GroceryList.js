@@ -43,7 +43,6 @@ function GroceryList(props) {
     const newItem = {
       _id: id,
       content: item.text,
-      priority: item.priority,
     };
 
     const newItems = [newItem, ...items];
