@@ -5,7 +5,7 @@ const familySchema = new mongoose.Schema({
   joinCode: { type: String, required: true, unique: true },
   posts: [{ type: ObjectId, ref: "Post" }],
   tasks: [{ type: ObjectId, ref: "Task" }],
-  groceries: [{ type: ObjectID, ref: "Grocery" }],
+  groceries: [{ type: ObjectId, ref: "Grocery" }],
   members: [{ type: ObjectId, ref: "User" }],
 });
 
