@@ -11,19 +11,18 @@ const Modal = (props) => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-  
+
     handlePriority(e); // Call handlePriority to set the priority
-  
+
     props.onSubmit({
       id: Math.floor(Math.random() * 10000),
       text: input,
       priority: priority,
     });
-  
+
     setInput("");
     setPriority(1);
   };
-  
 
   const handlePriority = (e) => {
     e.preventDefault();
@@ -62,16 +61,15 @@ const Modal = (props) => {
         </div>
         <form className="priority-form" onClick={handlePriority}>
           <label>Priority (between 1 and 3):</label>
-          <input 
-          type="range" 
-          id="priority" 
-          name="priority" 
-          min="1" 
-          max="3"
-          value={priority}
-          onChange={handlePriority}
+          <input
+            type="range"
+            id="priority"
+            name="priority"
+            min="1"
+            max="3"
+            value={priority}
+            onChange={handlePriority}
           />
-          <button className="priority-button">Set Priority</button>
         </form>
       </div>
     </div>

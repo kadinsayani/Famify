@@ -64,7 +64,7 @@ function TaskList(props) {
     const newTask = {
       _id: id,
       content: task.text,
-      // priority: task.priority,
+      priority: task.priority,
     };
 
     // Create a new array with the new task and the existing tasks
@@ -184,14 +184,13 @@ function TaskList(props) {
         <p> </p>
       </div>
       <div className="task-container text-center">
-        <Modal onClose={() => setShow(false)} show={show} onSubmit={addTask} onClick={addTask} />
+        <Modal onClose={() => setShow(false)} show={show} onSubmit={addTask} />
 
         <Task
           tasks={tasks}
           completeTask={completeTask}
           removeTask={removeTask}
           updateTask={updateTask}
-          //priority={task.priority}
         />
       </div>
     </div>

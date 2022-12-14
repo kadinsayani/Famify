@@ -53,8 +53,7 @@ function Task({ tasks, completeTask, removeTask, updateTask }) {
               key={task._id}
               onClick={() => completeTask(task._id)}
             >
-              {task.content}
-              {task.priority}
+              {task.content} [Priority: 1]
             </div>
             <div className="icons">
               <RiCloseCircleLine
