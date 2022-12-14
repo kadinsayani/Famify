@@ -14,13 +14,14 @@ taskRoutes.use(
 );
 
 class TaskView {
-  constructor(_id, content, user, date, time, isCompleted) {
+  constructor(_id, content, user, date, time, isCompleted, priority) {
     this._id = _id ? _id : null;
     this.content = content ? content : null;
     this.user = user ? user : null;
     this.date = date ? date : null;
     this.time = time ? time : null;
     this.isCompleted = isCompleted ? isCompleted : null;
+    this.priority = priority ? priority : null;
   }
 }
 
@@ -134,21 +135,48 @@ taskRoutes
 
 // :id
 
-taskRoutes.route("/tasks/:id").delete(userAuthenticated, (req, res) => {
-  Task.findById(req.params.id, (err, task) => {
-    if (err) return res.send("An error occured.");
-    if (!task) return res.status(404).send();
+taskRoutes
+  .route("/tasks/:id")
+  .delete(userAuthenticated, (req, res) => {
+    // delete task code here
+    Task.findById(req.params.id, (err, task) => {
+      if (err) return res.send("An error occured.");
+      if (!task) return res.status(404).send();
 
-    if (task.user.toString() === req.session.user.id.toString()) {
-      Task.findByIdAndDelete(req.params.id, (err, task) => {
-        if (err) return res.status(500).send();
+      if (task.user.toString() === req.session.user.id.toString()) {
+        Task.findByIdAndDelete(req.params.id, (err, task) => {
+          if (err) return res.status(500).send();
 
-        return res.status(200).send();
-      });
-    } else {
-      return res.status(403).send();
-    }
+          return res.status(200).send();
+        });
+      } else {
+        return res.status(403).send();
+      }
+    });
+  })
+  .patch(userAuthenticated, (req, res) => {
+    // patch task code here
+    Task.findById(req.params.id, (err, task) => {
+      if (err) return res.send("An error occurred.");
+      if (!task) return res.status(404).send();
+
+      // check if the task belongs to the authenticated user
+      if (task.user.toString() === req.session.user.id.toString()) {
+        // update the task with the new data from the request body
+        Task.findByIdAndUpdate(
+          req.params.id,
+          req.body,
+          { new: true },
+          (err, task) => {
+            if (err) return res.status(500).send();
+
+            return res.status(200).send(task);
+          }
+        );
+      } else {
+        return res.status(403).send();
+      }
+    });
   });
-});
 
 export default taskRoutes;

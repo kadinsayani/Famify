@@ -63,6 +63,7 @@ function TaskList(props) {
     const newTask = {
       _id: id,
       content: task.text,
+      priority: task.priority,
     };
 
     // Create a new array with the new task and the existing tasks
@@ -77,34 +78,93 @@ function TaskList(props) {
   const removeTask = (id) => {
     const removeArr = [...tasks].filter((task) => task._id !== id);
     setTasks(removeArr);
+    const config = {
+      url: `http://localhost:3001/tasks/${id}`,
+      method: "delete",
+      withCredentials: true,
+    };
+    axios
+      .request(config)
+      .then((res) => {
+        console.log(res);
+      })
+      .catch((err) => {
+        console.log(err);
+      });
   };
 
   const completeTask = (id) => {
     // Find the task with the specified id
-    const taskToComplete = tasks.find((task) => task.id === id);
+    const taskToComplete = tasks.find((task) => task._id === id);
 
     // Update the isComplete property of the task
     taskToComplete.isComplete = !taskToComplete.isComplete;
 
     // Create a new array with the updated task and the rest of the tasks
     const updatedTasks = [
-      ...tasks.filter((task) => task.id !== id),
+      ...tasks.filter((task) => task._id !== id),
       taskToComplete,
     ];
 
     // Update the tasks state with the new array
     setTasks(updatedTasks);
+
+    // Send a request to the server to update the task in the database
+    const config = {
+      url: `http://localhost:3001/tasks/${id}`,
+      method: "patch",
+      withCredentials: true,
+      data: {
+        isComplete: taskToComplete.isComplete,
+      },
+    };
+
+    axios
+      .request(config)
+      .then((res) => {
+        console.log(res);
+      })
+      .catch((err) => {
+        console.log(err);
+      });
   };
 
   const updateTask = (taskId, newValue) => {
-    if (!newValue.text || /^\s*$/.test(newValue.text)) {
-      // if newValue.text is empty or only spaces
-      return; // do nothing
-    }
+    // Find the task with the specified id
+    const taskToUpdate = tasks.find((task) => task._id === taskId);
 
-    setTasks((prev) =>
-      prev.map((item) => (item.id === taskId ? newValue : item))
-    );
+    // Update the task's properties with the new values
+    taskToUpdate.content = newValue.text;
+    // taskToUpdate.priority = newValue.priority;
+
+    // Create a new array with the updated task and the rest of the tasks
+    const updatedTasks = [
+      ...tasks.filter((task) => task._id !== taskId),
+      taskToUpdate,
+    ];
+
+    // Update the tasks state with the new array
+    setTasks(updatedTasks);
+
+    // Send a request to the server to update the task in the database
+    const config = {
+      url: `http://localhost:3001/tasks/${taskId}`,
+      method: "patch",
+      withCredentials: true,
+      data: {
+        content: taskToUpdate.content,
+        // priority: taskToUpdate.priority,
+      },
+    };
+
+    axios
+      .request(config)
+      .then((res) => {
+        console.log(res);
+      })
+      .catch((err) => {
+        console.log(err);
+      });
   };
 
   useEffect(() => {
