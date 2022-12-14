@@ -31,8 +31,35 @@ userRoutes.route("/user/family")
     })
 });
 
+userRoutes.route("/user/family/members")
+  .get(userAuthenticated, (req, res) => {
+    Family.findById(req.session.user.familyID, (err, family) => {
+      if (err) return res.status(500).send("An error occured.")
+      if (!family) return res.send("No family found.")
+
+      User.find({
+        '_id': { $in: family.members }
+      }, (err, users) => {
+        if (err) return res.status(500).send("An error occured.")
+        if (!users) return res.status(404).send()
+
+        return res.send(users)
+      })
+    })
+  })
+
+userRoutes.route("/user/status")
+  .put(userAuthenticated, (req, res) => {
+
+    User.findByIdAndUpdate(req.session.user.id, {status: req.body.content}, {new: true}, (err, user) => {
+      req.session.user.status = user.status
+      return res.send(req.session.user)
+    })
+
+  })
+
 // get one user by id
-userRoutes.route("/user/:id")
+userRoutes.route("/deprecated/user/:id")
 
   // get one user
   .get(userAuthenticated, (req, res) => {
