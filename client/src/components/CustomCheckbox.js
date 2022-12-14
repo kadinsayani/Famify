@@ -9,8 +9,8 @@ function CustomCheckbox(props) {
       checked={checked}
       onChange={onChange}
       style={{
-        height: 40,
-        width: 40,
+        height: 35,
+        width: 35,
       }}
     />
   );

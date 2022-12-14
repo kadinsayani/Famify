@@ -60,7 +60,7 @@ const Modal = (props) => {
           </form>
         </div>
         <form className="priority-form" onClick={handlePriority}>
-          <label>Priority (between 1 and 3):</label>
+          <label><b>Set Priority Level</b> (between 1-3):</label>
           <input
             type="range"
             id="priority"
@@ -70,6 +70,7 @@ const Modal = (props) => {
             value={priority}
             onChange={handlePriority}
           />
+          <br></br>
         </form>
       </div>
     </div>
