@@ -62,7 +62,8 @@ taskRoutes
                           tasks[i].content,
                           users[j].username,
                           tasks[i].date,
-                          tasks[i].time
+                          tasks[i].time,
+                          tasks[i].priority,
                         )
                       );
                     }
@@ -74,7 +75,8 @@ taskRoutes
                       tasks[i].content,
                       null,
                       tasks[i].date,
-                      tasks[i].time
+                      tasks[i].time,
+                      tasks[i].priority,
                     )
                   );
                 }
@@ -113,6 +115,7 @@ taskRoutes
       user: user,
       date: date,
       time: time,
+      priority: priority,
     });
 
     Family.findById(family, (err, family) => {

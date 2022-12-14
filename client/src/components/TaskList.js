@@ -28,8 +28,8 @@ function TaskList(props) {
       });
   };
 
-  const createTask = (task) => {
-    console.log(task);
+  const createTask = (task, priority) => {
+    console.log(task, priority);
 
     const config = {
       url: "http://localhost:3001/tasks",
@@ -37,6 +37,7 @@ function TaskList(props) {
       withCredentials: true,
       data: {
         content: task,
+        priority: priority,
       },
     };
 
@@ -72,7 +73,7 @@ function TaskList(props) {
     // Update the tasks state with the new array
     setTasks(newTasks);
     setShow(false);
-    createTask(task.text);
+    createTask(task.text, task.priority);
   };
 
   const removeTask = (id) => {
@@ -183,13 +184,14 @@ function TaskList(props) {
         <p> </p>
       </div>
       <div className="task-container text-center">
-        <Modal onClose={() => setShow(false)} show={show} onSubmit={addTask} />
+        <Modal onClose={() => setShow(false)} show={show} onSubmit={addTask} onClick={addTask} />
 
         <Task
           tasks={tasks}
           completeTask={completeTask}
           removeTask={removeTask}
           updateTask={updateTask}
+          //priority={task.priority}
         />
       </div>
     </div>

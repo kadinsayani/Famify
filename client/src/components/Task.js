@@ -54,6 +54,7 @@ function Task({ tasks, completeTask, removeTask, updateTask }) {
               onClick={() => completeTask(task._id)}
             >
               {task.content}
+              {task.priority}
             </div>
             <div className="icons">
               <RiCloseCircleLine
