@@ -22,6 +22,7 @@ function TaskList(props) {
 
         // Update the tasks state with the complete list of tasks retrieved from the server
         setTasks(resData);
+        console.log(resData);
       })
       .catch((err) => {
         console.log(err.status);
@@ -154,7 +155,7 @@ function TaskList(props) {
       withCredentials: true,
       data: {
         content: taskToUpdate.content,
-        // priority: taskToUpdate.priority,
+        priority: taskToUpdate.priority,
       },
     };
 

@@ -63,6 +63,7 @@ taskRoutes
                           users[j].username,
                           tasks[i].date,
                           tasks[i].time,
+                          tasks[i].isCompleted,
                           tasks[i].priority
                         )
                       );
@@ -76,6 +77,7 @@ taskRoutes
                       null,
                       tasks[i].date,
                       tasks[i].time,
+                      tasks[i].isCompleted,
                       tasks[i].priority
                     )
                   );
@@ -93,6 +95,7 @@ taskRoutes
     const content = req.body.content;
     const family = req.session.user.familyID;
     const user = req.session.user.id;
+    const priority = req.body.priority;
 
     const today = new Date();
     const date = today.toLocaleDateString("en-US", {
@@ -126,6 +129,7 @@ taskRoutes
     });
 
     newTask.content = content;
+    newTask.priority = priority;
     newTask.save((err) => {
       if (err) {
         return res.status(500).send("Error on save()");
