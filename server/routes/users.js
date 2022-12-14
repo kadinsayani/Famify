@@ -48,7 +48,7 @@ userRoutes.route("/user/family/members")
     })
   })
 
-userRoutes.route("/user/status")
+userRoutes.route("/status")
   .put(userAuthenticated, (req, res) => {
 
     User.findByIdAndUpdate(req.session.user.id, {status: req.body.content}, {new: true}, (err, user) => {
@@ -59,7 +59,7 @@ userRoutes.route("/user/status")
   })
 
 // get one user by id
-userRoutes.route("/deprecated/user/:id")
+userRoutes.route("/user/:id")
 
   // get one user
   .get(userAuthenticated, (req, res) => {
