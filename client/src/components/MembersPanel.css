@@ -39,3 +39,37 @@
     border: none;
     margin-bottom: 10px;
 }
+
+/* members */
+
+.memberImageDiv {
+    display: flex;
+    align-items: center;
+    margin: 10px;
+}
+
+.memberName {
+    font-weight: bold;
+    display: flex;
+    align-items: center;
+}
+
+.memberDiv {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.memberStatusBoxDiv {
+    font-weight: lighter;
+    font-style: italic;
+    outline: none;
+    border: none;
+    margin-bottom: 10px;
+}
+
+.memberPanel {
+    height: 100px;
+    display: flex;
+    border-bottom: 1px solid lightgrey;
+}

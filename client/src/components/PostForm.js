@@ -3,6 +3,7 @@ import axios from "axios";
 import "./FamFeed.css";
 import { BsPersonCircle } from "react-icons/bs";
 import { IconContext } from "react-icons/lib";
+import { SlSpeech } from "react-icons/sl"
 
 function PostForm(props) {
   const [input, setInput] = useState("");
@@ -61,7 +62,7 @@ function PostForm(props) {
 
             <IconContext.Provider value={{ color: "#0eb2fc", size: "50px" }}>
               <div id="posterImage">
-                <BsPersonCircle />
+                <SlSpeech />
               </div>
             </IconContext.Provider>
             

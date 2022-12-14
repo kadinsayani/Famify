@@ -38,8 +38,8 @@ function notifyFamily(userID, content) {
 
     User.findById(userID.toString(), (err, user) => {
 
-        if (err) console.log(err)
-        if (!user) console.log("User not found.")
+        if (err) return console.log(err)
+        if (!user) return console.log("User not found.")
 
         Family.findById(user.family.toString(), (err, family) => {
 
