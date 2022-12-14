@@ -1,21 +1,66 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import ListForm from "./ListForm";
 import List from "./List";
 import "./GroceryList.css";
 import axios from "axios";
 
 function GroceryList(props) {
-  const [lists, setLists] = useState([]);
+  const [items, setItems] = useState([]);
 
-  const createList = (list) => {
-    console.log(list);
+  const getItems = () => {
+    const config = {
+      url: "http://localhost:3001/groceries",
+      method: "get",
+      withCredentials: true,
+    };
+
+    axios
+      .request(config)
+      .then((res) => {
+        const resData = res.data;
+
+        // Update the tasks state with the complete item of tasks retrieved from the server
+        setItems(resData);
+      })
+      .catch((err) => {
+        console.log(err.status);
+      });
+  };
+
+  useEffect(() => {
+    getItems();
+  }, []);
+
+  const generateUniqueId = () => {
+    return Date.now() + Math.random();
+  };
+
+  const addItems = (item) => {
+    // Generate a unique id for the new task
+    const id = generateUniqueId();
+
+    // Create a new task object with the id and text
+    const newItem = {
+      _id: id,
+      content: item.text,
+    };
+
+    const newItems = [newItem, ...items];
+
+    // Update the tasks state with the new array
+    setItems(newItems);
+    createItems(item.text);
+  };
+
+  const createItems = (item) => {
+    console.log(item);
 
     const config = {
       url: "http://localhost:3001/groceries",
       method: "post",
       withCredentials: true,
       data: {
-        content: list,
+        content: item,
       },
     };
 
@@ -30,48 +75,34 @@ function GroceryList(props) {
       });
   };
 
-  const addList = (list) => {
-    const newLists = [list, ...lists];
-    setLists(newLists);
-    createList(list.list);
-  };
-
-  const removeList = (id) => {
-    const removeArr = [...lists].filter((list) => list.id !== id);
-    setLists(removeArr);
-  };
-
-  const completeList = (id) => {
-    let updatedLists = lists.map((list) => {
-      if (list.id === id) {
-        list.isComplete = !list.isComplete;
-      }
-      return list;
-    });
-    setLists(updatedLists);
-  };
-
-  const updateList = (listId, newValue) => {
-    setLists((prev) =>
-      prev.map((item) => (item.id === listId ? newValue : item))
-    );
+  const removeItems = (id) => {
+    const removeArr = [...items].filter((item) => item._id !== id);
+    setItems(removeArr);
+    const config = {
+      url: `http://localhost:3001/groceries/${id}`,
+      method: "delete",
+      withCredentials: true,
+    };
+    axios
+      .request(config)
+      .then((res) => {
+        console.log(res);
+      })
+      .catch((err) => {
+        console.log(err);
+      });
   };
 
   return (
-    <div className="listspage-container">
-      <div className="list-header">
+    <div className="itemspage-container">
+      <div className="item-header">
         <h1>Grocery List</h1>
       </div>
-      <div className="list-form-container">
-        <ListForm onSubmit={addList} />
+      <div className="item-form-container">
+        <ListForm onSubmit={addItems} />
       </div>
-      <div className="lists-container text-center">
-        <List
-          lists={lists}
-          completeList={completeList}
-          removeList={removeList}
-          updateList={updateList}
-        />
+      <div className="items-container text-center">
+        <List items={items} removeItems={removeItems} />
       </div>
     </div>
   );
