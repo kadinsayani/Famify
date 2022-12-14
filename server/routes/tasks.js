@@ -163,7 +163,8 @@ taskRoutes
       if (!task) return res.status(404).send();
 
       // check if the task belongs to the authenticated user
-      if (task.user.toString() === req.session.user.id.toString()) {
+      // if (task.user.toString() === req.session.user.id.toString()) {
+        if (task.family.toString() === req.session.user.family.toString()) {
         // update the task with the new data from the request body
         Task.findByIdAndUpdate(
           req.params.id,
