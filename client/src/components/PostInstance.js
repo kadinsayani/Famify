@@ -1,6 +1,7 @@
-import React from "react";
+import React, {useState} from "react";
 import "./FamFeed.css";
 import { BsPersonCircle } from "react-icons/bs";
+
 
 function PostInstance(props) {
 
@@ -19,6 +20,12 @@ function PostInstance(props) {
 
       {props.content}
     
+    </div>
+
+    <div className="actionsDiv">
+
+      
+
     </div>
 
   </div>
