@@ -1,9 +1,9 @@
 #mainPanel {
 
+    background-color: white;
     border: 1px solid lightgrey;
     position: fixed;
     top: 0;
-    bottom: 0;
     right: 0;
     left: 80%;
     /*left: 79.87%;*/
@@ -74,4 +74,15 @@
     height: 100px;
     display: flex;
     border-bottom: 1px solid lightgrey;
+}
+
+#showMembersButtonDiv {
+    display: flex;
+    float: right;
+    align-items: center;
+    padding-left: 50px;
+}
+
+#showMembersButton {
+    cursor: pointer;
 }
