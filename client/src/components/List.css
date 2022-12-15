@@ -5,13 +5,14 @@
     background-color: #f5f5f5;
     padding: 10px;
     border-radius: 10px;
-    
+    font-size: large;
 }
   
 .list-row .list-text {
     flex-grow: 1;
     text-align: left;
     margin-left: 10px;
+    font-size: 1.3rem;
 }
   
 .list-row .icons {

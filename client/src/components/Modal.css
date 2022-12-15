@@ -49,6 +49,14 @@
     padding: 10px;
 }
 
+.priority-form {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+}
+
 .task-button {
     float: right;
     background-color:#1a83ff;

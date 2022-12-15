@@ -136,13 +136,30 @@ groceryRoutes
 
 // :id
 
-groceryRoutes.route("/groceries/:id").delete(userAuthenticated, (req, res) => {
-  Grocery.findById(req.params.id, (err, grocery) => {
-    if (err) return res.send("An error occured.");
-    if (!grocery) return res.status(404).send();
+// groceryRoutes.route("/groceries/:id").delete(userAuthenticated, (req, res) => {
+//   Grocery.findById(req.params.id, (err, grocery) => {
+//     if (err) return res.send("An error occured.");
+//     if (!grocery) return res.status(404).send();
 
-    if (grocery.user.toString() === req.session.user.id.toString()) {
-      Grocery.findByIdAndDelete(req.params.id, (err, grocery) => {
+//     if (grocery.family.toString() === req.session.user.familyID.toString()) {
+//       Grocery.findByIdAndDelete(req.params.id, (err, grocery) => {
+//         if (err) return res.status(500).send();
+
+//         return res.status(200).send();
+//       });
+//     } else {
+//       return res.status(403).send();
+//     }
+//   });
+// });
+groceryRoutes.route("/groceries/:id").delete(userAuthenticated, (req, res) => {
+  // delete task code here
+  Grocery.findById(req.params.id, (err, item) => {
+    if (err) return res.send("An error occured.");
+    if (!item) return res.status(404).send();
+
+    if (item.family.toString() === req.session.user.familyID.toString()) {
+      Grocery.findByIdAndDelete(req.params.id, (err, item) => {
         if (err) return res.status(500).send();
 
         return res.status(200).send();

@@ -82,6 +82,7 @@ function GroceryList(props) {
     const config = {
       url: `http://localhost:3001/groceries/${id}`,
       method: "delete",
+      withCredentials: true,
     };
     axios
       .request(config)
@@ -98,11 +99,11 @@ function GroceryList(props) {
       <div className="item-header">
         <h1>Grocery List</h1>
       </div>
-      <div className="item-form-container">
-        <ListForm onSubmit={addItems} />
-      </div>
       <div className="items-container text-center">
         <List items={items} removeItems={removeItems} />
+      </div>
+      <div className="item-form-container">
+        <ListForm onSubmit={addItems} />
       </div>
     </div>
   );
