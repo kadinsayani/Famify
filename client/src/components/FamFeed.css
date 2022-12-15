@@ -1,7 +1,7 @@
 .post-app {
   display: flex;
   flex-direction: column;
-  width: 122.85%;
+  width: 900px;
   height: 170px;
   margin-left: 15.7rem;
   margin-bottom: 0.1rem;
@@ -113,6 +113,5 @@
 }
 
 #famfeed {
-  width: 100vh;
   display: flex;
 }

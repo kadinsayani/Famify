@@ -5,8 +5,7 @@
     position: fixed;
     top: 0;
     right: 0;
-    left: 80%;
-    /*left: 79.87%;*/
+    left: 79.87%;
 }
 
 #userPanel {
@@ -84,5 +83,6 @@
 }
 
 #showMembersButton {
+    padding-right: 10px;
     cursor: pointer;
 }
