@@ -116,10 +116,13 @@ function FamFeed() {
   });
 
   return (
-    <div className="post-app">
-      <h1>FamFeed</h1>
-      <PostForm onSubmit={getPosts} />
-      <Post refresh={getPosts} posts={posts} />
+    <div id="famfeed">
+      <div className="post-app">
+        <h1>FamFeed</h1>
+        <PostForm onSubmit={getPosts} />
+        <Post refresh={getPosts} posts={posts} />
+      </div>
+      
       <MembersPanel currentUser={currentUser} members={members} />
     </div>
   );
