@@ -1,6 +1,6 @@
 # famify
 
-Web application for families with collaboration and interaction features including shared to-do lists and twitter like social media features
+Web app for families with collaboration and interaction features including shared lists and twitter like social media features.
 
 ## Starting the server
 
