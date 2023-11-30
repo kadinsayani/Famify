@@ -104,7 +104,7 @@ function Notifications() {
           <h1>Notifications</h1>
 
           {notifications.map(notification => {
-            return <Notification subject={notification.subjectName ?? "A member"} content={notification.content} when={notification.when ?? notification.date} />
+            return <Notification subject={notification.subjectName || "A member"} content={notification.content} when={notification.when || notification.date} />
           })}
 
         </div>

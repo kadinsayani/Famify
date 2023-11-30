@@ -1,6 +1,6 @@
 #mainPanel {
 
-    border: 1px solid lightgrey;
+    /* border: 1px solid lightgrey; */
     position: fixed;
     top: 0;
     bottom: 0;
@@ -72,5 +72,5 @@
 .memberPanel {
     height: 100px;
     display: flex;
-    border-bottom: 1px solid lightgrey;
+    /* border-bottom: 1px solid lightgrey; */
 }
